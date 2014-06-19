@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://lsiemens.github.io/</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://lsiemens.github.io/tag/physics/index.html</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://lsiemens.github.io/tag/special-relativity/index.html</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://lsiemens.github.io/what-is-momentum/index.html</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://lsiemens.github.io/tag/statistics/index.html</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://lsiemens.github.io/tag/markov-chains/index.html</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://lsiemens.github.io/an-introduction-to-markov-chains/index.html</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://lsiemens.github.io/rss/</loc>
+  <lastmod>2014-06-17T21:35:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+</urlset>
