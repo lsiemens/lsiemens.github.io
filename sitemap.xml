@@ -2,112 +2,147 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>http://lsiemens.com/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/about/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/an-improbable-prime/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/an-introduction-to-markov-chains/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/author/lsiemens/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://lsiemens.com/author/lsiemens/page/2/index.html</loc>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/author/lsiemens/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/memory-and-markov/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://lsiemens.com/page/2/index.html</loc>
+        <lastmod>2015-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://lsiemens.com/psipy-schrodingers-equation-part1/index.html</loc>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/markov-chains/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/markov-chains/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/physics/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/physics/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/prime-numbers/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/prime-numbers/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/python/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/python/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://lsiemens.com/tag/quantum-mechanics/index.html</loc>
+        <lastmod>2015-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://lsiemens.com/tag/quantum-mechanics/rss/index.html</loc>
+        <lastmod>2015-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://lsiemens.com/tag/schrodingers-equation/index.html</loc>
+        <lastmod>2015-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://lsiemens.com/tag/schrodingers-equation/rss/index.html</loc>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/special-relativity/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/special-relativity/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/statistics/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/tag/statistics/rss/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/the-making-of-a-markov-chain/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>http://lsiemens.com/what-is-momentum/index.html</loc>
-        <lastmod>2015-02-05</lastmod>
+        <lastmod>2015-03-07</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 </urlset>
