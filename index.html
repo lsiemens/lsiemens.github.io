@@ -1,157 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
+---
+layout: default
+---
 
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-    });
-    </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
+<div class="home">
 
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <h1 class="page-heading">Posts</h1>
 
-    <title>I-Process</title>
-    <meta name="description" content="Thoughts and Ideas on Physics, Astronomy and Computer Science." />
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
 
-    <link rel="shortcut icon" href="favicon.ico">
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400" />
-
-    <link rel="canonical" href="index.html" />
-    <link rel="next" href="page/2/index.html" />
-    <meta name="generator" content="Ghost 0.5" />
-    <link rel="alternate" type="application/rss+xml" title="I-Process" href="rss/index.html" />
-</head>
-<body class="home-template">
-
-    
-<header class="main-header no-cover">
-    <nav class="main-nav overlay clearfix">
-        
-        <a class="back-button icon-arrow-left" href="index.html">Home</a>
-        <a class="back-button" href="about/index.html">About</a>
-        <a class="subscribe-button icon-feed" href="rss/index.html">Subscribe</a>    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">I-Process</h1>
-            <h2 class="page-description">Thoughts and Ideas on Physics, Astronomy and Computer Science.</h2>
-        </div>
-    </div>
-    <a class="scroll-down icon-arrow-left" href="index.html#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
-
-<main id="content" class="content" role="main">
-
-    <div class="extra-pagination inner">
-        <nav class="pagination" role="navigation">
-        <span class="page-number">Page 1 of 2</span>
-            <a class="older-posts" href="page/2/index.html">Older Posts &rarr;</a>
-    </nav>
-    </div>
-    
-    <article class="post tag-python tag-quantum-mechanics tag-schrodingers-equation">
-        <header class="post-header">
-            <h2 class="post-title"><a href="psipy-schrodingers-equation-part1/index.html">PsiPy: Schrödinger&#x27;s Equation (part 1)</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>This past fall I was taking my second quantum mechanics class. In that class we learnt how to deal with discreet quantum system using linear algebra <a class="read-more" href="psipy-schrodingers-equation-part1/index.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-            <a href="http://127.0.0.1:2368/author/lsiemens/">Luke Siemens</a>
-             on <a href="tag/python/index.html">Python</a>, <a href="tag/quantum-mechanics/index.html">Quantum Mechanics</a>, <a href="tag/schrodingers-equation/index.html">Schrödinger&#39;s Equation</a>
-            <time class="post-date" datetime="2015-03-07">07 March 2015</time>
-        </footer>
-    </article>
-    <article class="post tag-statistics tag-markov-chains tag-python">
-        <header class="post-header">
-            <h2 class="post-title"><a href="memory-and-markov/index.html">Memory and Markov</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>In a previous post I discussed how to generate a Markov Chain with a basic algorithm, but using that algorithm memory usage was a limiting factor. <a class="read-more" href="memory-and-markov/index.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-            <a href="http://127.0.0.1:2368/author/lsiemens/">Luke Siemens</a>
-             on <a href="tag/statistics/index.html">Statistics</a>, <a href="tag/markov-chains/index.html">Markov Chains</a>, <a href="tag/python/index.html">Python</a>
-            <time class="post-date" datetime="2015-02-04">04 February 2015</time>
-        </footer>
-    </article>
-    <article class="post tag-statistics tag-prime-numbers">
-        <header class="post-header">
-            <h2 class="post-title"><a href="an-improbable-prime/index.html">An Improbable Prime</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Over the last couple years security and privacy on the internet has become significant issue due to constant hacking and spying from groups and individuals both <a class="read-more" href="an-improbable-prime/index.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-            <a href="http://127.0.0.1:2368/author/lsiemens/">Luke Siemens</a>
-             on <a href="tag/statistics/index.html">Statistics</a>, <a href="tag/prime-numbers/index.html">Prime numbers</a>
-            <time class="post-date" datetime="2014-09-12">12 September 2014</time>
-        </footer>
-    </article>
-    <article class="post tag-statistics tag-markov-chains tag-python">
-        <header class="post-header">
-            <h2 class="post-title"><a href="the-making-of-a-markov-chain/index.html">The Making of a Markov Chain</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Before getting into how to make Markov Chains, lets quickly get a refresh on what a Markov Chain is. A Markov Chain is a set of <a class="read-more" href="the-making-of-a-markov-chain/index.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-            <a href="http://127.0.0.1:2368/author/lsiemens/">Luke Siemens</a>
-             on <a href="tag/statistics/index.html">Statistics</a>, <a href="tag/markov-chains/index.html">Markov Chains</a>, <a href="tag/python/index.html">Python</a>
-            <time class="post-date" datetime="2014-07-19">19 July 2014</time>
-        </footer>
-    </article>
-    <article class="post tag-physics tag-special-relativity">
-        <header class="post-header">
-            <h2 class="post-title"><a href="what-is-momentum/index.html">What is Momentum?</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>When you took your first physics class you where introduced to the concept of momentum, and the discussion likely revolved around Newton's second law of motion. <a class="read-more" href="what-is-momentum/index.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-            <a href="http://127.0.0.1:2368/author/lsiemens/">Luke Siemens</a>
-             on <a href="tag/physics/index.html">Physics</a>, <a href="tag/special-relativity/index.html">Special Relativity</a>
-            <time class="post-date" datetime="2014-06-13">13 June 2014</time>
-        </footer>
-    </article>
-    
-    <nav class="pagination" role="navigation">
-        <span class="page-number">Page 1 of 2</span>
-            <a class="older-posts" href="page/2/index.html">Older Posts &rarr;</a>
-    </nav>
-
-</main>
-
-    <footer class="site-footer clearfix">
-        <section class="copyright"><a href="index.html">I-Process</a> &copy; 2015</section>
-        <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
-    </footer>
-
-    <script src="public/jquery.js"></script>
-
-    <script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="assets/js/index.js"></script>
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-39745083-3', 'auto');
-        ga('send', 'pageview');
-</script>
-</body>
-</html>
+</div>
