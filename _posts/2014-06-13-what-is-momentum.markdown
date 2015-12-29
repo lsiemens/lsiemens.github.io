@@ -1,0 +1,16 @@
+---
+layout: post
+title: "What is Momentum?"
+date: 2014-06-13 12:00:00
+tags:
+- Physics
+- Special-Relitivity
+
+use_math: true
+---
+
+When you took your first physics class you where introduced to the concept of momentum, and the discussion likely revolved around Newton's second law of motion. This discussion would then culminate in the definition of momentum: $\vec{p} = m \vec{v}$. As you progressed in the sciences you learned more about momentum and why it is useful, one of the most important properties that you learned about momentum is that, momentum is conserved in all inertial reference frames when the system is closed. When the discussion of classical mechanics concluded you knew that momentum is $m \vec{v}$ and that it is conserved.
+
+At some point later on you learned about special relativity, and that in the early twentieth century Einstein postulated that the speed of light was constant for all reference frames. In order for this to be consistent he needed to replace the Galilean transformation with a new set of equations for transforming between reference frames, these new equations are called the Lorentz transformations. But under the new transformations the quantity $m \vec{v}$ was no longer conserved in all inertial reference frames. So he revised the equation for momentum, the new equation he found was $\vec{p} = \gamma m_{0} \vec{v}$. This new equation for momentum results in momentum being conserved for all inertial reference frames if the system is closed, and for velocities that are small relative to the speed of light the equation reduces down to $m \vec{v}$. So as it turned out, $m \vec{v}$ was a good approximation of momentum when the velocity is small, but the real equation for momentum is the one discovered by Einstein. By the time the discussion of special relativity was over you knew that momentum is $\gamma m_{0} \vec{v}$.
+
+Unfortunately both of these definitions are wrong. Momentum is not $\gamma m_{0} \vec{v}$ and it is most definitely not $m \vec{v}$. Fundamentally there is a symmetry in the universe involving mass and velocity and the quantity that satisfies this symmetry for all reference frames in a closed system is momentum. The quantity $m \vec{v}$ is called momentum because it has been experimentally shown to approximate the momentum when the velocity is small, and $\gamma m_{0} \vec{v}$ is called momentum because it has similarly been shown to approximate the true value of momentum. Currently the best equation for momentum is the one discovered by Einstein, but that equation for momentum may or may not be superseded by a more general equation. We call the results of these equations momentum because they are good approximations under particular constraints. Momentum is the fundamental quantity that satisfies this particular symmetry not the equations that are used to evaluate it.

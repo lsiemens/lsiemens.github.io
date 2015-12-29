@@ -121,9 +121,20 @@
 
     .post-meta {
         font-size: $small-font-size;
-        color: $grey-color-light;
-        text-transform: uppercase;
+        color: $grey-color;
         display: inline-block;
+
+        a {
+            color: $grey-color;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    a.post-meta {
+        color: $grey-color;
     }
 
 /* Post Format

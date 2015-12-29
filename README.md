@@ -7,4 +7,5 @@ Have any feedback for me? File an issue on this project and I will get back to y
 
 The content management system has now been switched from ghost to jekyll. 
 The theme is [Polar-Bear](https://github.com/diezcami/polar-bear-theme) 
-which is licensed under the MIT License.
+which is licensed under the MIT License, the full license is located in the 
+file LICENSE_Polar_Bear.
