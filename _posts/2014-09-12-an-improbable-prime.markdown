@@ -2,9 +2,7 @@
 layout: post
 title: "An Improbable Prime"
 date: 2014-09-12 12:00:00
-tags:
-- Statistics
-- Prime-numbers
+tags: [Statistics, Prime-numbers]
 
 use_math: true
 ---

@@ -2,10 +2,7 @@
 layout: post
 title: "String Dynamics"
 date: 2016-04-30 12:00:00
-tags:
-- Physics
-- Classical-mechanics
-- Continuum-mechanics
+tags: [Physics, Classical-mechanics, Continuum-mechanics]
 ---
 
 Since finishing my first class on classical mechanics I have been interested in deriving the equations of motion for strings. Before I begin it should be noted that do not have formal training in continuum mechanics, so the methods and definitions that I use may be nonstandard.

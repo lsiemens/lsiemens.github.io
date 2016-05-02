@@ -2,10 +2,7 @@
 layout: post
 title: "What is Momentum?"
 date: 2014-06-13 12:00:00
-tags:
-- Physics
-- Special-Relitivity
-
+tags: [Physics, Special-Relitivity]
 use_math: true
 ---
 

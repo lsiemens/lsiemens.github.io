@@ -2,10 +2,7 @@
 layout: post
 title: "The Making of a Markov Chain"
 date: 2014-07-19 12:00:00
-tags:
-- Statistics
-- Markov-chains
-- Python
+tags: [Statistics, Markov-chains, Python]
 ---
 
 Before getting into how to make Markov Chains, lets quickly get a refresh on what a Markov Chain is. A Markov Chain is a set of states and state transition which are selected based on an assigned probability of occurring. The goal of a Markov chain is to model complex dependent statistical systems, for an in-depth introduction to Markov Chains see the post [An Introduction to Markov Chains]({% post_url 2014-06-07-an-introduction-to-markov-chains %}).

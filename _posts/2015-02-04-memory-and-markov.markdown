@@ -2,10 +2,7 @@
 layout: post
 title: "Memory and Markov"
 date: 2015-02-04 12:00:00
-tags: 
-- Statistics
-- Markov-chains
-- Python
+tags: [Statistics, Markov-chains, Python]
 ---
 
 In a previous post I discussed how to generate a Markov Chain with a basic algorithm, but using that algorithm memory usage was a limiting factor. Now we will attempt to find a solution to the memory usage of the algorithm. If you are unfamiliar with how to generate a Markov Chain checkout the post [The Making of a Markov Chain]({% post_url 2014-07-19-the-making-of-a-markov-chain %}).

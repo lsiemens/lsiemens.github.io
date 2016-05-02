@@ -2,9 +2,7 @@
 layout: post
 title: "An Introduction to Markov Chains"
 date: 2014-06-07 12:00:00
-tags:
-- Statistics
-- Markov-chains
+tags: [Statistics, Markov-chains]
 ---
 
 Markov chains are a statistical tool invented by Andrey Markov to model dependent statistical phenomenon. A Markov Chain is made from two components a discrete set of states and a set of stochastic state transitions. The idea is that if there are two states **A** and **B** and the state transitions **AA**, **AB**, **BA** and **BB** where the first letter is the starting state and the second letter is the final state, each one of these state transitions will have a probability of occurring associated with it. To compute this process an initial state is selected, then one of the valid state transitions is randomly chosen based on its probability of occurring, the current state is replaced by the new state as determined by the transition. This process now is a model of a system where the probability of the states **A** or **B** occurring is dependent on the current state.

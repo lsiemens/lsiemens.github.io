@@ -2,10 +2,7 @@
 layout: post
 title: "PsiPy: Schrodinger's Equation (part 1)"
 date: 2015-03-07 12:00:00
-tags: 
-- Python
-- Quantum-mechanics
-- Schrodinger's-equation
+tags: [Python, Quantum-mechanics, Schrodinger's-equation]
 
 use_math: true
 ---

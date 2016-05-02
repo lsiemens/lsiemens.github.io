@@ -1,5 +1,6 @@
 ---
 layout: page
+subtitle: Tags
 permalink: /tags/
 ---
 
