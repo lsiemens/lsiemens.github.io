@@ -5,7 +5,7 @@ permalink: /tags/
 ---
 
 {% capture tags %}
-  {% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %} {% endunless %}{% endfor %}
+  {% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %}{{ " " }}{% endunless %}{% endfor %}
 {% endcapture %}
 {% assign sortedtags = tags | split: " " | sort %}
 
