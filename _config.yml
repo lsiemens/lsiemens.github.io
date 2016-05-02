@@ -1,6 +1,6 @@
 # dependencies
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 
 permalink: pretty
 paginate: 6
@@ -14,11 +14,6 @@ email: luke@lsiemens.com
 github_username: lsiemens
 
 #excerpt_separator: <!--more-->
-
-analytics:
-  provider: google
-  google:
-    tracking_id: 'UA-39745083-3'
 
 defaults:
 
