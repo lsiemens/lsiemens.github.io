@@ -1,6 +1,9 @@
 # dependencies
+gems: [jekyll-paginate]
 markdown: kramdown
-highlighter: rouge
+kramdown:
+    input: GFM
+    syntax_highlighter: rouge
 
 permalink: pretty
 paginate: 6
@@ -12,8 +15,6 @@ url: "http://lsiemens.com"
 baseurl: ""
 email: luke@lsiemens.com
 github_username: lsiemens
-
-#excerpt_separator: <!--more-->
 
 defaults:
 
