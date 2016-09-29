@@ -4,13 +4,16 @@ title: "Gaussian Moments"
 tags: [Math, Calculus]
 ---
 
-Let us define the $$m$$ dimensional the Gaussian distribution
+Let us define the $$m$$ dimensional Gaussian distribution
 
 \begin{equation}\sigma(\vec{x}, \vec{v}, t) = \rho(\vec{x}, t)\left(\pi a(\vec{x}, t)\right)^{-m/2} e^{-\left(v_i - u_i(\vec{x}, t)\right)^2/a(\vec{x}, t)}\label{m-gaussian}\end{equation}
 
-The goal is to find a general equation for the moments of equation \eqref{m-gaussian}, that is solutions to equations of the form $$\int_{-\infty}^{\infty}v_i v_j\sigma d^m v$$ but generalized to any order. To simplify the equations in the following derivation I will first define some notation that will be used in the derivation.
+The goal is to find a general equation for the moments of equation \eqref{m-gaussian}, that is solutions to equations of the form $$\int_{-\infty}^{\infty}v_i ... v_j\sigma d^m v$$ generalized to any order. To simplify the equations in the following derivation I will first define some notation that will be used in the derivation.
 
-The following derivation will deal with equations involving an arbitray number of vector components. Let $$A$$ be a rank $$n$$ tensor constructed from the $$m$$ dimensional vector $$\vec{a}$$ such that $$A_{i_1 i_2 \cdots i_{n-1} i_n} = a_{i_1} a_{i_2} \cdots a_{i_{n-1}} a_{i_n}$$. Let us simplify the notation by defining the object $$I$$ which represents the indices $$i_1$$ to $$i_n$$ such that $$a_{i_1} a_{i_2} \cdots a_{i_{n-1}} a_{i_n}=\left(a^n\right)_I$$, and let $$\left(a^{n-1}\right)_{I-1} a_{i_n} a_{i_{n+1}}=\left(a^n\right)_I a_{i_{n+1}}=\left(a^{n+1}\right)_{I+1}=a_{i_1} a_{i_2} \cdots a_{i_n} a_{i_{n+1}}$$.
+## The Notation ##
+Let $$A$$ be a rank $$n$$ tensor constructed from the repeated tensor product of a rank one tensor $$a$$, in $$m$$ dimensional space, such that $$A_{i_1 i_2 \cdots i_{n-1} i_n} = a_{i_1} a_{i_2} \cdots a_{i_{n-1}} a_{i_n}$$. Let us simplify the notation by defining the object $$I$$ which represents the indices $$i_1$$ to $$i_n$$ such that $$a_{i_1} a_{i_2} \cdots a_{i_{n-1}} a_{i_n}=\left(a^n\right)_I$$, where the subscript $$I$$ represents the indices and the superscript $$n$$ denotes the number of copies of $$\vec{a}$$ used in the tensor. 
+
+Further, if the tensor $$A$$ is constructed from the repeated tensor product of multiple tensors
 
 Now to simplify the relation for $$C_I$$ we can expand our notation. Let $$A$$ be a rank $$n$$ tensor constructed from the $$m$$ dimensional vector $$\vec{a}$$ and the $$m$$ dimensional rank $$2$$ symmetric tensor $$b_{ij}$$ such that,
 
