@@ -1,0 +1,496 @@
+% ****** Start of file apssamp.tex ******
+%
+%   This file is part of the APS files in the REVTeX 4.1 distribution.
+%   Version 4.1r of REVTeX, August 2010
+%
+%   Copyright (c) 2009, 2010 The American Physical Society.
+%
+%   See the REVTeX 4 README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.1
+%
+% See the REVTeX 4 README file
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex apssamp.tex
+%  2)  bibtex apssamp
+%  3)  latex apssamp.tex
+%  4)  latex apssamp.tex
+%
+\documentclass[%
+ reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+%preprint,
+%showpacs,preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+ amsmath,amssymb,
+ aps,
+%pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-1}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{amsmath}% better dot placment
+\usepackage{systeme}% systemes of equations
+%\usepackage{hyperref}% add hypertext capabilities
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+%\usepackage[showframe,%Uncomment any one of the following lines to test 
+%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
+%%text={7in,10in},centering,
+%%margin=1.5in,
+%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
+%%height=10in,a5paper,hmargin={3cm,0.8in},
+%]{geometry}
+
+% Personal definitions
+\newcommand{\dvec}[1]{\dot{\vec{#1}}}
+\newcommand{\grad}{\vec{\nabla}}
+\newcommand{\intV}[1]{\int_{-\infty}^{\infty} #1 d^3x}
+\newcommand{\intVdot}[1]{\int_{-\infty}^{\infty} #1 d^3\dot{x}}
+\newcommand{\intVVdot}[1]{\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} #1 d^3xd^3\dot{x}}
+
+
+\begin{document}
+
+\title{A Derivation of Fluid Mechanics}% Force line breaks with \
+
+\author{L. Siemens}
+\email{lsiemens@uvic.ca}
+
+\date{\today}
+
+\begin{abstract}
+I derive a single PDE that describes the dynamics of fluids in state space. Then the similarity between that PDE and equations of fluid mechanics is demonstrated by using it to deriving a set of three equations analogous to the mass, internal energy and Navier-Stokes equations.  Finally I demonstrate that for a fluid with particles following the Maxwell-Boltzmann distribution the set of analogous equations reduces to the equations of inviscid flow.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Fluids consist of a large number of interacting particles, presumably the fluid mechanics observed at a macroscopic level is a result of the interactions occurring at a microscopic level. If the dynamics of each particle was know it should be possible in principle to determine the macroscopic dynamics of the fluid from the collective motion of the particles. 
+
+\section{State space dynamics}
+
+Assuming the dynamics a particle is defined by the acceleration and that the acceleration of the particles is given by the potential $\phi$ such that $\vec{a} = \vec{\nabla}\cdot\phi$, then the equations of motion become
+\[
+\frac{d}{dt}\begin{pmatrix} \vec{x} \\ \dvec{x} \end{pmatrix}=\begin{pmatrix} \dvec{x} \\ -\grad\phi \end{pmatrix}
+\]
+
+For a system of $n$ particles where the $i^{\text{th}}$ particle is located at $\vec{x}_i$, the potential can in principle depend on the location of all of the particles, such that the potential for the $i^{\text{th}}$ particle is $\phi_i = \phi({\vec{x}_i, \vec{x}_1, \vec{x}_2, ... \vec{x}_i ... , \vec{x}_{n-1}, \vec{x}_n})$. Then for this system the equations of motion for each particle is given by the system of equations
+\begin{equation}
+\frac{d}{dt}\begin{pmatrix} \vec{x}_i \\ \dvec{x}_i \end{pmatrix}=\begin{pmatrix} \dvec{x}_i \\ -\partial_{\vec{x}_i}\phi_i \end{pmatrix}
+\label{discrete_system_dynamics}
+\end{equation}
+
+Moving over to a state space description of the system, the state space has six coordinates given by the orthogonal coordinate vectors $\vec{x}$ and $\dvec{x}$. Given a time dependent density distribution defined over state space $\sigma=\sigma(\vec{x}, \dvec{x}, t)$, such that the total mass at the time $t$ is $M(t)=\intVVdot{\sigma(\vec{x}, \dvec{x}, t)}$. The system of discrete particles described by equation \eqref{discrete_system_dynamics} then be described by the distribution
+\[
+\sigma(\vec{x}, \dvec{x}, t) = m\sum^n_{i=0}\delta(\vec{x} - \vec{x}_i)\cdot\delta(\dvec{x} - \dvec{x}_i)
+\]
+where $m$ is the mass of the particles, and $\delta(\vec{x})$ is the Dirac delta distribution in 3-space. For this system the six component state space velocity is $\vec{v}=\left\langle\dvec{x}, -\grad\phi(\vec{x}, \rho, t)\right\rangle$, where the potential $\phi$ is defined as $\phi(\vec{x}_i, \rho, t)=\phi_i$ and $\rho(\vec{x}, t)=\intVdot{\sigma(\vec{x}, \dvec{x}, t)}$ . Assuming the number of particles in the distribution is constant, then $\frac{dM}{dt}=0$. Since there are no sources or sinks for the particles, the density distribution is constrained by the continuity equation
+\[
+\frac{d}{dt}\int_{V}\sigma(\vec{x}, \dvec{x}, t)d^3xd^3\dot{x}+\oint_{\partial V}\sigma(\vec{x}, \dvec{x}, t)\vec{v}\cdot d\vec{a}=0
+\]
+where $V$ is an arbitrary volume in state space, $\partial V$ is the surface of the arbitrary volume, $\vec{v}$ is the state space velocity and $d\vec{a}$ is a surface element in state space. Rearranging the terms and using the divergence theorem the continuity equation can be rewritten in the form
+\[
+\int_V\left(\partial_t\sigma + \grad\cdot\left(\sigma\vec{v}\right)\right)d^3xd^3\dot{x}=0
+\]
+
+Since the integral equals zero over any arbitrary volume $V$, then the integrand must be zero
+\[
+\partial_t \sigma + \grad\cdot\left(\sigma\vec{v}\right)=0
+\]
+
+Finally the independence of $\vec{x}$ and $\dvec{x}$ can be used to rewrite the continuity equation in the final form, in this case it is written using Einstein notation
+\begin{equation}
+\partial_t \sigma + \dot{x}_i\partial_{x_i}\sigma-\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma=0
+\label{state_space_continuity}
+\end{equation}
+
+While the derivation of equation \eqref{state_space_continuity} was motivated using a discrete collection of particles the equation is not restricted to systems of discrete particles. As long as the dynamics in state space is determined by $\vec{v}=\left\langle\dvec{x}, \grad\phi(\vec{x}, \rho, t)\right\rangle$ and there are no sources or sinks for the state space density, then any state space density function or distribution is described by equation \eqref{state_space_continuity}.
+
+Assuming the motion of individual particles, in a fluid described by fluid mechanics, is described by equation \eqref{discrete_system_dynamics} and assuming that the number and mass of the particles is invariant, then the dynamics of the state space distribution is described by equation \eqref{state_space_continuity}. If these assumptions are true for any fluid, then equation \eqref{state_space_continuity} must be capable of reproducing the behavior of fluid mechanics.
+
+\section{Fluid mechanics mass equation: Conservation of mass}
+The state space density function $\sigma$ is defined such that $M=\intVVdot{\sigma(\vec{x}, \dvec{x}, t)}$. Define the mass density $\rho$ as $\rho(\vec{x}, t)=\intVdot{\sigma(\vec{x}, \dvec{x}, t)}$. Also define the bulk velocity $\vec{u}$ as $u_i=\frac{1}{\rho(\vec{x}, t)}\intVdot{x_i\sigma(\vec{x}, \dvec{x}, t)}=\intVdot{x_i\frac{\sigma}{\rho}}$. The integral of equation \eqref{state_space_continuity} over velocity space is
+\[
+\intVdot{\left(\partial_t \sigma + \dot{x}_i\partial_{x_i}\sigma-\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma\right)}=0
+\]
+
+Splitting up the integral and swapping the order of operations where applicable results in the form
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\sigma}\right) + \partial_{x_i}\left(\intVdot{\dot{x}_i\sigma}\right) \\ & - \left(\partial_{x_i}\phi\right)\intVdot{\partial_{\dot{x}_i}\sigma}=0
+\end{split}
+\]
+
+Evaluating the integrals and using the divergence theorem produces
+\[
+\partial_t\rho + \partial_{x_i}\left(u_i\rho\right)-\left(\partial_{x_i}\phi\right)\oint{\sigma da_i}=0
+\]
+where $da_i$ is the $i^{\text{th}}$ component of the surface element, and $\oint{\sigma da_i}$ is the surface integral over all of velocity space. Assuming $\sigma(\vec{x}, \dvec{x}, t)$ drops to zero faster than $\lvert\dvec{x}\rvert^2$ then the surface integral converges to zero. Given the surface integral does converge to zero, the resulting equation is $\partial_t\rho + \partial_{x_i}\left(u_i\rho\right)=0$. When written in vector notation it becomes
+\begin{equation}
+\partial_t\rho + \grad\cdot\left(\vec{u}\rho\right)=0
+\label{conservation_of_mass}
+\end{equation}
+which is the conservation of mass equation from fluid mechanics.
+
+\section{Conservation of momentum}
+To get a equation for the conservation of momentum, let us multiply equation \eqref{state_space_continuity} by $\dvec{x}$ before integrating over velocity space.
+\[
+\intVdot{\dot{x}_i\left(\partial_t \sigma + \dot{x}_j\partial_{x_j}\sigma-\left(\partial_{x_j}\phi\right)\partial_{\dot{x}_j}\sigma\right)}=0
+\]
+
+Rearranging and applying the divergence theorem
+\[
+\begin{split}
+&\partial_t\left(\intVdot{\dot{x}_i\sigma}\right) + \partial_{x_j}\left(\intVdot{\dot{x}_i\dot{x}_j\sigma}\right) \\ & - \left(\partial_{x_j}\phi\right)\intVdot{\dot{x}_i\partial_{\dot{x}_j}\sigma}=0
+\end{split}
+\]
+
+Evaluating integrals and using the product rule
+\[
+\begin{split}
+& \partial_t\left(u_i\rho\right) + \partial_{x_j}\left(\intVdot{\dot{x}_i\dot{x}_j\sigma}\right) \\ & - \left(\partial_{x_j}\phi\right)\intVdot{\left(\partial_{\dot{x}_j}\left(\dot{x}_i\sigma\right) - \sigma\delta_{i j}\right)}=0
+\end{split}
+\]
+where $\delta_ij$ is the Kronecker delta function. Integrating terms and Applying the divergence theorem produces
+\[
+\begin{split}
+& \partial_t\left(u_i\rho\right) + \partial_{x_j}\left(\intVdot{\dot{x}_i\dot{x}_j\sigma}\right) \\ & - \left(\partial_{x_j}\phi\right)\oint\dot{x}_i\sigma da_j + \left(\partial_{x_j}\phi\right)\rho\delta_{i j}=0
+\end{split}
+\]
+where $\oint\dot{x}_i\sigma da_j$ is a surface integral over all of velocity space. Assuming $\sigma(\vec{x}, \dvec{x}, t)$ drops to zero faster than $\lvert\dvec{x}\rvert^3$ then the surface integral converges to zero. Given the surface integral does converge to zero
+\begin{equation}
+\partial_t\left(u_i\rho\right) + \partial_{x_j}\left(\intVdot{\dot{x}_i\dot{x}_j\sigma}\right) + \rho\partial_{x_i}\phi=0
+\label{incomplete_conservation_of_momentum}
+\end{equation}
+
+\subsection{Integrating the velocity tensor product}
+The velocity tensor product term is $\intVdot{\dot{x}_i\dot{x}_j\sigma}$. Since the bulk velocity is defined as $u_i=\intVdot{\dot{x}_i\frac{\sigma}{\rho}}$ let
+\[
+\begin{split}
+& \intVdot{\dot{x}_i\dot{x}_j\sigma}=\intVdot{\dot{x}_i\frac{\sigma}{\rho}}\intVdot{\dot{x}_j\sigma} \\ & - \intVdot{\dot{x}_i\frac{\sigma}{\rho}}\intVdot{\dot{x}_j\sigma} + \intVdot{\dot{x}_i\dot{x}_j\sigma}
+\end{split}
+\]
+
+Evaluating and rearranging integrals
+\[
+\begin{split}
+& \intVdot{\dot{x}_i\dot{x}_j\sigma}=\rho u_i u_j \\ & - \frac{1}{2}\left(u_i\intVdot{\dot{x}_j\sigma} + u_j\intVdot{\dot{x}_i\sigma}\right) + \intVdot{\dot{x}_i\dot{x}_j\sigma}
+\end{split}
+\]
+
+Combining the remaining integrals together
+\[
+\begin{split}
+& \intVdot{\dot{x}_i\dot{x}_j\sigma}=\rho u_i u_j \\ & + \frac{1}{2}\left(\intVdot{\left(\dot{x}_i - u_i\right)\dot{x}_j\sigma} + \intVdot{\left(\dot{x}_j - u_j\right)\dot{x}_i\sigma}\right)
+\end{split}
+\]
+
+Define the symmetric tensor $A_{ij} = -\frac{1}{2}\left(\intVdot{\left(\dot{x}_i - u_i\right)\dot{x}_j\sigma} + \intVdot{\left(\dot{x}_j - u_j\right)\dot{x}_i\sigma}\right)$, then the integral of the velocity tensor product simplifies to the equation
+\[
+\intVdot{\dot{x}_i\dot{x}_j\sigma}=\rho u_i u_j - A_{ij}
+\]
+
+Let $p=-\frac{1}{3}A_{ii}$ and define the traceless tensor $B_{ij}=A_{ij}-\frac{1}{3}A_{kk}\delta_{ij}$, so the equation can be written as
+\[
+\intVdot{\dot{x}_i\dot{x}_j\sigma}=\rho u_i u_j + p\delta_{ij} - B_{ij}
+\]
+
+\subsection{Fluid mechanics momentum equation: Navier-Stokes equations}
+Substituting the integral of the velocity tensor product into equation \eqref{incomplete_conservation_of_momentum},
+\[
+\partial_t\left(u_i\rho\right) + \partial_{x_j}\left(\rho u_i u_j + p\delta_{ij}-B_{ij}\right) + \rho\partial_{x_i}\phi=0
+\]
+
+Rearranging the equation and expand partial derivatives
+\[
+\begin{split}
+&\rho\partial_t u_i +  u_i\partial_t\rho + u_i\partial_{x_j}\left(\rho u_j\right) + \rho u_j\partial_{x_j}u_i \\ & + \partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi=0
+\end{split}
+\]
+
+Collecting terms of $u_i$
+\[
+\begin{split}
+&\rho\partial_t u_i +  u_i\left(\partial_t\rho + \partial_{x_j}\left(\rho u_j\right)\right) + \rho u_j\partial_{x_j}u_i \\ & + \partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi=0
+\end{split}
+\]
+
+Substituting in equation \eqref{conservation_of_mass}, rearranging and writing in vector notation
+\begin{equation}
+\rho\left(\partial_t \vec{u} + \vec{u}\cdot\grad\vec{u}\right) = - \grad p + \grad B - \rho\grad\phi
+\label{conservation_of_momentum}
+\end{equation}
+
+Assuming that for a reasonable model of a fluid the tensor $A_{ij}$ evaluates to be the total stress tensor $\sigma_{ij}$, then equation \eqref{conservation_of_momentum} is the Navier-Stokes equations.
+
+\section{Conservation of energy}
+The total energy of the system is $E_{\text{tot}}=\intVVdot{\left(\frac{1}{2}\dot{x}_i^2 + \phi(\vec{x}, \rho)\right)\sigma(\vec{x}, \dvec{x}, t)}$. Let us define $\vec{v} = \dvec{x} - \vec{u}$, so then $\dot{x}_i^2 = v_i^2 + 2\dot{x}_i u_i - u_i^2$. In order to derive an equation for the conservation of energy equation in position space, equation \eqref{state_space_continuity} must be multiplied by $\frac{1}{2}\dot{x}_i^2 + \phi$ before integrating. To make the derivation of the conservation of energy simpler we can use the linearity of integration to break the conservation of energy equation into a kinetic energy component and a potential energy component.
+
+\subsection{The kinetic energy component}
+Multiplying equation \eqref{state_space_continuity} by $\frac{1}{2}\dot{x}_i^2$ then integrating over velocity space, the resulting relation is
+\[
+\intVdot{\frac{1}{2}\dot{x}_i^2\left(\partial_t \sigma + \dot{x}_j\partial_{x_j}\sigma-\left(\partial_{x_j}\phi\right)\partial_{\dot{x}_j}\sigma\right)}=0
+\]
+
+Rearranging the integral and swapping the order of operations
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}\dot{x}_i^2\sigma}\right) + \partial_{x_j}\left(\intVdot{\frac{1}{2}\dot{x}_i^2\dot{x}_j\sigma}\right) \\ & - \left(\partial_{x_j}\phi\right)\intVdot{\frac{1}{2}\dot{x}_i^2\partial_{\dot{x}_j}\sigma}=0
+\end{split}
+\]
+
+Using the product rule the equation becomes
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}\dot{x}_i^2\sigma}\right) + \partial_{x_j}\left(\intVdot{\frac{1}{2}\dot{x}_i^2\dot{x}_j\sigma}\right) \\ & - \left(\partial_{x_j}\phi\right)\intVdot{\left(\partial_{\dot{x}_j}\left(\frac{1}{2}\dot{x}_i^2\sigma\right) - \sigma\dot{x}_i\delta_{ij}\right)}=0
+\end{split}
+\]
+
+Rearranging and using the divergence theorem
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}\dot{x}_i^2\sigma}\right) + \partial_{x_j}\left(\intVdot{\frac{1}{2}\dot{x}_i^2\dot{x}_j\sigma}\right) \\ & -  \left(\partial_{x_j}\phi\right)\left(\oint\left(\frac{1}{2}\dot{x}_i^2\sigma\right)da_j - \intVdot{\sigma\dot{x}_j}\right)=0
+\end{split}
+\]
+where $\oint\left(\frac{1}{2}\dot{x}_i^2\sigma\right)da_j$ is a surface integral over all of velocity space. Assuming $\sigma(\vec{x}, \dvec{x}, t)$ drops to zero faster than $\lvert\dvec{x}\rvert^4$ then the surface integral converges to zero. Evaluating integrals and rearranging the equation given the surface integral does converge to zero, results in the relation
+\[
+\partial_t\left(\intVdot{\frac{1}{2}\dot{x}_i^2\sigma}\right) + \partial_{x_j}\left(\intVdot{\frac{1}{2}\dot{x}_i^2\dot{x}_j\sigma}\right) + u_j\rho\partial_{x_j}\phi=0
+\]
+
+Applying the definition of $v_i$ to the equation results in the form
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}\left(v_i^2 + 2\dot{x}_i u_i - u_i^2\right)\sigma}\right) \\ & + \partial_{x_j}\left(\intVdot{\frac{1}{2}\left(v_i^2 + 2\dot{x}_i u_i - u_i^2\right)\dot{x}_j\sigma}\right) + u_j\rho\partial_{x_j}\phi=0
+\end{split}
+\]
+
+Rearranging the integrals
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}v_i^2\sigma} + u_i\intVdot{\dot{x}_i\sigma} - \frac{1}{2}u_i^2\intVdot{\sigma}\right) \\ & + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2\dot{x}_j\sigma} +  u_i\intVdot{\dot{x}_i\dot{x}_j\sigma} - \frac{1}{2}u_i^2\intVdot{\dot{x}_j\sigma}\right) \\ & + u_j\rho\partial_{x_j}\phi=0
+\end{split}
+\]
+
+Evaluating the integrals and using the result $\intVdot{\dot{x}_i\dot{x}_j\sigma}=\rho u_i u_j + p\delta_{ij} - B_{ij}$ from the momentum equation derivation
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}v_i^2\sigma} + u_i^2\rho - \frac{1}{2}u_i^2\rho\right) + u_j\rho\partial_{x_j}\phi \\ & + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2\dot{x}_j\sigma} +  u_i\left(\rho u_i u_j + p\delta_{ij} - B_{ij}\right) - \frac{1}{2}u_i^2 u_j\rho\right) =0
+\end{split}
+\]
+
+Simplifying the equations yields
+\begin{equation}
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}v_i^2\sigma} + \frac{1}{2}u_i^2\rho\right) + u_j\rho\partial_{x_j}\phi \\ & + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2\dot{x}_j\sigma} + \frac{1}{2}u_i^2 u_j\rho + p u_j - u_i B_{ij}\right)=0
+\end{split}
+\label{incomplete_conservation_of_energy_kinetic}
+\end{equation}
+
+\subsection{The potential energy component}
+Multiplying equation \eqref{state_space_continuity} by $\phi$ and then integrating over velocity space, the resulting relation is
+\[
+\intVdot{\phi\left(\partial_t \sigma + \dot{x}_j\partial_{x_j}\sigma-\left(\partial_{x_j}\phi\right)\partial_{\dot{x}_j}\sigma\right)}=0
+\]
+
+Rearranging the integrals and swapping the order of operations
+\[
+\begin{split}
+& \phi\partial_t\left(\intVdot{\sigma}\right) + \phi\partial_{x_j}\left(\intVdot{\dot{x}_j\sigma}\right) \\ & - \left(\partial_{x_j}\phi\right)\phi\intVdot{\partial_{\dot{x}_j}\sigma}=0
+\end{split}
+\]
+
+Evaluating the integrals and using the result that $\intVdot{\partial_{\dot{x}_j}\sigma}=\oint\sigma da_j = 0$ from the derivation for the conservation of mass equation
+\[
+\phi\partial_t\rho + \phi\partial_{x_j}\left(u_j\rho\right)=0
+\]
+
+Applying the product rule produces the form
+\begin{equation}
+\partial_t\left(\phi\rho\right) - \rho\partial_t\phi + \partial_{x_j}\left(u_j\rho\phi\right) - u_j\rho\partial_{x_j}\phi=0
+\label{incomplete_conservation_of_energy_potential}
+\end{equation}
+
+
+\subsection{Total energy density dynamics}
+The potential $\phi$ can be split into two components, the internal potential $\phi_{\text{in}}$ and a potential due to the external environment $\phi_{\text{ext}}$, such that $\phi = \phi_{\text{in}} + \phi_{\text{ext}}$. Let us define two energy densities the internal energy density $e$ and the external energy density $\eta$ such that $e(\vec{x}, t)=\intVdot{\left(\frac{1}{2}v_i^2 + \phi_{\text{in}}\right)\sigma}$ and $\eta(\vec{x}, t)=\intVdot{\left(\frac{1}{2}u_i^2 + \phi_{\text{ext}}\right)\sigma}=\left(\frac{1}{2}u_i^2 + \phi_{\text{ext}}\right)\rho$. From these definitions the total energy is then $E_{\text{tot}}=\intV{\left(e + \eta\right)}$. Adding the two energy components from equation \eqref{incomplete_conservation_of_energy_kinetic} and equation \eqref{incomplete_conservation_of_energy_potential} produces the equation
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}v_i^2\sigma} + \frac{1}{2}u_i^2\rho\right) + u_j\rho\partial_{x_j}\phi \\ & + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2\dot{x}_j\sigma} + \frac{1}{2}u_i^2 u_j\rho + p u_j - u_i B_{ij}\right) \\ & + \partial_t\left(\phi\rho\right) - \rho\partial_t\phi + \partial_{x_j}\left(u_j\rho\phi\right) - u_j\rho\partial_{x_j}\phi=0
+\end{split}
+\]
+
+Rearranging the equation and splitting $\phi$ into its two components
+\[
+\begin{split}
+& \partial_t\left(\intVdot{\frac{1}{2}v_i^2\sigma} + \phi_{\text{in}}\rho + \frac{1}{2}u_i^2\rho + \phi_{\text{ext}}\rho\right) \\ & + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2\dot{x}_j\sigma} + u_j\phi_{\text{in}}\rho + \frac{1}{2}u_i^2 u_j\rho \right. \\ & \left. \vphantom{\intVdot{.}} + u_j\phi_{\text{ext}}\rho + p u_j - u_i B_{ij}\right) - \rho\partial_t\phi=0
+\end{split}
+\]
+
+Simplifying the equations using the energy density definitions
+\[
+\begin{split}
+& \partial_t\left(e + \eta\right)  - \rho\partial_t\phi + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2\dot{x}_j\sigma} \right. \\ & \left. \vphantom{\intVdot{.}} + u_j\phi_{\text{in}}\rho + \eta u_j + p u_j - u_i B_{ij}\right)=0
+\end{split}
+\]
+
+Substituting in the definition of $v_i$ and simplifying
+\[
+\begin{split}
+& \partial_t\left(e + \eta\right)  - \rho\partial_t\phi + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2 v_j\sigma} \right. \\ & \left. + u_j\intVdot{\frac{1}{2}v_i^2\sigma} + u_j\phi_{\text{in}}\rho + \eta u_j + p u_j - u_i B_{ij}\right)=0
+\end{split}
+\]
+
+Applying the energy density definitions and rearranging
+\[
+\begin{split}
+& \partial_t\left(e + \eta\right) + \partial_{x_j}\left(e u_j + \eta u_j\right) \\ & + \partial_{x_j}\left(\intVdot{\frac{1}{2}v_i^2 v_j\sigma} + p u_j - u_i B_{ij}\right) - \rho\partial_t\phi=0
+\end{split}
+\]
+
+Defining the vector $\vec{C}$ as $C_j = \intVdot{\frac{1}{2}v_i^2 v_j\sigma}$ and using it to simplify the equation results in the form
+\begin{equation}
+\begin{split}
+& \partial_t\left(e + \eta\right) + \partial_{x_j}\left(e u_j + \eta u_j\right) \\ & + \partial_{x_j}\left(C_j + p u_j - u_i B_{ij}\right) - \rho\partial_t\phi=0
+\end{split}
+\label{incomplete_conservation_of_energy}
+\end{equation}
+
+Equation \eqref{incomplete_conservation_of_energy} describes the dynamics of the total energy density. Using equation \eqref{conservation_of_momentum} an equation for the external energy density can be derived. Which when combined with equation \eqref{incomplete_conservation_of_energy} will produce an equation for the internal energy density.
+
+\subsection{External energy density dynamics}
+To generate an equation for the external energy density, multiply equation \eqref{conservation_of_momentum} by $u_i$
+\[
+u_i\left(\rho\partial_t u_i + \rho u_j\partial_{x_j}u_i + \partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi\right)=0
+\]
+
+Rearranging and applying the product rule
+\[
+\begin{split}
+& \partial_t\left(\frac{1}{2}u_i^2\rho\right) - \frac{1}{2}u_i^2\partial_t\rho + \partial_{x_j}\left(\frac{1}{2}u_i^2\rho u_j\right) - \frac{1}{2}u_i^2\partial_{x_j}\left(\rho u_j\right) \\ & + u_i\left(\partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi\right)=0
+\end{split}
+\]
+
+Collecting terms of $\frac{1}{2}u_i^2$ and adding a potential energy component $\partial_t\left(\rho\phi_{\text{ext}} - \rho\phi_{\text{ext}}\right) + \partial_{x_j}\left(u_j\rho\phi_{\text{ext}} - u_j\rho\phi_{\text{ext}}\right)=0$ after collecting terms
+\[
+\begin{split}
+& \partial_t\left(\frac{1}{2}u_i^2\rho + \rho\phi_{\text{ext}}\right) - \partial_t\left(\rho\phi_{\text{ext}}\right) - \frac{1}{2}u_i^2\left(\partial_t\rho + \partial_{x_j}\left(\rho u_j\right)\right) \\ & + \partial_{x_j}\left(\frac{1}{2}u_i^2\rho u_j + \rho\phi_{\text{ext}}u_j\right) - \partial_{x_j}\left(u_j\rho\phi_{\text{ext}}\right) \\ & + u_i\left(\partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi\right)=0
+\end{split}
+\]
+
+Applying the product rule and the definition of $\eta$
+\[
+\begin{split}
+& \partial_t\eta - \phi_{\text{ext}}\partial_t\rho - \rho\partial_t\phi_{\text{ext}} - \frac{1}{2}u_i^2\left(\partial_t\rho + \partial_{x_j}\left(\rho u_j\right)\right) \\ & + \partial_{x_j}\left(\eta u_j\right) - \phi_{\text{ext}}\partial_{x_j}\left(u_j\rho\right) - u_j\rho\partial_{x_j}\phi_{\text{ext}} \\ & + u_i\left(\partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi\right)=0
+\end{split}
+\]
+
+Collecting terms and simplifying
+\[
+\begin{split}
+& \partial_t\eta - \rho\partial_t\phi_{\text{ext}} - \left(\frac{1}{2}u_i^2 + \phi_{\text{ext}}\right)\left(\partial_t\rho + \partial_{x_j}\left(\rho u_j\right)\right) \\ & + \partial_{x_j}\left(\eta u_j\right) - u_j\rho\partial_{x_j}\phi_{\text{ext}} + u_i\left(\partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi\right)=0
+\end{split}
+\]
+
+Substituting in equation \eqref{conservation_of_mass} produces the equation
+\[
+\begin{split}
+& \partial_t\eta + \partial_{x_j}\left(\eta u_j\right) - \rho\partial_t\phi_{\text{ext}} - u_j\rho\partial_{x_j}\phi_{\text{ext}} \\ & + u_i\left(\partial_{x_i}p - \partial_{x_j}B_{ij} + \rho\partial_{x_i}\phi\right)=0
+\end{split}
+\]
+
+Relabeling contracted inviscid, and simplifying
+\begin{equation}
+\begin{split}
+& \partial_t\eta + \partial_{x_j}\left(\eta u_j\right) - \rho\partial_t\phi_{\text{ext}} \\ & + u_j\partial_{x_j}p - u_i\partial_{x_j}B_{ij} + u_j\rho\partial_{x_j}\phi_{\text{in}}=0
+\end{split}
+\label{incomplete_conservation_of_energy_external}
+\end{equation}
+
+\subsection{Fluid mechanics energy equation: Internal energy equation}
+To remove the external energy density from equation \eqref{incomplete_conservation_of_energy} subtract equation \eqref{incomplete_conservation_of_energy_external} from it, resulting in the equation
+\[
+\begin{split}
+& \partial_t\left(e + \eta\right) + \partial_{x_j}\left(e u_j + \eta u_j\right) - \rho\partial_t\phi \\ & + \partial_{x_j}\left(C_j + p u_j - u_i B_{ij}\right) \\ & - \partial_t\eta - \partial_{x_j}\left(\eta u_j\right) + \rho\partial_t\phi_{\text{ext}} \\ & - u_j\partial_{x_j}p + u_i\partial_{x_j}B_{ij} - u_j\rho\partial_{x_j}\phi_{\text{in}}=0
+\end{split}
+\]
+
+Reducing and simplifying the equation
+\[
+\begin{split}
+& \partial_te + \partial_{x_j}\left(e u_j\right) - \rho\partial_t\phi_{\text{in}} \\ & + \partial_{x_j}\left(C_j + p u_j - u_i B_{ij}\right) \\ & - u_j\partial_{x_j}p + u_i\partial_{x_j}B_{ij} - u_j\rho\partial_{x_j}\phi_{\text{in}}=0
+\end{split}
+\]
+
+Applying the product rule
+\[
+\begin{split}
+& \partial_te + \partial_{x_j}\left(e u_j\right) - \rho\partial_t\phi_{\text{in}} - u_j\rho\partial_{x_j}\phi_{\text{in}} \\ & + \partial_{x_j}\left(C_j + p u_j - u_i B_{ij}\right) \\ & - \partial_{x_j}\left(p u_j\right) + p\partial_{x_j}u_j + \partial_{x_j}\left(B_{ij}u_i\right) - B_{ij}\partial_{x_j}u_i=0
+\end{split}
+\]
+
+Simplifying and canceling terms
+\[
+\begin{split}
+& \partial_te + \partial_{x_j}\left(e u_j\right) - \rho\partial_t\phi_{\text{in}} - u_j\rho\partial_{x_j}\phi_{\text{in}} \\ & + \partial_{x_j}C_j + p\partial_{x_j}u_j - B_{ij}\partial_{x_j}u_i=0
+\end{split}
+\]
+
+rearranging the equations and putting them in vector notation
+\begin{equation}
+\begin{split}
+& \partial_te + \grad\cdot\left(e \vec{u}\right) = \rho\partial_t\phi_{\text{in}} + \rho\vec{u}\cdot\grad\phi_{\text{in}} \\ & - \grad\cdot\vec{C} - p\grad\cdot\vec{u} + B\cdot\grad\vec{u}
+\end{split}
+\label{conservation_of_energy}
+\end{equation}
+
+Assuming that for a reasonable model of a fluid the tensor $A_{ij}$ evaluates to be the total stress tensor $\sigma_{ij}$ and the vector $C_j$ reduce to the gradient of the temperature, then equation \eqref{conservation_of_energy} is a form of the fluid mechanics internal energy equation.
+
+\section{Fluid model: Maxwell-Boltzmann distribution}
+Assuming the speed of particles in a fluid follow a Maxwell-Boltzmann distribution, then the velocity distribution of the fluid is a normalized Gaussian distribution in three dimensional velocity space. For a fluid element with a non-zero bulk velocity assume that the velocity distribution is simply a normalized Gaussian with a non-zero mean value. Given these assumptions the velocity distribution at any point is $\sigma(\vec{x}, \dvec{x}) / \rho(\vec{x}) = \left(\frac{m}{2\pi kT}\right)^{3/2}e^{-\frac{m\left(x_i - u_i\right)^2}{2kT}}$, where $m$ is the mass of the particles the fluid is made from, $k$ is  Boltzmann's constant and $T=T(\vec{x}, t)$ is the thermodynamic temperature. Also assume that the potential $\phi$ only explicitly depends on $\vec{x}$ and $\rho$. So in this model $\phi=\phi(\vec{x}, \rho)$ and the state space density distribution is,
+\begin{equation}
+\sigma(\vec{x}, \dvec{x}) = \rho(\vec{x})\left(\frac{m}{2\pi kT}\right)^{3/2}e^{-\frac{m\left(x_i - u_i\right)^2}{2kT}}
+\label{distribution_maxwell_boltzmann}
+\end{equation}
+
+As defined earlier the tensor $A$ is
+\[
+A_{ij} = -\frac{1}{2}\left(\intVdot{\left(\dot{x}_i - u_i\right)\dot{x}_j\sigma} + \intVdot{\left(\dot{x}_j - u_j\right)\dot{x}_i\sigma}\right)
+\]
+
+When $i$ is not equal to $j$ the integral is $A_{ij} = 0$, when $i$ is equal to $j$ the integral is $A_{ij} = -kT\rho/m$, so the full tensor is $A_{ij}=-kT\frac{\rho}{m}\delta_{ij}$. The ideal gas law states that $PV=NkT$. Since $\rho/m=N/V$ where $N$ is the number of particles and $V$ is the volume, then $A_{ij} = -P\delta_{ij}$, $p=-\frac{1}{3}A_{ii}=P$ and $B_{ij}=A_{ij}-\frac{1}{3}A_{kk}\delta_{ij} = 0$.
+
+The vector $\vec{C}$ is defined as $C_j = \intVdot{\frac{1}{2}v_i^2 v_j\sigma}$, evaluating the integral results in the equation $C_j = 0$. So given the state space density function \eqref{distribution_maxwell_boltzmann} the equations of fluid mechanics derived from equation \eqref{state_space_continuity} are
+\[
+\partial_t\rho + \grad\cdot\left(\vec{u}\rho\right)=0
+\]
+
+\[
+\rho\left(\partial_t \vec{u} + \vec{u}\cdot\grad\vec{u}\right) = - \grad P - \rho\grad\phi
+\]
+
+\[
+\partial_te + \grad\cdot\left(e \vec{u}\right) = \rho\vec{u}\cdot\grad\phi_{\text{in}} - P\grad\cdot\vec{u}
+\]
+
+These equations are equal to the conservation of mass, internal energy density and Navier-Stokes equations in the case of inviscid flow.
+
+\end{document}
+%
+% ****** End of file apssamp.tex ******
