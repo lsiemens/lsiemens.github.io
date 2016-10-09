@@ -19,25 +19,11 @@
 %  4)  latex apssamp.tex
 %
 \documentclass[%
-%reprint,
-%superscriptaddress,
-%groupedaddress,
-%unsortedaddress,
-%runinaddress,
-%frontmatterverbose, 
-preprint,
-%showpacs,preprintnumbers,
-%nofootinbib,
-%nobibnotes,
-%bibnotes,
+ twocolumn,
+% preprint, onecolumn,
  amsmath,amssymb,
  aps,
-%pra,
-%prb,
-%rmp,
-%prstab,
-%prstper,
-%floatfix,
+% floatfix,
 ]{revtex4-1}
 
 \usepackage{graphicx}% Include figure files
@@ -67,9 +53,9 @@ preprint,
 
 \begin{document}
 
-\title{Derivation of viscosity}% Force line breaks with \
+\title{Derivation of Viscosity}% Force line breaks with \
 
-\author{L. Siemens}
+\author{Luke A. Siemens}
 \email{lsiemens@uvic.ca}
 
 \date{\today}
@@ -135,11 +121,13 @@ Splitting up the integral, pulling out factors and operations that are independe
 \[
 \partial_t\rho + \partial_{x_i}\left(u_i\rho\right)-\left(\partial_{x_i}\phi\right)\oint{\sigma da_i}=0
 \]
-where $da_i$ is the $i^{\text{th}}$ component of the surface element, and $\oint{\sigma da_i}$ is the surface integral over all of velocity space. Assuming $\sigma(\vec{x}, \dvec{x}, t)$ drops to zero faster than $\lvert\dvec{x}\rvert^2$ then the surface integral converges to zero. Given the surface integral does converge to zero, the resulting equation is $\partial_t\rho + \partial_{x_i}\left(u_i\rho\right)=0$. When written in vector notation it becomes
+where $da_i$ is the $i^{\text{th}}$ component of the surface element, and $\oint{\sigma da_i}$ is the surface integral over all of velocity space. Assuming $\sigma(\vec{x}, \dvec{x}, t)$ drops to zero faster than $\lvert\dvec{x}\rvert^2$ then the surface integral converges to zero. Given the surface integral does converge to zero, the resulting equation is, 
+
 \begin{equation}
-\partial_t\rho + \grad\cdot\left(\vec{u}\rho\right)=0
+\partial_t\rho + \partial_{x_i}\left(u_i\rho\right)=0
 \label{conservation_of_mass}
 \end{equation}
+
 which is the conservation of mass equation from fluid mechanics.
 
 \section{Conservation of momentum}
@@ -220,50 +208,69 @@ Using the definition of energy density we can rewrite this equation as,
 Equation \eqref{conservation_of_energy} describes the dynamics of the total energy density. This equaiton can be written in a more standard form if we pull out the terms $u_i\intVdot{\dot{x}_i\dot{x}_j\sigma} - \frac{1}{2}u_i^2u_j\rho$ from the integral $\intVdot{\frac{1}{2}\dot{x}_i^2\dot{x}_j\sigma}$ and then simplify.
 
 \section{Fluid model: Gaussian distribution}
-Lets assume that the velocity distribution $\sigma/\rho$ is simply a normalized Gaussian distribution. Then the state space distribution $\sigma$ is $\sigma(\vec{x}, \dvec{x}) = \rho\left(\frac{m}{2\pi kT}\right)^{3/2}e^{-\frac{m\left(x_i - u_i\right)^2}{2kT}}$, where $m$ is the mass of the particles the fluid is made from, $k$ is Boltzmann's constant and $T=T(\vec{x}, t)$ is the thermodynamic temperature. Also assume that the potential $\phi$ only explicitly depends on $\vec{x}$ and $\rho$. So in this model $\phi=\phi(\vec{x}, \rho)$. All of the integrals in this derivation of fluid mechanics can be expressed as moments of the state space distribution. before we calculate the moments of the distribution $\sigma$ lets define sum notation to simplify the expressions.
+Lets assume that the velocity distribution $\sigma'/\rho'$ is simply a normalized Gaussian distribution. Then the state space distribution $\sigma'$ can be written as,
+
+\begin{equation}
+\sigma'(\vec{x}, \dvec{x}) = \rho'\left(\frac{m}{2\pi kT}\right)^{3/2}e^{-m\left(x_i - u'_i\right)^2/2kT}
+\label{gaussian_state_space}
+\end{equation}
+
+Where $m$ is the mass of the particles the fluid is made from, $k$ is Boltzmann's constant and $T=T(\vec{x}, t)$ is the temperature. Also assume that the potential $\phi$ only explicitly depends on $\vec{x}$ and $\rho'$. So in this model $\phi=\phi(\vec{x}, \rho')$. All of the integrals in this derivation of fluid mechanics can be expressed as moments of the state space distribution. Before we calculate the moments of this distribution let us define some notation to simplify the expressions and integrals.
 
 \subsection{Notation}
-Let $\left(a^n\right)_{i_1i_2\cdots i_n}$ represent the repeated tensor product of $n$ copies of the tensor $a_i$ such that $\left(a^n\right)_{i_1i_2\cdots i_n}=a_{i_1}a_{i_2}\cdots a_{i_{n-1}}a_{i_n}$. And let $\left[a^n\right]_{i_1i_2\cdots i_n}$ represent the sum of every permutation of indecies applied to the tensor $\left(a^n\right)_{i_1i_2\cdots i_n}$ such that $\left[a^n\right]_{i_1i_2\cdots i_n}=a_{i_1}\left[a^{n-1}\right]_{i_2i_3\cdots i_n} + a_{i_2}\left[a^{n-1}\right]_{i_1i_3\cdots i_n} + \cdots + a_{i_n}\left[a^{n-1}\right]_{i_1i_2\cdots i_{n-1}}$. For example if $u$ is a one index tensor $\left[u\delta\right]_{ijk}=2\left(u_i\delta_{jk} + u_j\delta_{ik} + u_k\delta_{ij}\right)$
+Let $\left(a^n\right)_{i_1i_2\cdots i_n}$ represent the repeated tensor product of $n$ copies of the tensor $a_i$ such that $\left(a^n\right)_{i_1i_2\cdots i_n}=a_{i_1}a_{i_2}\cdots a_{i_{n-1}}a_{i_n}$. And let $\left[a^n\right]_{i_1i_2\cdots i_n}$ represent the sum of every permutation of indecies applied to the tensor $\left(a^n\right)_{i_1i_2\cdots i_n}$ such that $\left[a^n\right]_{i_1i_2\cdots i_n}=a_{i_1}\left[a^{n-1}\right]_{i_2i_3\cdots i_n} + a_{i_2}\left[a^{n-1}\right]_{i_1i_3\cdots i_n} + \cdots + a_{i_n}\left[a^{n-1}\right]_{i_1i_2\cdots i_{n-1}}$. For example if $u$ is a one index and $\delta$ is the Chroniker delta symbol then using this notation $\left[u\delta\right]_{ijk}=2\left(u_i\delta_{jk} + u_j\delta_{ik} + u_k\delta_{ij}\right)$
 
 \subsection{Moments of a Gaussian}
-Using this notation we can express the tensor describing the nth moment $A_{i_1i_2\cdots i_n}$ of a Gaussian state space distribution $\sigma=\rho\left(a \pi\right)^{-3/2}e^{-\left(\dot{x}_i-u_i\right)^2/a}$ as $A_{i_1i_2\cdots i_n}=\intVdot{\left(\dot{x}^n\right)_{i_1i_2\cdots i_n}\sigma}$. This integral can be solved by using the substitution $w_i=x_i - u_i$ and solving for one term of $A$ by pairing indices and using that to reconstruct the full tensor. Solving for the moments of the distribution results in the equation,
+Using this notation we can express the tensor describing the n-th moment $A_{i_1i_2\cdots i_n}$ of a Gaussian state space distribution $\sigma=\rho\left(a \pi\right)^{-3/2}e^{-\left(\dot{x}_i-u_i\right)^2/a}$ as $A_{i_1i_2\cdots i_n}=\intVdot{\left(\dot{x}^n\right)_{i_1i_2\cdots i_n}\sigma}$. This integral can be solved by using the substitution $w_i=x_i - u_i$ and solving for one term of $A$ by pairing indices and using that to reconstruct the full tensor. Solving for the moments of the distribution results in the equation,
 
-\[
-A_{i_1i_2\cdots i_n}=\intVdot{\left(\dot{x}^n\right)_{i_1i_2\cdots i_n}\sigma}=\sum_{p=0}^n\rho\frac{a^{\left(n-p\right)/2}}{2^{n-p}p!\left(\left(n-p\right)/2\right)!}\left[u^p\delta^{\left(n-p\right)/2}\right]_{i_1i_2\cdots i_n}
+\begin{equation}
+A_{i_1i_2\cdots i_n}=\sum_{p=0}^n\rho\frac{a^{\left(n-p\right)/2}}{2^{n-p}p!\left(\left(n-p\right)/2\right)!}\left[u^p\delta^{\left(n-p\right)/2}\right]_{i_1i_2\cdots i_n}
 \begin{cases}
 0, & \text{if $n$ is odd}\\
 1 &  \text{else}
 \end{cases}
-\]
-
-\subsection{Dynamical equation for a Gaussian}
-Assuming the speed of particles in a fluid follow a Maxwell-Boltzmann distribution, then the velocity distribution of the fluid is a normalized Gaussian distribution in three dimensional velocity space. For a fluid element with a non-zero bulk velocity assume that the velocity distribution is simply a normalized Gaussian with a non-zero mean value. Given these assumptions the velocity distribution at any point is $\sigma(\vec{x}, \dvec{x}) / \rho(\vec{x}) = \left(\frac{m}{2\pi kT}\right)^{3/2}e^{-\frac{m\left(x_i - u_i\right)^2}{2kT}}$, where $m$ is the mass of the particles the fluid is made from, $k$ is Boltzmann's constant and $T=T(\vec{x}, t)$ is the thermodynamic temperature. Also assume that the potential $\phi$ only explicitly depends on $\vec{x}$ and $\rho$. So in this model $\phi=\phi(\vec{x}, \rho)$ and the state space density distribution is,
-\begin{equation}
-\sigma(\vec{x}, \dvec{x}) = \rho(\vec{x})\left(\frac{m}{2\pi kT}\right)^{3/2}e^{-\frac{m\left(x_i - u_i\right)^2}{2kT}}
-\label{distribution_maxwell_boltzmann}
+\label{gaussian_moments}
 \end{equation}
 
-As defined earlier the tensor $A$ is
-\[
-A_{ij} = -\frac{1}{2}\left(\intVdot{\left(\dot{x}_i - u_i\right)\dot{x}_j\sigma} + \intVdot{\left(\dot{x}_j - u_j\right)\dot{x}_i\sigma}\right)
-\]
+\subsection{Dynamical equation for a Gaussian}
+Using equation \eqref{gaussian_moments} to evaluate the moments of the state space distribution \eqref{gaussian_state_space} produces the equations; $\intVdot{\sigma'}=\rho'$, $\intVdot{\dot{x}_i\sigma'}=\rho' u'_i$, $\intVdot{\left(\dot{x}^2\right)_{ij}\sigma'}=\frac{\rho'kT}{m}\delta_{ij} + \rho'\left(u'^2\right)_{ij}$ and $\intVdot{\left(\dot{x}^3\right)_{ijk}\sigma'}=\frac{\rho'kT}{2m}\left[u'\delta\right]_{ijk} + \rho'\left(u'^3\right)_{ijk}$. Then the energy density $E'=\intVdot{\left(\frac{1}{2}\dot{x}_i^2 + \phi\right)\sigma'}=\rho'\frac{3kT}{2m}+\rho'\frac{1}{2}{u'}_i^2+\rho'\phi$. Now that all of the nessisary integrals have been evaluated the conservation equations for the statespace distribution \eqref{gaussian_state_space} are then,
 
-When $i$ is not equal to $j$ the integral is $A_{ij} = 0$, when $i$ is equal to $j$ the integral is $A_{ij} = -kT\rho/m$, so the full tensor is $A_{ij}=-kT\frac{\rho}{m}\delta_{ij}$. Using the ideal gas law $PV=NkT$, since $\rho/m=N/V$ where $N$ is the number of particles and $V$ is the volume, then $A_{ij} = -P\delta_{ij}$, $p=-\frac{1}{3}A_{ii}=P$ and $B_{ij}=A_{ij}-\frac{1}{3}A_{kk}\delta_{ij} = 0$.
-
-The vector $\vec{C}$ is defined as $C_j = \intVdot{\frac{1}{2}v_i^2 v_j\sigma}$, evaluating the integral results in the equation $C_j = 0$. So given the state space density function \eqref{distribution_maxwell_boltzmann} the equations of fluid mechanics derived from equation \eqref{state_space_continuity} are
 \[
-\partial_t\rho + \grad\cdot\left(\vec{u}\rho\right)=0
+\partial_t \rho' + \partial_{x_i}\left(\rho'u'_i\right)=0
 \]
 
 \[
-\rho\left(\partial_t \vec{u} + \vec{u}\cdot\grad\vec{u}\right) = - \grad P - \rho\grad\phi
+\partial_t \left(\rho' u'_i\right) + \partial_{x_i}\left(\rho'\frac{kT}{m}\right) + \partial_{x_j}\left(\rho'u'_iu'_j\right) + \rho'\partial_{x_i}\phi = 0
 \]
 
 \[
-\partial_te + \grad\cdot\left(e \vec{u}\right) = \rho\vec{u}\cdot\grad\phi_{\text{in}} - P\grad\cdot\vec{u}
+\partial_t E' + \partial_{x_i}\left(E'u'_i + \rho'\frac{kT}{m}u'_i\right)-\rho'\partial_t\phi = 0
 \]
 
-These equations are equal to the conservation of mass, internal energy density and Navier-Stokes equations in the case of inviscid flow.
+So the conservation equation resulting from using a Gaussian distribution as the statespace distribution produces the equations of fluid dynamics destribing a compressible invicid fluid without thermal conduction.
+
+\section{Fluid model: perturbed Gaussian Distribution}
+When constringint the statespace distribution to a guassian distribution it captures some aspects of fluid mechanics but lacks higher order effects because of the symmetry of the distribution. This symmetry can be broken by perturbing the inital distribution sllightyly. The fundimental dynamics of the system is described by equation \eqref{state_space_continuity}, so let us use that equation to perturb the initial statespace distrbution \eqref{gaussian_state_space} by evolving the equation forward in time for some short time $\Delta t$. Let the new statespace distribution $\sigma$ be $\sigma=\sigma' + \Delta t\partial_t \sigma'$, where $\partial_t \sigma'=-\dot{x}_i\partial_{x_i}\sigma'+\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma'$. Now to simplify this problem let us drop the terms $\partial_{x_i}\rho'$, $\partial_{x_i}T$ and $\partial_{x_i}\phi$ when computing $\partial_t \sigma'$. Then the new statespace distribution can be written as,
+
+\begin{equation}
+\sigma = \sigma'\left(1-\Delta t\frac{m}{kT}\left(\partial_{x_i}u'_j\right)\dot{x}_i\left(\dot{x}_j-u'_j\right)\right)
+\end{equation}
+
+Note that all of the moments of this new distribution can be found using equation \eqref{gaussian_moments}. The moments of this distribution are $\intVdot{\sigma'}=\rho'\left(1-\Delta t\partial_{x_i}u'_i\right)$, $\intVdot{\dot{x}_i\sigma'}=\rho' u'_i-\rho'\Delta t\partial_{x_j}\left(u'_iu'_j\right)$, $\intVdot{\left(\dot{x}^2\right)_{ij}\sigma'}=\frac{\rho'kT}{m}\delta_{ij} + \rho'\left({u'}^2\right)_{ij}-\rho'\frac{kT}{m}\Delta t\left(\partial_{x_k}u'_k\delta_{ij} + \partial_{x_i}u'_j + \partial_{x_j}u'_i\right)-\rho'\Delta t\partial_{x_k}\left({u'}^3\right)_{ijk}$ and $\intVdot{\left(\dot{x}^3\right)_{ijk}\sigma'}=\frac{\rho'kT}{2m}\left[u'\delta\right]_{ijk} + \rho'\left(u'^3\right)_{ijk}-\rho'\frac{kT}{m}\Delta t\left(\delta_{ij}\partial_{x_l}\left(u'_ku'_l\right)+\delta_{ik}\partial_{x_l}\left(u'_ju'_l\right) + \delta_{jk}\partial_{x_l}\left(u'_iu'_l\right) + \partial_{x_i}\left(u'_ju'_k\right) + \partial_{x_j}\left(u'_iu'_k\right) + \partial_{x_k}\left(u'_iu'_j\right)\right)-\rho'\Delta t\partial_{x_l}\left({u'}^4\right)_{ijkl}$. The conservation equations in this case are,
+
+\[
+\partial_t \rho + \partial_{x_i}\left(\rho u_i\right)=0
+\]
+
+\[
+\partial_t \left(\rho u_i\right) + \partial_{x_j}A_{ij} + \rho\partial_{x_i}\phi = 0
+\]
+
+\[
+\partial_t E + \partial_{x_i}\left(B_i + \rho\phi u_i\right)-\rho\partial_t\phi = 0
+\]
+
+Where $\rho=\rho'\left(1-\Delta t\partial_{x_i}u'_i\right)$, $\rho u_i=\rho' u'_i-\rho'\Delta t\partial_{x_j}\left(u'_iu'_j\right)$, $E=E'-\rho'\frac{5kT}{2m}\Delta t\partial_{x_i}u'_i-\frac{1}{2}\rho'\Delta t\partial_{x_j}\left({u'}_i^2u'_j\right)-\rho'\phi\Delta t\partial_{x_i}u'_i$, $A_{ij}=\intVdot{\left(\dot{x}^2\right)_{ij}\sigma'}$ and $B_i=\frac{5\rho'kT}{2m}u'_i + \frac{1}{2}\rho'{u'}_j^2u'_i-\rho'\frac{kT}{2m}\Delta t\left(7\partial_{x_i}\left(u'_iu'_j\right) + \partial_{x_j}{u'}_i^2\right)-\frac{1}{2}\rho'\Delta t\partial_{x_k}\left({u'}_i^2u'_ju'_k\right)$
 
 \end{document}
 %
