@@ -53,7 +53,7 @@
 
 \begin{document}
 
-\title{A derivation of the Conservation Equations for a Viscus Fluid}% Force line breaks with \
+\title{A Derivation of the Conservation Equations for a Viscus Fluid}% Force line breaks with \
 
 \author{Luke A. Siemens}
 \email{lsiemens@uvic.ca}
@@ -62,7 +62,7 @@
 
 \maketitle
 
-\section{State space dynamics}
+\section{State Space Dynamics}
 
 Assuming the dynamics a particle is defined by the acceleration and that the acceleration of the particles is given by the potential $\phi$ such that $\vec{a} = \vec{\nabla}\cdot\phi$, then the equations of motion become
 \[
@@ -111,7 +111,7 @@ Assuming the motion of individual particles, in a fluid described by equation \e
 
 
 
-\section{Fluid mechanics mass equation: Conservation of mass}
+\section{Fluid Mechanics Mass Equation: Conservation of Mass}
 The state space density function $\sigma$ is defined such that the total mass $M$ is $M=\intVVdot{\sigma(\vec{x}, \dvec{x}, t)}$. Define the mass density $\rho$ as $\rho(\vec{x}, t)=\intVdot{\sigma(\vec{x}, \dvec{x}, t)}$. Also define the bulk momentum $\rho\vec{u}$ as $\rho(\vec{x}, t) u_i(\vec{x}, t)=\intVdot{\dot{x}_i\sigma(\vec{x}, \dvec{x}, t)}=\intVdot{\dot{x}_i\sigma}$. The integral of equation \eqref{state_space_continuity} over velocity space is
 \[
 \intVdot{\left(\partial_t \sigma + \dot{x}_i\partial_{x_i}\sigma-\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma\right)}=0
@@ -131,7 +131,7 @@ where $da_i$ is the $i^{\text{th}}$ component of the surface element, and $\oint
 
 which is the conservation of mass equation from fluid mechanics.
 
-\section{Conservation of momentum}
+\section{Conservation of Momentum}
 To get an equation for the conservation of momentum, multiply equation \eqref{state_space_continuity} by $\dvec{x}$ before integrating over velocity space.
 \[
 \intVdot{\dot{x}_i\left(\partial_t \sigma + \dot{x}_j\partial_{x_j}\sigma-\left(\partial_{x_j}\phi\right)\partial_{\dot{x}_j}\sigma\right)}=0
@@ -153,10 +153,10 @@ where $\oint\dot{x}_i\sigma da_j$ is a surface integral over all of velocity spa
 
 If a term of $\rho u_i u_j$ is pulled out from $\intVdot{\dot{x}_i\dot{x}_j\sigma}$ and simplified then equation \eqref{conservation_of_momentum} can be put in a form analogous to the Navier-Stokes equations.
 
-\section{Conservation of energy}
-The total energy of the system is $E_{\text{tot}}=\intVVdot{\left(\frac{1}{2}\dot{x}_i^2 + \phi(\vec{x}, \rho, t)\right)\sigma(\vec{x}, \dvec{x}, t)}$.  In order to derive an equation for the conservation of energy equation in position space, equation \eqref{state_space_continuity} must be multiplied by $\frac{1}{2}\dot{x}_i^2 + \phi$ before integrating. 
+\section{Conservation of Energy}
+The total energy of the system is $E_{\text{tot}}=\intVVdot{\left(\frac{1}{2}\dot{x}_i^2 + \phi(\vec{x}, \rho, t)\right)\sigma(\vec{x}, \dvec{x}, t)}$. In order to derive an equation for the conservation of energy equation in position space, equation \eqref{state_space_continuity} must be multiplied by $\frac{1}{2}\dot{x}_i^2 + \phi$ before integrating. 
 
-\subsection{The kinetic energy component}
+\subsection{The Kinetic Energy Component}
 Multiplying equation \eqref{state_space_continuity} by $\frac{1}{2}\dot{x}_i^2$ then integrating over velocity space, the resulting relation is
 \[
 \intVdot{\frac{1}{2}\dot{x}_i^2\left(\partial_t \sigma + \dot{x}_j\partial_{x_j}\sigma-\left(\partial_{x_j}\phi\right)\partial_{\dot{x}_j}\sigma\right)}=0
@@ -175,7 +175,7 @@ where $\oint\left(\frac{1}{2}\dot{x}_i^2\sigma\right)da_j$ is a surface integral
 \label{incomplete_conservation_of_energy_kinetic}
 \end{equation}
 
-\subsection{Total energy density dynamics}
+\subsection{Total Energy Density Dynamics}
 The energy density $E$ is $E=\intVdot{\left(\frac{1}{2}\dot{x}_i^2 + \phi(\vec{x}, \rho, t)\right)\sigma(\vec{x}, \dvec{x}, t)}$. Note that multiplying equation \eqref{state_space_continuity} by $\phi$ and then integrating over velocity space results in equation \eqref{conservation_of_mass} multiplied by $\phi$. Adding the two energy components produces the equation,
 \[
 \begin{split}
@@ -191,7 +191,7 @@ Using the definition of energy density we can rewrite this equation as,
 
 Equation \eqref{conservation_of_energy} describes the dynamics of the total energy density. This equation can be written in a more standard form if we pull out the terms $u_i\intVdot{\dot{x}_i\dot{x}_j\sigma} - \frac{1}{2}u_i^2u_j\rho$ from the integral $\intVdot{\frac{1}{2}\dot{x}_i^2\dot{x}_j\sigma}$ and then simplify.
 
-\section{Fluid model: Gaussian distribution}
+\section{Fluid Model: Gaussian Distribution}
 Lets assume that the velocity distribution $\sigma'/\rho'$ is simply a normalized Gaussian distribution. Then the state space distribution $\sigma'$ can be written as,
 
 \begin{equation}
@@ -218,7 +218,7 @@ A_{i_1i_2\cdots i_n}=\sum_{p=0}^n\rho\frac{a^{\left(n-p\right)/2}}{2^{n-p}p!\lef
 \end{equation}
 \end{widetext}
 
-\subsection{Dynamical equation for a Gaussian}
+\subsection{Dynamical Equation for a Gaussian}
 Using equation \eqref{gaussian_moments} to evaluate the moments of the state space distribution \eqref{gaussian_state_space} produces the following equations,
 \[
 \intVdot{\sigma'}=\rho'
@@ -252,7 +252,7 @@ Then the energy density $E'=\intVdot{\left(\frac{1}{2}\dot{x}_i^2 + \phi\right)\
 
 So the conservation equation resulting from using a Gaussian distribution as the state space distribution produces the equations of fluid dynamics describing a compressible inviscid fluid without thermal conduction.
 
-\section{Fluid model: perturbed Gaussian Distribution}
+\section{Fluid model: Perturbed Gaussian Distribution}
 When constraining the state space distribution to a Gaussian distribution it captures some aspects of fluid mechanics but lacks higher order effects because of the symmetry of the distribution. This symmetry can be broken by perturbing the initial distribution. The fundamental dynamics of the system is described by equation \eqref{state_space_continuity}, so let us use that equation to perturb the initial state space distribution \eqref{gaussian_state_space} by evolving the equation forward in time for some short time $\Delta t$. Let the new state space distribution $\sigma$ be $\sigma=\sigma' + \Delta t\partial_t \sigma'$, where $\partial_t \sigma'=-\dot{x}_i\partial_{x_i}\sigma'+\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma'$. Now to simplify this problem let us drop the terms $\partial_{x_i}\rho'$, $\partial_{x_i}T$ and $\partial_{x_i}\phi$ when computing $\partial_t \sigma'$. Then the new state space distribution can be written as,
 
 \begin{equation}
@@ -329,7 +329,7 @@ This equation can be simplified again if we assume the term $\Delta t\partial_{x
 So perturbing to the state space distribution \eqref{gaussian_state_space} can produce conservation equations which include higher order terms. For the particular perturbation \eqref{perturbed_gaussian_distribution} the conservation equations describe a viscous fluid, and given some assumptions the equations can be put into a form comparable to the standard equations for an incompressible viscous fluid.
 \end{widetext}
 
-\section{Complete first order perturbation}
+\section{Complete First Order Perturbation}
 I have demonstrated that perturbing a Gaussian distribution with only the $\partial_{x_i}u'_j$ component of $\partial_t \sigma'=-\dot{x}_i\partial_{x_i}\sigma'+\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma'$ leads to viscus terms in the resulting conservation equations. Based on my preliminary investigation into how the remaining components ($\partial_{x_i}\rho$, $\partial_{x_i}T$ and $\partial_{x_i}\phi$) effect the perturbation of the Gaussian state space distribution \eqref{gaussian_state_space} I expect that a full first order perturbation of the distribution will produce an additional three sets of terms in the conservation equations. As part of these new terms I expect to find terms including density diffusion terms from $\partial_{x_i}\rho$, thermal conduction terms from $\partial_{x_i}T$ and terms resulting from $\partial_{x_i}\phi$ due to particle interactions mediated by the potential $\phi\left(\vec{x}, t, \rho\right)$. For example if $\phi\left(\vec{x}, t, \rho\right)=\int_{-\infty}^{\infty}f(|\vec{x}-\vec{x'}|)\rho(\vec{x'})d^3x'$ where $f(r)$ models the interaction between particles, then depending on the structure of local minima and maxima in the function $f(r)$ I expect that the net effect of the terms resulting from $\partial_{x_i}\phi$ will be to introduce phase transitions into the conservation equations.
 
 Also note that if the initial state space distribution is of the form of equation \eqref{gaussian_state_space} then the all of the moments of the perturbed distribution can be solved using equation \eqref{gaussian_moments} if the perturbed distribution is constructed from $n$th perturbation the initial distribution using equation \eqref{state_space_continuity}.
