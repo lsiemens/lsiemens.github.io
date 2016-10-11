@@ -64,7 +64,7 @@
 
 \section{State Space Dynamics}
 
-Assuming the dynamics a particle is defined by the acceleration and that the acceleration of the particles is given by the potential $\phi$ such that $\vec{a} = \vec{\nabla}\cdot\phi$, then the equations of motion become
+Assuming the dynamics of a particle is defined by the acceleration, and that the acceleration of the particles is given by the potential $\phi$ such that $\vec{a} = \vec{\nabla}\cdot\phi$, then the equations of motion become
 \[
 \frac{d}{dt}\begin{pmatrix} \vec{x} \\ \dvec{x} \end{pmatrix}=\begin{pmatrix} \dvec{x} \\ -\grad\phi \end{pmatrix}
 \]
@@ -75,11 +75,11 @@ For a system of $n$ particles where the $i^{\text{th}}$ particle is located at $
 \label{discrete_system_dynamics}
 \end{equation}
 
-Moving over to a state space description of the system, the state space has six coordinates given by the orthogonal coordinate vectors $\vec{x}$ and $\dvec{x}$. Given a time dependent density distribution defined over state space $\sigma=\sigma(\vec{x}, \dvec{x}, t)$, such that the total mass at the time $t$ is $M(t)=\intVVdot{\sigma(\vec{x}, \dvec{x}, t)}$. The system of discrete particles described by equation \eqref{discrete_system_dynamics} then be described by the distribution
+Moving over to a state space description of the system, the state space has six coordinates given by the orthogonal coordinate vectors $\vec{x}$ and $\dvec{x}$. Given a time dependent density distribution defined over state space $\sigma=\sigma(\vec{x}, \dvec{x}, t)$, such that the total mass at the time $t$ is $M(t)=\intVVdot{\sigma(\vec{x}, \dvec{x}, t)}$, the system of discrete particles described by equation \eqref{discrete_system_dynamics} can then be described by the distribution
 \[
 \sigma(\vec{x}, \dvec{x}, t) = m\sum^n_{i=0}\delta(\vec{x} - \vec{x}_i)\cdot\delta(\dvec{x} - \dvec{x}_i)
 \]
-where $m$ is the mass of the particles, and $\delta(\vec{x})$ is the Dirac delta distribution in 3-space. For this system the six component state space velocity is $\vec{v}=\left\langle\dvec{x}, -\grad\phi(\vec{x}, \rho, t)\right\rangle$, where the potential $\phi$ is defined such that at $\vec{x}_i$ the potential is $\phi(\vec{x}_i, \rho(\vec{x}, t), t)=\phi_i$ and $\rho(\vec{x}, t)=\intVdot{\sigma(\vec{x}, \dvec{x}, t)}$ . Assuming the number of particles in the distribution is constant, then $\frac{dM}{dt}=0$. Since there are no sources or sinks for the particles, the density distribution is constrained by the continuity equation
+where $m$ is the mass of the particles, and $\delta(\vec{x})$ is the Dirac delta distribution in 3-space. For this system the six component state space velocity is $\vec{v}=\left\langle\dvec{x}, -\grad\phi(\vec{x}, \rho, t)\right\rangle$, where the potential $\phi$ is defined such that at $\vec{x}_i$ the potential is $\phi(\vec{x}_i, \rho(\vec{x}, t), t)=\phi_i$ and $\rho(\vec{x}, t)=\intVdot{\sigma(\vec{x}, \dvec{x}, t)}$. Assuming the number of particles in the distribution is constant, then $\frac{dM}{dt}=0$. Since there are no sources or sinks for the particles, the density distribution is constrained by the continuity equation
 \[
 \frac{d}{dt}\int_{V}\sigma(\vec{x}, \dvec{x}, t)d^3xd^3\dot{x}+\oint_{\partial V}\sigma(\vec{x}, \dvec{x}, t)\vec{v}\cdot d\vec{a}=0
 \]
@@ -99,7 +99,7 @@ Finally the independence of $\vec{x}$ and $\dvec{x}$ can be used to rewrite the 
 \label{state_space_continuity}
 \end{equation}
 
-The potential $\phi(\vec{x}, \rho, t)$ can be split into two components and external potential field $\phi_{\text{Ext}}(\vec{x}, t)$ and an internal field $\phi_{\text{Int}}(\vec{x}, \rho, t)$ where the internal component of the field is responsible for particle interactions. So then equation \eqref{state_space_continuity} is the Boltzmann Transport Equation where $\left(\partial_t \sigma\right)_{\text{Collision}} = \left(\partial_{x_i}\phi_{\text{Int}}\right)\partial_{\dot{x}_i}\sigma$ and $\phi$ is $\phi = \phi_{\text{Ext}}$,
+The potential $\phi(\vec{x}, \rho, t)$ can be split into two components: an external potential field $\phi_{\text{Ext}}(\vec{x}, t)$ and an internal field $\phi_{\text{Int}}(\vec{x}, \rho, t)$ where the internal component of the field is responsible for particle interactions. So then equation \eqref{state_space_continuity} is the Boltzmann Transport Equation where $\left(\partial_t \sigma\right)_{\text{Collision}} = \left(\partial_{x_i}\phi_{\text{Int}}\right)\partial_{\dot{x}_i}\sigma$ and $\phi$ is $\phi = \phi_{\text{Ext}}$,
 
 \[
 \partial_t \sigma + \dot{x}_i\partial_{x_i}\sigma-\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma=\left(\partial_t \sigma\right)_{\text{Collision}}
@@ -143,7 +143,6 @@ Using the definition of $\rho$ and $\rho u_i$ this equation can be written in th
 & \partial_t\left(u_i\rho\right) + \partial_{x_j}\left(\intVdot{\dot{x}_i\dot{x}_j\sigma}\right) \\ & - \left(\partial_{x_j}\phi\right)\oint\dot{x}_i\sigma da_j + \left(\partial_{x_j}\phi\right)\rho\delta_{i j}=0
 \end{split}
 \]
-
 where $\oint\dot{x}_i\sigma da_j$ is a surface integral over all of velocity space and $\delta_{ij}$ is the Kronecker delta function. Assuming $\sigma(\vec{x}, \dvec{x}, t)$ drops to zero faster than $\lvert\dvec{x}\rvert^3$ then the surface integral converges to zero. Given the surface integral does converge to zero then the result is,
 
 \begin{equation}
@@ -330,9 +329,9 @@ So perturbing to the state space distribution \eqref{gaussian_state_space} can p
 \end{widetext}
 
 \section{Complete First Order Perturbation}
-I have demonstrated that perturbing a Gaussian distribution with only the $\partial_{x_i}u'_j$ component of $\partial_t \sigma'=-\dot{x}_i\partial_{x_i}\sigma'+\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma'$ leads to viscus terms in the resulting conservation equations. Based on my preliminary investigation into how the remaining components ($\partial_{x_i}\rho$, $\partial_{x_i}T$ and $\partial_{x_i}\phi$) effect the perturbation of the Gaussian state space distribution \eqref{gaussian_state_space} I expect that a full first order perturbation of the distribution will produce an additional three sets of terms in the conservation equations. As part of these new terms I expect to find terms including density diffusion terms from $\partial_{x_i}\rho$, thermal conduction terms from $\partial_{x_i}T$ and terms resulting from $\partial_{x_i}\phi$ due to particle interactions mediated by the potential $\phi\left(\vec{x}, t, \rho\right)$. For example if $\phi\left(\vec{x}, t, \rho\right)=\int_{-\infty}^{\infty}f(|\vec{x}-\vec{x'}|)\rho(\vec{x'})d^3x'$ where $f(r)$ models the interaction between particles, then depending on the structure of local minima and maxima in the function $f(r)$ I expect that the net effect of the terms resulting from $\partial_{x_i}\phi$ will be to introduce phase transitions into the conservation equations.
+I have demonstrated that perturbing a Gaussian distribution with only the $\partial_{x_i}u'_j$ component of $\partial_t \sigma'=-\dot{x}_i\partial_{x_i}\sigma'+\left(\partial_{x_i}\phi\right)\partial_{\dot{x}_i}\sigma'$ leads to viscus terms in the resulting conservation equations. Based on my preliminary investigation into how the remaining components ($\partial_{x_i}\rho$, $\partial_{x_i}T$ and $\partial_{x_i}\phi$) affect the perturbation of the Gaussian state space distribution \eqref{gaussian_state_space}, I expect that a full first order perturbation of the distribution will produce an additional three sets of terms in the conservation equations. As part of these new terms I expect to find terms including density diffusion terms from $\partial_{x_i}\rho$, thermal conduction terms from $\partial_{x_i}T$ and terms resulting from $\partial_{x_i}\phi$ due to particle interactions mediated by the potential $\phi\left(\vec{x}, t, \rho\right)$. For example if $\phi\left(\vec{x}, t, \rho\right)=\int_{-\infty}^{\infty}f(|\vec{x}-\vec{x'}|)\rho(\vec{x'})d^3x'$ where $f(r)$ models the interaction between particles, then depending on the structure of local minima and maxima in the function $f(r)$, I expect that the net effect of the terms resulting from $\partial_{x_i}\phi$ will be to introduce phase transitions into the conservation equations.
 
-Also note that if the initial state space distribution is of the form of equation \eqref{gaussian_state_space} then the all of the moments of the perturbed distribution can be solved using equation \eqref{gaussian_moments} if the perturbed distribution is constructed from $n$th perturbation the initial distribution using equation \eqref{state_space_continuity}.
+Also note that if the initial state space distribution is of the form of equation \eqref{gaussian_state_space}, then all of the moments of the perturbed distribution can be solved using equation \eqref{gaussian_moments} if the perturbed distribution is constructed from $n$th perturbation the initial distribution using equation \eqref{state_space_continuity}.
 \end{document}
 %
 % ****** End of file apssamp.tex ******
