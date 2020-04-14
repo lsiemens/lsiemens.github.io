@@ -25,3 +25,5 @@ defaults:
       type: "posts"
     values:
        author: Luke Siemens
+
+theme: jekyll-theme-minimal
