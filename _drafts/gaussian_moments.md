@@ -2,6 +2,7 @@
 layout: post
 title: "Gaussian Moments"
 tags: [Math, Calculus]
+math: true
 ---
 
 Let us define the $$m$$ dimensional Gaussian distribution

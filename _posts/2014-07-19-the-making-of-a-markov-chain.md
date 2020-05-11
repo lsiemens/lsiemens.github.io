@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Making of a Markov Chain"
-date: 2014-07-19 12:00:00
+date: 2014-07-19
 tags: [Statistics, Markov-chains, Python]
 ---
 

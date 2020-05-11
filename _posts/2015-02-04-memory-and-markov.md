@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "Memory and Markov"
-date: 2015-02-04 12:00:00
+date: 2015-02-04
 tags: [Statistics, Markov-chains, Python]
+math: true
 ---
 
 In a previous post I discussed how to generate a Markov Chain with a basic algorithm, but using that algorithm memory usage was a limiting factor. Now we will attempt to find a solution to the memory usage of the algorithm. If you are unfamiliar with how to generate a Markov Chain checkout the post [The Making of a Markov Chain]({% post_url 2014-07-19-the-making-of-a-markov-chain %}).
@@ -141,4 +142,4 @@ Now for a section of the output from TextGen_1.2 at fifteenth order.
 
 So as demonstrated this new version is not only more memory efficient and faster but there is also a significant improvement in the quality of the generated text, due to the higher order chains.
 
-This new method works well but there is still room for improvement. Since at a minimum each n-gram needs $n+4$ bytes to store all of the relevant data, that is n bytes for the n-gram string and four bytes to store the number of times that n-gram has appeared, then if the training text was composed of N characters then there will be less than N n-grams in that text and the minimum necessary memory will be less then $N*(n+4)$ bytes. So for fifteenth order Markov Chains trained on a 1MB text file the required memory would be approximately 19MB, when training with TextGen_1.2 on The Mysterious Island, which was 1.08MB, approximately 4GB of memory was used. So an improved algorithm could expect up to a two-hundred times decrease in memory usage. So while TextGen_1.2 and the algorithms that it is based on are significantly improved from the previous version there is still room for more optimization.
+This new method works well but there is still room for improvement. Since at a minimum each n-gram needs $$n+4$$ bytes to store all of the relevant data, that is n bytes for the n-gram string and four bytes to store the number of times that n-gram has appeared, then if the training text was composed of N characters then there will be less than N n-grams in that text and the minimum necessary memory will be less then $$N*(n+4)$$ bytes. So for fifteenth order Markov Chains trained on a 1MB text file the required memory would be approximately 19MB, when training with TextGen_1.2 on The Mysterious Island, which was 1.08MB, approximately 4GB of memory was used. So an improved algorithm could expect up to a two-hundred times decrease in memory usage. So while TextGen_1.2 and the algorithms that it is based on are significantly improved from the previous version there is still room for more optimization.
