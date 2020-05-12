@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "An Introduction to Markov Chains"
-date: 2014-06-07 12:00:00
+date: 2014-06-07
 tags: [Statistics, Markov-chains]
 ---
 

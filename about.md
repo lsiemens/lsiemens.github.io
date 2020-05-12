@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+date: 2014-01-01
 permalink: /about/
 ---
 
@@ -12,4 +13,4 @@ I am an undergrad student in the Physics and Astronomy program at the University
 
 Apart from my studies, my spare time is occupied with playing the drums and programming. I have been programming as a hobby for many years, and since 2010 I have taught myself C/C++, JavaScript, Python and Fortran. In addition to these programming languages, I have dabbled in Java, Lua and a couple other scripting languages.
 
-If you have comments, questions or would like to contact me please email me at <luke@lsiemens.com>.
+If you have comments, questions or would like to contact me please email me at <luke.siemens@lsiemens.com>.
