@@ -1,0 +1,114 @@
+\documentclass[%
+ %twocolumn,
+ preprint,
+ amsmath, amssymb, aps, pra, 10pt
+]{revtex4-2}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Fractional Calculus}% Force line breaks with \
+
+\author{Luke A. Siemens}
+\email{luke.siemens@lsiemens.com}
+\noaffiliation
+
+\date{\today}
+
+\maketitle
+
+%\tableofcontents
+
+\section{Derive fractional calculus}
+I would like to derive fractional calculus, it seems like it should exist as a natural extesion to the field of calculus.
+
+\section{Black Board}
+
+A transcription of the contents of my black board, as of 05/21/2020
+
+Define the functions,
+
+\[A(x, \alpha) = e^x\]
+\[B(x, \alpha) = \left(x + \alpha \right)e^x\]
+\[C(x, \alpha) = \left(x^2 + 2\alpha x + \alpha (\alpha - 1) \right)e^x\]
+
+notice that,
+
+\[\frac{d}{dx} A(x, \alpha) = e^x = A(x, \alpha + 1)\]
+\[\frac{d}{dx} B(x, \alpha) = \left(x + \alpha + 1 \right)e^x = B(x, \alpha + 1)\]
+\[\frac{d}{dx} C(x, \alpha) = \left(x^2 + 2(\alpha + 1) x + (\alpha + 1)\alpha \right)e^x = C(x, \alpha + 1)\]
+
+and,
+
+\[\int_{-\infty}^xA(t, \alpha)dt = e^x = A(x, \alpha - 1)\]
+\[\int_{-\infty}^xB(t, \alpha)dt = \left(x + \alpha - 1 \right)e^x = B(x, \alpha - 1)\]
+\[\int_{-\infty}^xC(t, \alpha)dt = \left(x^2 + 2(\alpha - 1) x + (\alpha - 1)(\alpha - 2)\right)e^x = B(x, \alpha - 1)\]
+
+defining the operator $J^\alpha$ based on the Riemann-Liouvill integrals as,
+
+\begin{equation}
+J^\alpha f(x) = \frac{1}{\Gamma(\alpha)}\int_{-\infty}^x (x - t)^{\alpha - 1}f(t)dt
+\label{operator_fractional_integral}
+\end{equation}
+
+I think that the folowing is true for $\beta \in \mathbb{R}$
+
+\[J^\beta A(x, \alpha) = A(x, \alpha - \beta)\]
+\[J^\beta B(x, \alpha) = B(x, \alpha - \beta)\]
+\[J^\beta C(x, \alpha) = C(x, \alpha - \beta)\]
+
+I propose that the folowing is true
+
+\[J^\beta \left(P_n^\alpha(x)\right) = P_n^{\alpha-\beta}(x)\]
+
+\[P_n^\alpha(x) = \left( \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \right)e^x\]
+
+where $\beta \in \mathbb{R}$
+
+Assuming this worked, then
+
+\[J^\beta \left(a F(x) + b G(x)\right) = a J^\beta F(x) + b J^\beta G(x)\]
+
+\[J^\beta \left(J^\gamma \left( P_n^\alpha(x) \right)\right) = P_n^{\alpha - \gamma - \beta}(x)= P_n^{\alpha - \beta - \gamma}(x) = J^\gamma \left(J^\beta \left( P_n^\alpha(x) \right)\right)\]
+
+\[J^{1} \left(P_n^\alpha(x)\right) = \int_{-\infty}^x P_n^\alpha(t)dt = P_n^{\alpha - 1}(x)\]
+\[J^{-1} \left(P_n^\alpha(x)\right) = \frac{d}{dx} P_n^\alpha(x) = P_n^{\alpha + 1}(x)\]
+
+so on the vector space formed by the set of functions $P_n^\alpha(x)$ the operator $J^\beta$ has all of the properties nessisary for a well defined fractional calculus. I expect that $J^\beta$ is not valid for $\beta \le 0$ but that there are equivelent definitions that are defined in that range (for example cauchy's differentiation formula generalized for fractional derivatives).
+
+Using this fractional calculus is defined for a predefined set of exponential polynomials, but linear combinations of them can be used to construct arbitrary polynomial expoentials. Then this fractional calculus can be extended even further by taking aproximating some arbitrary function $F(x)$ and then computing the $n$th order taylor expansion of the function $F(x)e^{-x}$ denote its taylor expansion as $\mathfrak{T}_n\left(F(x)e^{-x}\right)$ and then using the function $\mathfrak{T}_n\left(F(x)e^{-x}\right)e^x \approx F(x)$ to approximate fractional calculus on $F(x)$ for sufficiently large $n$.
+
+
+\section{Black Board}
+
+A transcription of the contents of my black board, as of 05/22/2020
+
+\[P_n^\alpha(x) = \left( \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \right)e^x = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}{}_1F_1(\alpha + 1, \alpha + 1 -n, x)\]
+
+using this equation for $P_n^\alpha(x)$ makes it simple to prove the folowing,
+
+\[\frac{d}{dx}P_n^\alpha(x) = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}\frac{d}{dx}{}_1F_1(\alpha + 1, \alpha + 1 -n, x) = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}\frac{\alpha + 1}{\alpha + 1 - n}{}_1F_1(\alpha + 2, \alpha + 2 -n, x) \]\[= \frac{\Gamma(\alpha + 2)}{\Gamma(\alpha + 2 -n)}{}_1F_1(\alpha + 2, \alpha + 2 -n, x) = P_n^{\alpha + 1}(x)\]
+
+and also to prove the folowing,
+
+\[\int_{-\infty}^x P_n^\alpha(t)dt = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)} \int_{-\infty}^x  {}_1F_1(\alpha + 1, \alpha + 1 -n, t)dt = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}\frac{\alpha - n}{\alpha}{}_1F_1(\alpha, \alpha -n, x) \]\[= \frac{\Gamma(\alpha)}{\Gamma(\alpha - n)}{}_1F_1(\alpha, \alpha - n, x) = P_n^{\alpha - 1}(x)\]
+
+finaly the folowing integral may be useful,
+
+\[\int_{-\infty}^x \frac{\left(x - t\right)^{\alpha - 1}t^ne^t}{\Gamma(\alpha)}dt = \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + k)}{\Gamma(\alpha)}(-1)^kx^{n - k}e^x\]
+
+\section{polynomials}
+note that the fractional derivative of $x^k$ is often expressed as,
+
+\[\frac{d^\alpha}{dx^\alpha}x^k = \frac{\Gamma(k + 1)}{\Gamma(k + 1 - \alpha)}x^{k - \alpha}\]
+
+these fractional monomials can be found using $J^\alpha$ as the solution to the fractional integral of an impulse,
+
+\[J^\alpha\delta(x) = \int_{-\infty}^x \frac{\left(x - t\right)^{\alpha - 1}}{\Gamma(\alpha)}\delta(t)dt = \frac{x^{\alpha - 1}}{\Gamma(\alpha)}\]
+
+so the singularities produced at the origin is a side effect of the impulse.
+
+These polynomials may be useful for fractional time derivatives (only past events have an effect), can the equations be reformulated for frational space derivates (using a combination of left and right derivatives). For example fractionaly integrate $H(x)H(1-x)$ a square bump function.
+
+\end{document}
