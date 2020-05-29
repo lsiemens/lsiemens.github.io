@@ -23,7 +23,7 @@
 \section{Derive fractional calculus}
 I would like to derive fractional calculus, it seems like it should exist as a natural extesion to the field of calculus.
 
-\section{Black Board}
+\section{Black Board 05-21-2020}
 
 A transcription of the contents of my black board, as of 05/21/2020
 
@@ -80,7 +80,7 @@ so on the vector space formed by the set of functions $P_n^\alpha(x)$ the operat
 Using this fractional calculus is defined for a predefined set of exponential polynomials, but linear combinations of them can be used to construct arbitrary polynomial expoentials. Then this fractional calculus can be extended even further by taking aproximating some arbitrary function $F(x)$ and then computing the $n$th order taylor expansion of the function $F(x)e^{-x}$ denote its taylor expansion as $\mathfrak{T}_n\left(F(x)e^{-x}\right)$ and then using the function $\mathfrak{T}_n\left(F(x)e^{-x}\right)e^x \approx F(x)$ to approximate fractional calculus on $F(x)$ for sufficiently large $n$.
 
 
-\section{Black Board}
+\section{Black Board 05-22-2020}
 
 A transcription of the contents of my black board, as of 05/22/2020
 
@@ -110,5 +110,101 @@ these fractional monomials can be found using $J^\alpha$ as the solution to the 
 so the singularities produced at the origin is a side effect of the impulse.
 
 These polynomials may be useful for fractional time derivatives (only past events have an effect), can the equations be reformulated for frational space derivates (using a combination of left and right derivatives). For example fractionaly integrate $H(x)H(1-x)$ a square bump function.
+
+
+\section{Black Board 05-27-2020}
+
+A transcription of the contents of my black board, as of 05/27/2020
+
+Looking at the first four exponential polynomials $P_n^\alpha(x)$ I came up with the folowing recursive formula,
+
+\[
+P_{0}^{\alpha}(x) = e^x
+\]
+\begin{equation}
+P_n^\alpha(x) = xP_{n-1}^\alpha(x) + \alpha P_{n-1}^{\alpha - 1}(x)
+\label{polynomial_exponential_recursive}
+\end{equation}
+
+now fractionaly integrate the base case,
+
+\[J^\beta P_0^\alpha(x) = \frac{1}{\Gamma(\beta)}\int_{-\infty}^x \left(x - t\right)^{\beta - 1}e^{t}dt = e^x\]
+
+note that $e^x = P_0^{\alpha - \beta}(x)$, so the identity $J^\beta P_0^\alpha(x) = P_0^{\alpha - \beta}(x)$ is true, though also trivial. Given this identity let us suppose $J^\beta P_{n-1}^\alpha(x) = P_{n - 1}^{\alpha - \beta}(x)$, then
+
+\[J^\beta P_n^\alpha(x) = J^\beta \left(xP_{n - 1}^\alpha(x) + \alpha P_{n - 1}^{\alpha - 1}(x)\right)\]
+using linearity of $J^\beta$ and our asumption about $P_{n - 1}^\alpha$,
+\[J^\beta P_n^\alpha(x) = J^\beta \left(xP_{n - 1}^\alpha(x)\right) + \alpha P_{n - 1}^{\alpha - \beta - 1}(x)\]
+now using the generalized Leibniz rule given by \cite{Leibniz} equation (15.11),
+
+\[
+J^\beta \left(xP_{n - 1}^\alpha(x)\right) = \sum_{k=0}^{\infty} \binom{-\beta}{k}\left(J^{\beta + k}P_{n - 1}^\alpha(x)\right)\left(\frac{d^k}{dx^k}x\right) = \binom{-\beta}{0}xJ^\beta P_{n - 1}^\alpha(x) + \binom{-\beta}{1}J^{\beta + 1}P_{n - 1}^\alpha(x)
+\]
+
+all other terms are zero, simplifying
+
+\[
+J^\beta \left(xP_{n - 1}^\alpha(x)\right) = xP_{n - 1}^{\alpha - \beta}(x) - \beta P_{n - 1}^{\alpha - \beta - 1}(x)
+\]
+
+Using this the equation becomes,
+
+\[
+J^\beta P_n^\alpha(x) = xP_{n - 1}^{\alpha - \beta}(x) - \beta P_{n - 1}^{\alpha - \beta - 1}(x) + \alpha P_{n - 1}^{\alpha - \beta - 1}(x)
+\]
+
+simplifying,
+
+\[
+J^\beta P_n^\alpha(x) = xP_{n - 1}^{\alpha - \beta}(x) + \left(\alpha - \beta\right) P_{n - 1}^{\alpha - \beta - 1}(x) = P_n^{\alpha - \beta}(x)
+\]
+
+by induction then the folowing identity is true for all of the polynomial exponentials $P_n^\alpha(x)$
+
+\begin{equation}
+J^\beta P_n^\alpha(x) = P_n^{\alpha - \beta}(x)
+\label{polynomial_exponential_integral}
+\end{equation}
+
+So the set $P_n^\alpha(x)$ with operator $J^\beta$ acts as an abelean group. Fractional calculus does not produce any contridictions when acting exclusivly on polynomial exponentials.
+
+\section{Example problem using exponential polynomials}
+Find the fractional derivative of the equation $e^{\lambda x}$, I will use this since the solution is an elementry function $\lambda^\alpha e^{\lambda x}$.
+
+\[e^{\lambda x} = e^{(\lambda - 1)x}e^x = \sum_{k=0}^\infty \frac{(\lambda - 1)^k x^k e^x}{k!} = \sum_{k=0}^\infty \frac{(\lambda - 1)^k}{k!}P_k^0(x)\]
+
+note that $P_n^0(x) = x^n e^x$. Taking the fractional derivative of this function,
+
+\[J^{-\alpha} e^{\lambda x} = J^{-\alpha} \left(\sum_{n=0}^\infty \frac{(\lambda - 1)^n}{n!}P_n^0(x)\right) = \sum_{n=0}^\infty \frac{(\lambda - 1)^n}{n!}P_n^\alpha(x) = \sum_{n=0}^\infty \frac{(\lambda - 1)^n}{n!} \left( \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \right)e^x \]
+
+bringing out the inner summation,
+
+\[J^{-\alpha} e^{\lambda x} = e^x \sum_{n=0}^\infty \sum_{k=0}^n \frac{(\lambda - 1)^n}{n!} \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \]
+
+Simplify, and raise the limit of the inner summation since $\binom{n}{n + k} = 0$ if $k \in \mathbb{Z}^+$ so $\binom{n}{k}=0$ if $k > n$,
+
+\[J^{-\alpha} e^{\lambda x} = e^x \sum_{n=0}^\infty \sum_{k=0}^\infty \frac{(\lambda - 1)^n}{k!(n - k)!}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \]
+
+reindex the equation using the substitution $m = n - k$, note that any term with $m < 0$ evaluates to zero,
+
+\[J^{-\alpha} e^{\lambda x} = e^x \sum_{m=0}^\infty \sum_{k=0}^\infty \frac{(\lambda - 1)^{m + k}}{k!m!}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 - m)}x^k \]
+
+rearanging the equation,
+
+\[J^{-\alpha} e^{\lambda x} = \left(\sum_{m=0}^\infty \frac{\Gamma(\alpha + 1)}{m!\Gamma(\alpha + 1 - m)}(\lambda - 1)^m\right) \sum_{k=0}^\infty \frac{(\lambda - 1)^k}{k!}x^k e^x = \left(\sum_{m=0}^\infty \binom{\alpha}{m}(\lambda - 1)^m 1^{\alpha - m}\right) e^{\lambda x}\]
+
+this series only converges for $\left|1 - \lambda\right| < 1$, taking the analytic continuation results in the solution
+
+ \[J^{-\alpha} e^{\lambda x} = \lambda^\alpha e^{\lambda x}\]
+
+\begin{thebibliography}{1}
+
+\bibitem{Leibniz}
+  S.G. Samko, A. A. Kilbas and O. L. Marichev
+  \textit{Fractional Integrals and Deriatives},
+  Gordon and Breach Science Pubblishers
+  1987.
+
+\end{thebibliography}
 
 \end{document}
