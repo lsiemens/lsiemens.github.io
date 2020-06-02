@@ -23,6 +23,9 @@
 \section{Derive fractional calculus}
 I would like to derive fractional calculus, it seems like it should exist as a natural extesion to the field of calculus.
 
+\subsection{consepts}
+Rieman-luivill Integral, Rieman-luivill Derivative, Runwald-letnikov derivative, Capito derivative, distributions, gamma function, analytic continuation, Cauchy integral formula
+
 \section{Black Board 05-21-2020}
 
 A transcription of the contents of my black board, as of 05/21/2020
@@ -196,6 +199,41 @@ rearanging the equation,
 this series only converges for $\left|1 - \lambda\right| < 1$, taking the analytic continuation results in the solution
 
  \[J^{-\alpha} e^{\lambda x} = \lambda^\alpha e^{\lambda x}\]
+ 
+ 
+\section{Black Board 06-02-2020}
+
+A transcription of the contents of my black board, as of 06/02/2020
+
+I would like to define a function space that behaves nicely under fractional calculus. Towards that end we have observed that exponential functions and polynomials multipliyed by exponential functions behave nicely under fractional calculus. Let us define two sets, first a set of positive monotonic increasing functions $\mathbb{M}$, and a set of functions that are in some sence bounded by exponential functions $\mathbb{B}$,
+
+\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) | (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
+
+\[\mathbb{B}(a, b) := \left\lbrace f \in C^\infty(\mathbb{R}) | (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+
+Using these two sets we can construct a set of "nice" functions,
+
+\begin{equation}
+\mathbb{S} := \left\lbrace f \in C^\infty(\mathbb{R}) | (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
+\label{exponentialy_bounded}
+\end{equation}
+
+Given $\alpha \in \mathbb{R}$ and $f, g \in \mathbb{S}$ with $a_{fn}, a_{gn} \in \mathbb{M}$, $ b_{fn}, b_{gn} \in \mathbb{R}$ such that $b_{fn} \geq b_{gn} > 0$ and $\frac{d^n}{dx^n} f(x) \in \mathbb{B}(a_{fn}, b_{fn}), \frac{d^n}{dx^n} g(x) \in \mathbb{B}(a_{gn}, b_{gn})$ then,
+
+\[(\forall x, x_0 \in \mathbb{R}) x \leq x_0, \left|\frac{d^n}{dx^n} (\alpha f(x))\right| = |\alpha| \left|\frac{d^n}{dx^n}f(x)\right| \leq (|\alpha| a_{fn}(x_0))e^{b_{fn}x}\]
+
+and
+
+\[(\forall x, x_0 \in \mathbb{R}) x \leq x_0, \left|\frac{d^n}{dx^n}(f(x) + g(x))\right| \leq \left|\frac{d^n}{dx^n} f(x)\right| + \left|\frac{d^n}{dx^n} g(x)\right| \leq \]
+\[\leq a_{fn}(x)e^{b_{fn}x} + a_{gn}(x)e^{b_{gn}x} \leq \left(a_{fn}(x_0)e^{(b_{fn} - b_{gn})x_0} + a_{gn}(x_0)\right)e^{b_{gn}x}\]
+
+and finally
+
+\[(\forall x, x_0 \in \mathbb{R}) x \leq x_0, \left|\int_{-\infty}^x f(t)dt\right| = \int_{-\infty}^x \left|f(t)\right| dt \leq \int_{-\infty}^x a_{fn}(x_0)e^{b_{fn}t}dt = \frac{a_{fn}(x_0)}{b_{fn}}e^{b_{fn}x}\]
+
+thus, if $f, g \in \mathbb{S}, \alpha \in \mathbb{R}$ then $\alpha f(x) \in \mathbb{S}$ and $f(x) + g(x) \in \mathbb{S}$. So the set of functions $\mathbb{S}$ is a vector space and is a sub-space of $C^\infty(\mathbb{R})$. Also by definition $\frac{d}{dx}f(x) \in \mathbb{S}$ and we found that $\int_{-\infty}^x f(t)dt$ nesisaraly exists for all x and that $\int_{-\infty}^x f(t)dt \in \mathbb{S}$
+
+
 
 \begin{thebibliography}{1}
 
