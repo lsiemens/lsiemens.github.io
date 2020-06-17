@@ -1,0 +1,354 @@
+\documentclass[%
+ %twocolumn,
+ preprint,
+ amsmath, amssymb, aps, pra, 10pt
+]{revtex4-2}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Fractional Calculus}% Force line breaks with \
+
+\author{Luke A. Siemens}
+\email{luke.siemens@lsiemens.com}
+\noaffiliation
+
+\date{\today}
+
+\maketitle
+
+\section{Derive fractional calculus}
+I would like to derive fractional calculus, it seems like it should exist as a natural extesion to the field of calculus.
+
+\subsection{consepts}
+Riemann–Liouville Integral, Riemann–Liouville Derivative, Caputo derivative, gamma function, analytic continuation, Ramanujan's master theorem
+
+\section{Black Board 05-21-2020}
+
+A transcription of the contents of my black board, as of 05/21/2020
+
+Define the functions,
+
+\[A(x, \alpha) = e^x\]
+\[B(x, \alpha) = \left(x + \alpha \right)e^x\]
+\[C(x, \alpha) = \left(x^2 + 2\alpha x + \alpha (\alpha - 1) \right)e^x\]
+
+notice that,
+
+\[\frac{d}{dx} A(x, \alpha) = e^x = A(x, \alpha + 1)\]
+\[\frac{d}{dx} B(x, \alpha) = \left(x + \alpha + 1 \right)e^x = B(x, \alpha + 1)\]
+\[\frac{d}{dx} C(x, \alpha) = \left(x^2 + 2(\alpha + 1) x + (\alpha + 1)\alpha \right)e^x = C(x, \alpha + 1)\]
+
+and,
+
+\[\int_{-\infty}^xA(t, \alpha)dt = e^x = A(x, \alpha - 1)\]
+\[\int_{-\infty}^xB(t, \alpha)dt = \left(x + \alpha - 1 \right)e^x = B(x, \alpha - 1)\]
+\[\int_{-\infty}^xC(t, \alpha)dt = \left(x^2 + 2(\alpha - 1) x + (\alpha - 1)(\alpha - 2)\right)e^x = B(x, \alpha - 1)\]
+
+defining the operator $J^\alpha$ based on the Riemann-Liouvill integrals as,
+
+\begin{equation}
+J^\alpha f(x) = \frac{1}{\Gamma(\alpha)}\int_{-\infty}^x (x - t)^{\alpha - 1}f(t)dt
+\label{operator_fractional_integral}
+\end{equation}
+
+I think that the folowing is true for $\beta \in \mathbb{R}$
+
+\[J^\beta A(x, \alpha) = A(x, \alpha - \beta)\]
+\[J^\beta B(x, \alpha) = B(x, \alpha - \beta)\]
+\[J^\beta C(x, \alpha) = C(x, \alpha - \beta)\]
+
+I propose that the folowing is true
+
+\[J^\beta \left(P_n^\alpha(x)\right) = P_n^{\alpha-\beta}(x)\]
+
+\[P_n^\alpha(x) = \left( \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \right)e^x\]
+
+where $\beta \in \mathbb{R}$
+
+Assuming this worked, then
+
+\[J^\beta \left(a F(x) + b G(x)\right) = a J^\beta F(x) + b J^\beta G(x)\]
+
+\[J^\beta \left(J^\gamma \left( P_n^\alpha(x) \right)\right) = P_n^{\alpha - \gamma - \beta}(x)= P_n^{\alpha - \beta - \gamma}(x) = J^\gamma \left(J^\beta \left( P_n^\alpha(x) \right)\right)\]
+
+\[J^{1} \left(P_n^\alpha(x)\right) = \int_{-\infty}^x P_n^\alpha(t)dt = P_n^{\alpha - 1}(x)\]
+\[J^{-1} \left(P_n^\alpha(x)\right) = \frac{d}{dx} P_n^\alpha(x) = P_n^{\alpha + 1}(x)\]
+
+so on the vector space formed by the set of functions $P_n^\alpha(x)$ the operator $J^\beta$ has all of the properties nessisary for a well defined fractional calculus. I expect that $J^\beta$ is not valid for $\beta \le 0$ but that there are equivelent definitions that are defined in that range (for example cauchy's differentiation formula generalized for fractional derivatives).
+
+Using this fractional calculus is defined for a predefined set of exponential polynomials, but linear combinations of them can be used to construct arbitrary polynomial expoentials. Then this fractional calculus can be extended even further by taking aproximating some arbitrary function $F(x)$ and then computing the $n$th order taylor expansion of the function $F(x)e^{-x}$ denote its taylor expansion as $\mathfrak{T}_n\left(F(x)e^{-x}\right)$ and then using the function $\mathfrak{T}_n\left(F(x)e^{-x}\right)e^x \approx F(x)$ to approximate fractional calculus on $F(x)$ for sufficiently large $n$.
+
+
+\section{Black Board 05-22-2020}
+
+A transcription of the contents of my black board, as of 05/22/2020
+
+\[P_n^\alpha(x) = \left( \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \right)e^x = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}{}_1F_1(\alpha + 1, \alpha + 1 -n, x)\]
+
+using this equation for $P_n^\alpha(x)$ makes it simple to prove the folowing,
+
+\[\frac{d}{dx}P_n^\alpha(x) = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}\frac{d}{dx}{}_1F_1(\alpha + 1, \alpha + 1 -n, x) = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}\frac{\alpha + 1}{\alpha + 1 - n}{}_1F_1(\alpha + 2, \alpha + 2 -n, x) \]\[= \frac{\Gamma(\alpha + 2)}{\Gamma(\alpha + 2 -n)}{}_1F_1(\alpha + 2, \alpha + 2 -n, x) = P_n^{\alpha + 1}(x)\]
+
+and also to prove the folowing,
+
+\[\int_{-\infty}^x P_n^\alpha(t)dt = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)} \int_{-\infty}^x  {}_1F_1(\alpha + 1, \alpha + 1 -n, t)dt = \frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 -n)}\frac{\alpha - n}{\alpha}{}_1F_1(\alpha, \alpha -n, x) \]\[= \frac{\Gamma(\alpha)}{\Gamma(\alpha - n)}{}_1F_1(\alpha, \alpha - n, x) = P_n^{\alpha - 1}(x)\]
+
+finaly the folowing integral may be useful,
+
+\[\int_{-\infty}^x \frac{\left(x - t\right)^{\alpha - 1}t^ne^t}{\Gamma(\alpha)}dt = \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + k)}{\Gamma(\alpha)}(-1)^kx^{n - k}e^x\]
+
+\section{polynomials}
+note that the fractional derivative of $x^k$ is often expressed as,
+
+\[\frac{d^\alpha}{dx^\alpha}x^k = \frac{\Gamma(k + 1)}{\Gamma(k + 1 - \alpha)}x^{k - \alpha}\]
+
+these fractional monomials can be found using $J^\alpha$ as the solution to the fractional integral of an impulse,
+
+\[J^\alpha\delta(x) = \int_{-\infty}^x \frac{\left(x - t\right)^{\alpha - 1}}{\Gamma(\alpha)}\delta(t)dt = \frac{x^{\alpha - 1}}{\Gamma(\alpha)}\]
+
+so the singularities produced at the origin is a side effect of the impulse.
+
+These polynomials may be useful for fractional time derivatives (only past events have an effect), can the equations be reformulated for frational space derivates (using a combination of left and right derivatives). For example fractionaly integrate $H(x)H(1-x)$ a square bump function.
+
+
+\section{Black Board 05-27-2020}
+
+A transcription of the contents of my black board, as of 05/27/2020
+
+Looking at the first four exponential polynomials $P_n^\alpha(x)$ I came up with the folowing recursive formula,
+
+\[
+P_{0}^{\alpha}(x) = e^x
+\]
+\begin{equation}
+P_n^\alpha(x) = xP_{n-1}^\alpha(x) + \alpha P_{n-1}^{\alpha - 1}(x)
+\label{polynomial_exponential_recursive}
+\end{equation}
+
+now fractionaly integrate the base case,
+
+\[J^\beta P_0^\alpha(x) = \frac{1}{\Gamma(\beta)}\int_{-\infty}^x \left(x - t\right)^{\beta - 1}e^{t}dt = e^x\]
+
+note that $e^x = P_0^{\alpha - \beta}(x)$, so the identity $J^\beta P_0^\alpha(x) = P_0^{\alpha - \beta}(x)$ is true, though also trivial. Given this identity let us suppose $J^\beta P_{n-1}^\alpha(x) = P_{n - 1}^{\alpha - \beta}(x)$, then
+
+\[J^\beta P_n^\alpha(x) = J^\beta \left(xP_{n - 1}^\alpha(x) + \alpha P_{n - 1}^{\alpha - 1}(x)\right)\]
+using linearity of $J^\beta$ and our asumption about $P_{n - 1}^\alpha$,
+\[J^\beta P_n^\alpha(x) = J^\beta \left(xP_{n - 1}^\alpha(x)\right) + \alpha P_{n - 1}^{\alpha - \beta - 1}(x)\]
+now using the generalized Leibniz rule given by \cite{Leibniz} equation (15.11),
+
+\[
+J^\beta \left(xP_{n - 1}^\alpha(x)\right) = \sum_{k=0}^{\infty} \binom{-\beta}{k}\left(J^{\beta + k}P_{n - 1}^\alpha(x)\right)\left(\frac{d^k}{dx^k}x\right) = \binom{-\beta}{0}xJ^\beta P_{n - 1}^\alpha(x) + \binom{-\beta}{1}J^{\beta + 1}P_{n - 1}^\alpha(x)
+\]
+
+all other terms are zero, simplifying
+
+\[
+J^\beta \left(xP_{n - 1}^\alpha(x)\right) = xP_{n - 1}^{\alpha - \beta}(x) - \beta P_{n - 1}^{\alpha - \beta - 1}(x)
+\]
+
+Using this the equation becomes,
+
+\[
+J^\beta P_n^\alpha(x) = xP_{n - 1}^{\alpha - \beta}(x) - \beta P_{n - 1}^{\alpha - \beta - 1}(x) + \alpha P_{n - 1}^{\alpha - \beta - 1}(x)
+\]
+
+simplifying,
+
+\[
+J^\beta P_n^\alpha(x) = xP_{n - 1}^{\alpha - \beta}(x) + \left(\alpha - \beta\right) P_{n - 1}^{\alpha - \beta - 1}(x) = P_n^{\alpha - \beta}(x)
+\]
+
+by induction then the folowing identity is true for all of the polynomial exponentials $P_n^\alpha(x)$
+
+\begin{equation}
+J^\beta P_n^\alpha(x) = P_n^{\alpha - \beta}(x)
+\label{polynomial_exponential_integral}
+\end{equation}
+
+So the set $P_n^\alpha(x)$ with operator $J^\beta$ acts as an abelean group. Fractional calculus does not produce any contridictions when acting exclusivly on polynomial exponentials.
+
+\section{Example problem using exponential polynomials}
+Find the fractional derivative of the equation $e^{\lambda x}$, I will use this since the solution is an elementry function $\lambda^\alpha e^{\lambda x}$.
+
+\[e^{\lambda x} = e^{(\lambda - 1)x}e^x = \sum_{k=0}^\infty \frac{(\lambda - 1)^k x^k e^x}{k!} = \sum_{k=0}^\infty \frac{(\lambda - 1)^k}{k!}P_k^0(x)\]
+
+note that $P_n^0(x) = x^n e^x$. Taking the fractional derivative of this function,
+
+\[J^{-\alpha} e^{\lambda x} = J^{-\alpha} \left(\sum_{n=0}^\infty \frac{(\lambda - 1)^n}{n!}P_n^0(x)\right) = \sum_{n=0}^\infty \frac{(\lambda - 1)^n}{n!}P_n^\alpha(x) = \sum_{n=0}^\infty \frac{(\lambda - 1)^n}{n!} \left( \sum_{k=0}^n \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \right)e^x \]
+
+bringing out the inner summation,
+
+\[J^{-\alpha} e^{\lambda x} = e^x \sum_{n=0}^\infty \sum_{k=0}^n \frac{(\lambda - 1)^n}{n!} \binom{n}{k}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \]
+
+Simplify, and raise the limit of the inner summation since $\binom{n}{n + k} = 0$ if $k \in \mathbb{Z}^+$ so $\binom{n}{k}=0$ if $k > n$,
+
+\[J^{-\alpha} e^{\lambda x} = e^x \sum_{n=0}^\infty \sum_{k=0}^\infty \frac{(\lambda - 1)^n}{k!(n - k)!}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 + k - n)}x^k \]
+
+reindex the equation using the substitution $m = n - k$, note that any term with $m < 0$ evaluates to zero,
+
+\[J^{-\alpha} e^{\lambda x} = e^x \sum_{m=0}^\infty \sum_{k=0}^\infty \frac{(\lambda - 1)^{m + k}}{k!m!}\frac{\Gamma(\alpha + 1)}{\Gamma(\alpha + 1 - m)}x^k \]
+
+rearanging the equation,
+
+\[J^{-\alpha} e^{\lambda x} = \left(\sum_{m=0}^\infty \frac{\Gamma(\alpha + 1)}{m!\Gamma(\alpha + 1 - m)}(\lambda - 1)^m\right) \sum_{k=0}^\infty \frac{(\lambda - 1)^k}{k!}x^k e^x = \left(\sum_{m=0}^\infty \binom{\alpha}{m}(\lambda - 1)^m 1^{\alpha - m}\right) e^{\lambda x}\]
+
+this series only converges for $\left|1 - \lambda\right| < 1$, taking the analytic continuation results in the solution
+
+ \[J^{-\alpha} e^{\lambda x} = \lambda^\alpha e^{\lambda x}\]
+ 
+ 
+\section{Black Board 06-02-2020}
+
+A transcription of the contents of my black board, as of 06/02/2020
+
+I would like to define a function space that behaves nicely under fractional calculus. Towards that end we have observed that exponential functions and polynomials multipliyed by exponential functions behave nicely under fractional calculus. Let us define two sets, first a set of positive monotonic increasing functions $\mathbb{M}$, and a set of functions that are in some sence bounded by exponential functions $\mathbb{B}$,
+
+\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
+
+\[\mathbb{B}(a, b) := \left\lbrace f \in C^\infty(\mathbb{R}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+
+Using these two sets we can construct a set of "nice" functions,
+
+\begin{equation}
+\mathbb{S} := \left\lbrace f \in C^\infty(\mathbb{R}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
+\label{exponentialy_bounded}
+\end{equation}
+
+Given $\alpha \in \mathbb{R}$ and $f, g \in \mathbb{S}$ with $a_{fn}, a_{gn} \in \mathbb{M}$, $ b_{fn}, b_{gn} \in \mathbb{R}$ such that $b_{fn} \geq b_{gn} > 0$ and $\frac{d^n}{dx^n} f(x) \in \mathbb{B}(a_{fn}, b_{fn}), \frac{d^n}{dx^n} g(x) \in \mathbb{B}(a_{gn}, b_{gn})$ then,
+
+\[(\forall x, x_0 \in \mathbb{R}) x \leq x_0, \left|\frac{d^n}{dx^n} (\alpha f(x))\right| = |\alpha| \left|\frac{d^n}{dx^n}f(x)\right| \leq (|\alpha| a_{fn}(x_0))e^{b_{fn}x}\]
+
+and
+
+\[(\forall x, x_0 \in \mathbb{R}) x \leq x_0, \left|\frac{d^n}{dx^n}(f(x) + g(x))\right| \leq \left|\frac{d^n}{dx^n} f(x)\right| + \left|\frac{d^n}{dx^n} g(x)\right| \leq \]
+\[\leq a_{fn}(x)e^{b_{fn}x} + a_{gn}(x)e^{b_{gn}x} \leq \left(a_{fn}(x_0)e^{(b_{fn} - b_{gn})x_0} + a_{gn}(x_0)\right)e^{b_{gn}x}\]
+
+and finally
+
+\[(\forall x, x_0 \in \mathbb{R}) x \leq x_0, \left|\int_{-\infty}^x f(t)dt\right| = \int_{-\infty}^x \left|f(t)\right| dt \leq \int_{-\infty}^x a_{fn}(x_0)e^{b_{fn}t}dt = \frac{a_{fn}(x_0)}{b_{fn}}e^{b_{fn}x}\]
+
+thus, if $f, g \in \mathbb{S}, \alpha \in \mathbb{R}$ then $\alpha f(x) \in \mathbb{S}$ and $f(x) + g(x) \in \mathbb{S}$. So the set of functions $\mathbb{S}$ is a vector space and is a sub-space of $C^\infty(\mathbb{R})$. Also by definition $\frac{d}{dx}f(x) \in \mathbb{S}$ and we found that $\int_{-\infty}^x f(t)dt$ nesisaraly exists for all x and that $\int_{-\infty}^x f(t)dt \in \mathbb{S}$. Note equivelent results can be produced when only requireing $b_{fn}>0, b_{gn}>0$ not $b_{fn}\geq b_{gn} > 0$
+
+\section{Black Board 06-07-2020}
+
+A transcription of the contents of my black board, as of 06/07/2020
+
+Ramanujan's Master Theorem (RMT) can be stated as,
+
+\[g(u) = \sum_{k=0}^\infty \frac{\phi(k)(-u)^k}{k!}\]
+
+Given appropriate conditions on $\phi(k)$ the summ converges and the folowing result holds,
+
+\[\int_0^{\infty} u^{s-1}g(u)du = \Gamma(s)\phi(-s)\]
+
+When applicable this theorem acts to interpolate the sequence $\phi(k), k \in \mathbb{Z}^+$, finding an analytic function $\phi(-s)$ reproducing the sequence when $s = -k, k \in \mathbb{Z}^+$. Let us define $\phi(k)$ interms of a function $f(x) \in C^{\omega}(\mathbb{C})$,
+
+\[\phi(k) = \left. \frac{d^k}{dx^k}f(x)\right|_{x = x_0}\]
+
+then in this case $g(u)$ is,
+
+\[g(u) = \sum_{k=0}^\infty \frac{(-u)^k}{k!} \left. \frac{d^k}{dx^k}f(x)\right|_{x=x_0}\]
+
+recognize that $g(u)$ is the taylor expansion of $f(x_0 - u)$ in terms of $u$. Now using $f(x_0 - u)$ in the integral,
+
+\[\int_0^{\int} u^{s-1}f(x_0 - u)du = \Gamma(s)\phi(-s)\]
+
+using the substitution $t = x_0 - u$, the integral becomes,
+
+
+\[\int_{x_0}^{-\infty} -(x_0 - t)^{s-1}f(t)dt = \Gamma(s)\phi(-s)\]
+
+and finally rearanging,
+
+\[\phi(-s) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x_0} (x_0 - t)^{s-1} f(t)dt = \left. J^s f(x)\right|_{x = x_0}\]
+
+So using RMT to interpolate betwean the derivatives of $f(x)$ at the point $x_0$ yields a definition for a fractional integral operator which is analytic in respect to $s$ and defined on a strip $s \in \mathbb{C}, a < \mathfrak{R}(s) < b$.
+
+Note that the function $\phi(-s)$ produced from RMT is not unique.
+
+\[\psi(s) \in C^{\omega}(\mathbb{C}), \psi(k) = 0, k \in \mathbb{Z}^+\]
+\[\phi'(k) = \psi(k) + \phi(k) = \phi(k), k \in \mathbb{Z}^+\]
+
+So applying RMT to $\phi'(k)$ will yield $\phi(-s)$ and not $\phi(-s) + \psi(-s)$. This demenstrates that while $J^\alpha$ has many of the properties required for fractional calculus it is not unique. Lets denote an arbitrary compatible fractional calculus operator as $I^\alpha$, then
+
+\[R^\alpha f(x) = I^\alpha f(x) - J^\alpha f(x)\]
+
+where $J^\alpha$ is operator found using RMT the RL integral. If we can prove that $R^\alpha = 0$ when some aditional constraint is applied to the definition of fractional calculus, then that constraint would force the operator $I^\alpha$ to be uniquely defined. Apply the generalized Leibniz rule given by \cite{Leibniz} equation (15.11) to the operator $I^\alpha$,
+
+\[I^\alpha f(x)g(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( I^{\alpha + k}f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( \left(J^{\alpha + k} + R^{\alpha + k}\right)f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right)\]
+
+then subtracting $J^\alpha f(x)g(x)$ from both sides, 
+
+\begin{equation}
+R^\alpha f(x)g(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( R^{\alpha + k}f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right)
+\label{RemainderOperatorProductRule}
+\end{equation}
+
+Now that we are setup, look at the set of ODEs $\frac{d^n}{dx^n}f(x) = f(x)$. All solutions to these equations are summes of one or more exponentials, and inpaticular
+
+\[\exists f(x) \forall n \in \mathbb{Z}, \frac{d^n}{dx^n}f(x) = f(x)\]
+
+where interpreting negetive intagers as repeated integrals of the form $\int_{-\infty}^x f(t)dt$. This statement is true and the only nontrivial $f(x)$ that statisfies it is $f(x) = e^x$ (ignoring the scaling constant). Any ambiguity in the statment can be removed by phrasing it as,
+
+\begin{equation}
+\exists f(x) \forall n \in \mathbb{Z}, \frac{d^n}{dx^n}f(x) = f(x), f(0) = 1
+\label{ConstaintOnCalculus}
+\end{equation}
+
+Let us generalize this statment to fractional calculus,
+
+\begin{equation}
+\exists f(x) \forall \alpha \in \mathbb{C}, \frac{d^\alpha}{dx^\alpha}f(x) = f(x), f(0) = 1
+\label{ConstaintOnFractionalCalculus}
+\end{equation}
+
+From statement \eqref{ConstaintOnFractionalCalculus} we can conclude that if $f(x)$ exists it must be $f(x) = e^x$, since it nesesitates that $\frac{d}{dx}f(x) = f(x), f(0) = 1$. We will now re	quire that statment \eqref{ConstaintOnFractionalCalculus} applies to fractional calculus. So $I^\alpha e^x = J^\alpha e^x + R^\alpha e^x = e^x$, but since $J^\alpha e^x = e^x$ then $R^\alpha e^x = 0$. Now apply this result to \eqref{RemainderOperatorProductRule} with $f(x) = e^x$ and $g(x) = e^{-x}h(x)$ with $h(x)$ in the domain of $I^\alpha$
+
+\[R^\alpha h(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( R^{\alpha + k}e^x \right)\left( \frac{d^k}{dx^k} h(x)e^{-x}\right) = \sum_{k=0}^\infty 0 \binom{-\alpha}{k}\left( \frac{d^k}{dx^k} h(x)e^{-x}\right) = 0\]
+
+So given \eqref{ConstaintOnFractionalCalculus} is true, then $R^\alpha = 0$, and the fractional calculus operator $J^\alpha$ derived from RMT is the only operator satisfying all of our constraints.
+
+
+\section{Black Board 06-15-2020}
+
+A transcription of the contents of my black board, as of 06/15/2020
+
+Given $\alpha, \beta \in \mathbb{R}, \beta > 0$ and $f, g \in \mathbb{S}$ with $a_{fn}, a_{gn} \in \mathbb{M}$, $ b_{fn}, b_{gn} \in \mathbb{R}$ such that $b_{fn} > 0$, $b_{gn} > 0$ and $\frac{d^n}{dx^n} f(x) \in \mathbb{B}(a_{fn}, b_{fn}), \frac{d^n}{dx^n} g(x) \in \mathbb{B}(a_{gn}, b_{gn})$ then let $h(x) = f(\beta x + \alpha)$,
+
+\[\left| \frac{d^n}{dx^n}h(x) \right| = \beta^n \left| \frac{d^n}{dx^n}f(\beta x + \alpha) \right| \leq \beta^n a_{fn}(\beta x_0 + \alpha)e^{b_{fn}(\beta x + \alpha)} = \beta^n e^{b_{fn}\alpha} a_{fn}(\beta x_0 + \alpha)e^{b_{fn}\beta x}\]
+
+or let $h(x) = f(x)g(x)$, note if some function $\left| \frac{d^n}{dx^n}f(x) \right| \leq a_{fn}(x_0)e^{b_{fn}x}$ then by integrating $\left| \frac{d^{n-k}}{dx^{n-k}}f(x) \right| \leq b_{fn}^{-k}a_{fn}(x_0)e^{b_{fn}x}$,
+
+\[\left| \frac{d^n}{dx^n}h(x) \right| \leq \sum_{k=0}^n \binom{n}{k}\left| \frac{d^{n-k}}{dx^{n-k}}f(x) \right|\left| \frac{d^{n-(n-k)}}{dx^{n-(n-k)}}g(x) \right| \leq \sum_{k = 0}^n \binom{n}{k}b_{fn}^{-k}b_{gn}^{-(n-k)}a_{fn}(x_0)a_{gn}(x_0)e^{(b_{fn} + b_{gn})x} \]
+
+Identifying the closed form of the summation,
+
+\[\left| \frac{d^n}{dx^n}h(x) \right| \leq \left(\frac{1}{b_{fn}} + \frac{1}{b_{gn}} \right)^n a_{fn}(x_0)a_{gn}(x_0) e^{(b_{fn} + b_{gn})x}\]
+
+So if $f(x) \in \mathbb{S}$ then $f(\beta x + \alpha) \in \mathbb{S}$, and if $f(x), g(x) \in \mathbb{S}$ then $f(x)\cdot g(x) \in \mathbb{S}$
+
+Note some sets of functions found to be in $\mathbb{S}$,
+
+\[\left| x^ne^x \right| \leq n^n e^{2x - n} + 2^n n^n e^{x/2 - n} \leq n^n e^{-n}\left(e^{3x_0/2} + 2^n\right)e^{x/2}\]
+
+Using this to construct arbitrary exponential polynomials and their derivates it is clear that $e^x\sum_{k=0}^n c_k x^k \in \mathbb{S}$ for $n<\infty$
+
+\[a = \frac{1 + \sqrt{1 + 8n}}{4}\]
+
+\[\left|x^n e^{-x^2}\right| \leq a^n e^{-a^2+a}e^x\]
+
+Using this to construct arbitrary gaussian polynomials and their derivates it is clear that $e^{-x^2}\sum_{k=0}^n c_k x^k \in \mathbb{S}$ for $n<\infty$
+
+\begin{thebibliography}{1}
+
+\bibitem{Leibniz}
+  S.G. Samko, A. A. Kilbas and O. L. Marichev
+  \textit{Fractional Integrals and Deriatives},
+  Gordon and Breach Science Pubblishers
+  1987.
+
+\end{thebibliography}
+
+\end{document}
