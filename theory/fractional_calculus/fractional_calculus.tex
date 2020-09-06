@@ -1,49 +1,41 @@
-	\documentclass[%
+        \documentclass[%
  %twocolumn,
- preprint,
+ %preprint,
+ onecolumn,
  amsmath, amssymb, aps, pra, 10pt
 ]{revtex4-2}
 \usepackage{amsmath}
 \begin{document}
-
 \title{Fractional Calculus}% Force line breaks with \
 \author{Luke A. Siemens}
 \email{luke.siemens@lsiemens.com}
 \noaffiliation
 \date{\today}
 \maketitle
-
 \section{motivation, introduction}
-%discus what I find unsatisfying about fractional calculus, mainly  the multiple incompatible definitions and the semigroup algebra of the operators. we will construct
 Fractional calculus has two aspects that I find deeply unsatisfying, the multiple incompatible definitions and that the operator forms a semigroup not a group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an algebraic group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differential and integral operators and have the desired algebraic structure. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.  
 \section{main body}
-%specify the target properties of this fractional calculus, linear operator, group algebra? invertable, analytic in the operator parameter $\alpha$.
-Let the proposed fractional calculus operator $J^\alpha$ have the following properties: for $\alpha \in \mathbb{Z}$ it can reproduce repeated integration and differentiation, it is a linear operator, that $J^\alpha$ forms an abelian group with the field $\mathbb{C}$ and group operator $J^\alpha J^\beta$ when acting on some suitable subset of differentiable functions, it is analytic in the parameter $\alpha$.
-
-\noindent\rule{\textwidth}{1pt}
-%find calculus operator with the proper algebra for the extension when acting on some subset of functions $\mathbb{S} \subset C^{\infty}(\mathbb{R})$, operators $\frac{d^n}{dx^n}$, $\int_{-\infty}^x f(t)dt$.
-First let us identify a suitable operator to extend into a fractional calculus with nice algebra, and function space for which this operator is well behaved. Let the operator $J^n$ for $n \in \mathbb{Z}$ be,
+Let the proposed fractional calculus operator $J^\alpha$ have the following properties: for $\alpha \in \mathbb{Z}$ it can reproduce repeated integration and differentiation, it is a linear operator, that $J^\alpha$ forms an abelian group with the field $\mathbb{C}$ and group operator $J^\alpha J^\beta$ when acting on some suitable subset of differentiable functions, it is analytic in the parameter $\alpha$. First let us identify a suitable operator to extend into a fractional calculus with nice algebra, and function space for which this operator is well behaved. Let the operator $J^n$ for $n \in \mathbb{Z}$ be,
 \begin{equation}
-J^n f(x) := \begin{cases} \frac{1}{n!}\int_{-\infty}^x (x - t)^{n - 1}f(t)dt & n \geq 1 \\ f(x) & n = 0 \\ \frac{d^{-n}}{dx^{-n}}f(x) & n \leq -1 \end{cases}
+J^n f(x) := \begin{cases} \frac{1}{n!}\int_{-\infty}^x (x - t)^{n - 1}f(t)dt & n \geq 1 \\ f(x) & n = 0 \\ \frac{d^{\left|n\right|}}{dx^{\left|n\right|}}f(x) & n \leq -1 \end{cases}
 \label{integer_calculus}
 \end{equation}
 Using this operator a space of functions where the operator is well behaved is any function that is bounded by positive exponentials. Let us call this set $\mathbb{S}$,
 \begin{equation}
-\mathbb{S} := \left\lbrace f \in C^\infty(\mathbb{R}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
+\mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
 \label{exponentialy_bounded}
 \end{equation}
 The sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
 \[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
-\[\mathbb{B}(a, b) := \left\lbrace f \in C^\infty(\mathbb{R}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
-Notice that the operator $J^n$ acting on functions $f(x) \in \mathbb{S}$ is an abelian group with respect to the parameter $n$ and is a linear operator.
-
-\noindent\rule{\textwidth}{1pt}
-%use Ramanujan master theorem to get $\frac{d^{-\alpha}}{dx^{-\alpha}}$ from $\frac{d^n}{dx^n}$, analyticaly continu the function for the full operator
-Now that we have a suitable linear operator to extend, we need a procedure to actually extend the operator. We will use RMT for this purpose. It can be stated as,
+\[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+The set $\mathbb{S}$ is a subset of $C^{\omega}(\mathbb{C})$, it is a vector space and if $f(x) \in \mathbb{S}$ then $J^n f(x) \in \mathbb{S}$. Note that if $f(x) \in \mathbb{S}$ then $J^n J^m f(x) = J^{n + m} f(x)$, where $n, m \in \mathbb{Z}$.
+\subsection{RMT}
+Now that we have a suitable linear operator to extend, we need a procedure to actually extend the operator. We will use RMT for this purpose, Hardy section 11 \cite{Hardy}. Given a sequence $\phi(k)$, where $k \in \mathbb{Z}^+$, then
 \[g(u) = \sum_{k=0}^\infty \frac{\phi(k)(-u)^k}{k!}\]
-Given appropriate conditions on $\phi(k)$ the sum converges and the following result holds,
+If the series converges and its Mellin transform exists then the following result holds,
 \[\int_0^{\infty} u^{s-1}g(u)du = \Gamma(s)\phi(-s)\]
-When applicable this theorem acts to interpolate the sequence $\phi(k), k \in \mathbb{Z}^+$, finding an analytic function $\phi(-s)$ reproducing the sequence when $s = -k, k \in \mathbb{Z}^+$. Let us define $\phi(k)$ in terms of a function $f(x) \in C^{\omega}(\mathbb{C}), f(x) \in \mathbb{S}$ ,
+Where $\phi(-s)$ is the analytic interpolation of the sequence $\phi(k)$ subject to some growth constraints, Hardy section 11.4.1 \citep{Hardy}.
+RMT can be used to define fractional calculus in the following manner. For some function $f(x) \in \mathbb{S}$ consider the action of the operator $J^n$ at a point $x_0$. Every version of fractional calculus consists of producing an interpolation over some or all of this sequence. RMT can be used to find one such interpolation. Let us define $\phi(k)$ in terms of a function $f(x) \in \mathbb{S}$ ,
 \[\phi(k) = \left. J^{-k}f(x)\right|_{x = x_0} = \left. \frac{d^k}{dx^k}f(x) \right|_{x = x_0} = F(x_0, -k)\]
 In this case $g(u)$ is,
 \[g(u) = \sum_{k=0}^\infty \frac{(-u)^k}{k!} \left. \frac{d^k}{dx^k}f(x)\right|_{x=x_0}\]
@@ -57,58 +49,77 @@ The function $F(x, s)$ as defined using the RMT is only valid on the region $\ma
 \[F(x, s-1) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} F(t, -1)dt = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} \frac{d}{dt}f(t)dt\]
 and given the properties of $f(x) \in \mathbb{S}$
 \[\frac{d}{dx}F(x, s) = \frac{d}{dx}\frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} f(t)dt = \frac{1}{\Gamma(s - 1)} \int_{-\infty}^{x} (x - t)^{s - 2} f(t)dt = F(x, s - 1)\]
-Therefore using RMT to interpolate between the derivatives of $f(x)$ yields an analytic function that interpolates between the derivatives and integrals.
-
-\noindent\rule{\textwidth}{1pt}
-%observe the limitiations of the RMT and add one constraint to produce a unique definition
-However the function $F(x, s)$ produced from RMT is not unique.
+Therefore using RMT to interpolate between the derivatives of $f(x)$ yields an analytic function that interpolates between the derivatives and integrals. However the function $F(x, s)$ produced from RMT is not unique.
 \[\psi(s) \in C^{\omega}(\mathbb{C}), \psi(k) = 0, k \in \mathbb{Z}^-\]
 \[F'(x_0, s) = F(x_0, s) + \psi(s)\]
+Evaluating the function at the points $k \in \mathbb{Z}^-$
 \[F'(x_0, k) = F(x_0, k) + \psi(k) = F(x_0, k), k \in \mathbb{Z}^-\]
-Applying RMT to $F'(x_0, s)$ will yield $F(x_0, -s)$ and not $F(x_0, -s) + F(x_0, -s)$. This demonstrates that using RMT to define a fractional calculus has many of the algebraic properties I am looking for, but it is not unique. Let us denote an arbitrary compatible fractional calculus operator as $I^\alpha$, then
+This new function $F'(x_0, s)$ is also satisfies the basic properties expected of fractional calculus. This demonstrates that using RMT to define a fractional calculus, produces many of the algebraic properties I am looking for, but it is not unique. In order to define a unique fractional calculus operator using RMT an additional constraint must be added. Let us denote an arbitrary compatible fractional calculus operator as $I^\alpha$. Define a new operator $R^\alpha$ as,
 \[R^\alpha f(x) = I^\alpha f(x) - J^\alpha f(x)\]
-where $J^\alpha$ is operator found using RMT. If we can prove that $R^\alpha = 0$ when some additional constraint is applied to the definition of fractional calculus, then that constraint would force the operator $I^\alpha$ to be uniquely defined. Apply the generalized Leibniz rule given by \cite{Leibniz} equation (15.11) to the operator $I^\alpha$,
+where $J^\alpha$ is operator found using RMT. If we can prove that $R^\alpha = 0$ when some additional constraint is applied, then that constraint would force the operator $I^\alpha$ to be uniquely defined. To start apply the generalized Leibniz rule given by \cite{Leibniz} equation (15.11) to the operator $I^\alpha$,
 \[I^\alpha f(x)g(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( I^{\alpha + k}f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( \left(J^{\alpha + k} + R^{\alpha + k}\right)f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right)\]
 Then subtracting $J^\alpha f(x)g(x)$ from both sides, 
 \begin{equation}
-R^\alpha f(x)g(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( R^{\alpha + k}f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right)
+I^\alpha f(x)g(x) - \sum_{k=0}^\infty \binom{-\alpha}{k}\left( J^{\alpha + k}f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right) = R^\alpha f(x)g(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( R^{\alpha + k}f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right)
 \label{RemainderOperatorProductRule}
 \end{equation}
-Now that we are setup, look at the set of ODEs $\frac{d^n}{dx^n}f(x) = f(x)$. All solutions to these equations are sums of one or more exponentials, and in paticular
+Now that we are setup, look at the set of ODEs $\frac{d^n}{dx^n}f(x) = f(x)$. From this the following general statement can be made,
 \begin{equation}
 \exists f(x) \forall n \in \mathbb{Z}, \frac{d^n}{dx^n}f(x) = f(x), f(0) = 1
 \label{ConstaintOnCalculus}
 \end{equation}
-where interpreting negative integers in the index $n$ as repeated integrals of the form $\int_{-\infty}^x f(t)dt$. This statement is true and admits only one solution $f(x) = e^x$. Let us generalize this statement to fractional calculus,
+given negative integers in the index $n$ are interpreted as repeated integrals of the form $\int_{-\infty}^x f(t)dt$. This statement is true and admits only one solution $f(x) = e^x$. Let us generalize this statement to a fractional form,
 \begin{equation}
 \exists f(x) \forall \alpha \in \mathbb{C}, \frac{d^\alpha}{dx^\alpha}f(x) = f(x), f(0) = 1
 \label{ConstaintOnFractionalCalculus}
 \end{equation}
-From statement \eqref{ConstaintOnFractionalCalculus} we can conclude that if $f(x)$ exists it must be $f(x) = e^x$, since it necessitates that $\frac{d}{dx}f(x) = f(x), f(0) = 1$. We will now require that statement \eqref{ConstaintOnFractionalCalculus} applies to fractional calculus. So $I^\alpha e^x = J^\alpha e^x + R^\alpha e^x = e^x$, but since $J^\alpha e^x = e^x$ then $R^\alpha e^x = 0$. Now apply this result to \eqref{RemainderOperatorProductRule} with $f(x) = e^x$ and $g(x) = e^{-x}h(x)$ with $h(x) \in \mathbb{S}$.
+From statement \eqref{ConstaintOnFractionalCalculus} we can conclude that if $f(x)$ exists it must be $f(x) = e^x$, since it necessitates that $\frac{d}{dx}f(x) = f(x), f(0) = 1$. We will now require that statement \eqref{ConstaintOnFractionalCalculus} applies to fractional calculus. Using this condition $R^\alpha$ can be calculated in the case where $f(x) = e^x$. So $I^\alpha e^x = J^\alpha e^x + R^\alpha e^x = e^x$, but since $J^\alpha e^x = e^x$ then $R^\alpha e^x = 0$. Now apply this result to \eqref{RemainderOperatorProductRule} with $f(x) = e^x$ and $g(x) = e^{-x}h(x)$ with $h(x) \in \mathbb{S}$.
 \[R^\alpha h(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( R^{\alpha + k}e^x \right)\left( \frac{d^k}{dx^k} h(x)e^{-x}\right) = \sum_{k=0}^\infty \binom{-\alpha}{k} 0 \left( \frac{d^k}{dx^k} h(x)e^{-x}\right) = 0\]
-Given \eqref{ConstaintOnFractionalCalculus} is true, then $R^\alpha = 0$, and the fractional calculus operator $J^\alpha$ derived from RMT is the only operator satisfying all of our constraints.
-
-\noindent\rule{\textwidth}{1pt}
-demonstrate that $\frac{d^{-\alpha}}{dx^{-\alpha}}$ is defined on $\mathbb{S}$ with the required properties. show that if $f(x) \in \mathbb{S}$ then the fractional integral and its derivatives are also bounded by exponentials, so $J^\alpha f(x) \in \mathbb{S}$ and exists.
-
-\noindent\rule{\textwidth}{1pt}
-
-\section{Implications and future develepmonts}
-briefly show that $\frac{d^{-\alpha}}{dx^{-\alpha}}$ unifies the RL integral the RL derivative the Caputo derivative and the GL derivative. Relaxing constraints on $J^\alpha$ to allow distributions enables us to reconstruct other standard fractional calculus definitions, denote the Heavyside function as $H(x)$. The Riemann-Liouvill fractional integral ${}_aI_t^\alpha$ can be defined as,
+Given statement \eqref{ConstaintOnFractionalCalculus} is true, then $R^\alpha = 0$, and the fractional calculus operator $J^\alpha f(x) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{\alpha-1} f(t)dt$ derived from RMT is the only operator satisfying all of our constraints.
+\section{Connections to other definitions of fractional calculus}
+Relaxing constraints on $J^\alpha$ to allow distributions enables us to reconstruct other standard fractional calculus definitions, denote the Heavyside function as $H(x)$. The Riemann-Liouvill fractional integral ${}_aI_t^\alpha$ can be defined as,
 \[{}_aI_t^\alpha f(t) = \frac{1}{\Gamma(\alpha)}\int_a^t (t - \tau)^{\alpha - 1}f(\tau)d\tau = \frac{1}{\Gamma(\alpha)}\int_{-\infty}^t (t - \tau)^{\alpha - 1}H(\tau - a)f(\tau)d\tau = \left. J^\alpha \left(H(x - a)f(x)\right)\right|_{x = t}\]
 The Riemann-Liouvill fractional derivative ${}_aD_t^\alpha f(t)$, where $n = \lceil \alpha \rceil$
 \[{}_aD_t^\alpha f(t) = \frac{d^n}{dt^n} {}_aI_t^{n - \alpha} f(t) = \left. \frac{d^n}{dx^n} J^{n - \alpha} \left(H(x - a)f(x)\right)\right|_{x = t} = \left. J^{-\alpha} \left(H(x - a)f(x)\right)\right|_{x = t}\]
 The Caputo derivative ${}_a^C D_t^\alpha f(t)$ is,
 \[{}_a^C D_t^\alpha f(t) = \frac{1}{\Gamma(n - \alpha)} \int_a^t (t - \tau)^{n - \alpha - 1}\frac{d^n}{d\tau^n}f(\tau)d\tau = \left. J^{n - \alpha} \left(H(x - a)\frac{d^n}{dx^n}f(x)\right)\right|_{x = t} \]
 So when $a = -\infty$ and $f(x) \in \mathbb{S}$ then, $J^\alpha f(x) = {}_{a}I_x^\alpha f(x) = {}_{a}D_x^{-\alpha} f(x) = {}_{a}^C D_x^{-\alpha} f(x)$.
+\section{Implications and future develepmonts}
+We have seen that RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also this fractional calculus operator uniquely satisfies the conditions we imposed on fractional calculus. And finally the operator can be generalized. Relaxing our constraint on fractional calculus to allow solutions of the form $\frac{d^\alpha}{dx^\alpha}f(x) = c^\alpha f(x)$ produces a version of fractional calculus for each selection of $c$ for $c\in \mathbb{C}$. Notably in the case of $c = i$ the resulting operator should be a version of fractional calculus defined on periodic functions.
 
-We have seen that the RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also the operator can be generalized. Relaxing our constraint on fractional calculus to allow solutions of the form $\frac{d^\alpha}{dx^\alpha}f(x) = c^\alpha f(x)$ produces a version of fractional calculus for each selection of $c$ for $c\in \mathbb{C}$. Notably in the case of $c = i$ the resulting operator should be a version of fractional calculus defined on periodic functions.
-
-\begin{thebibliography}{1}
+\begin{thebibliography}{2}
+\bibitem{Hardy}
+  Hardy, G. H.
+  \textit{Ramanujan: Twelve Lectures on Subjects Suggested by His Life and Work},
+  New York, NY: Chelsea.
+  
 \bibitem{Leibniz}
-  S.G. Samko, A. A. Kilbas and O. L. Marichev
+  S. G. Samko, A. A. Kilbas and O. L. Marichev
   \textit{Fractional Integrals and Deriatives},
   Gordon and Breach Science Pubblishers
   1987.
 \end{thebibliography}
+\newpage
+\appendix*
+\section{The set $\mathbb{S}$}
+The set $\mathbb{S}$ should be; a subset of the space of analytic functions $C^\omega(\mathbb{C})$, a vector space, form an abelian group with the group operator $J^n$. Let us define two sets, first a set of positive monotonic increasing functions $\mathbb{M}$, and a set of functions that are in some sense bounded by exponential functions $\mathbb{B}$ given the parameters $a$ and $b$,
+\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
+\[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+Using these two sets we can construct the set $\mathbb{S}$,
+\[
+\mathbb{S} := \left\lbrace f \in C^\omega\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
+\]
+Given $\alpha \in \mathbb{C}$ and $f, g \in \mathbb{S}$ with $a_{fn}, a_{gn} \in \mathbb{M}$, $ b_{fn}, b_{gn} \in \mathbb{R}$ such that $b_{fn} \geq b_{gn} > 0$ and $\frac{d^n}{dx^n} f(x) \in \mathbb{B}(a_{fn}, b_{fn}), \frac{d^n}{dx^n} g(x) \in \mathbb{B}(a_{gn}, b_{gn})$, $s \in \mathbb{R}, s \geq 0$ then, $(\forall x, x_0 \in \mathbb{R}) x \leq x_0$
+\[\left|\frac{d^n}{dx^n} (\alpha f(x))\right| \leq |\alpha| \left|\frac{d^n}{dx^n}f(x)\right| \leq (|\alpha| a_{fn}(x_0))e^{b_{fn}x}\]
+and
+\[\left|\frac{d^n}{dx^n}(f(x) + g(x))\right| \leq \left|\frac{d^n}{dx^n} f(x)\right| + \left|\frac{d^n}{dx^n} g(x)\right| \leq \]
+\[\leq a_{fn}(x)e^{b_{fn}x} + a_{gn}(x)e^{b_{gn}x} \leq \left(a_{fn}(x_0)e^{(b_{fn} - b_{gn})x_0} + a_{gn}(x_0)\right)e^{b_{gn}x}\]
+and
+\[\left|\int_{-\infty}^x f(t)dt\right| \leq \int_{-\infty}^x \left|f(t)\right| dt \leq \int_{-\infty}^x a_{fn}(x_0)e^{b_{fn}t}dt = \frac{a_{fn}(x_0)}{b_{fn}}e^{b_{fn}x}\]
+Note that if $f(x) \in \mathbb{S}$ then $\int_{-\infty}^x f(t)dt \in \mathbb{S}$, so the statement $\frac{1}{n!}\int_{-\infty}^x (x - t)^{n - 1}f(t)dt \in \mathbb{S}$ holds by induction.
+\[\left|\frac{1}{k!}\int_{-\infty}^x (x - t)^{k - 1}f(t)dt\right| \leq \frac{a_{fn}(x_0)}{{b_{fn}}^k}e^{b_{fn}x}\]
+Then finally given $s \in \mathbb{R}, s \geq 2$,
+\[\left|\frac{1}{\Gamma(s)} \int_{-\infty}^{x_0} (x_0 - t)^{s-1} f(t)dt\right| \leq \frac{1}{(\lceil s \rceil - 2)!} \int_{-\infty}^{x_0} \left((x_0 - t)^{\lceil s \rceil -1} + 1\right) \left|f(t)\right|dt \leq \]
+\[ \frac{\lceil s \rceil(\lceil s \rceil - 1)}{\lceil s \rceil!} \left(\int_{-\infty}^{x_0} (x_0 - t)^{\lceil s \rceil -1} \left|f(t)\right|dt + \int_{-\infty}^{x_0} \left|f(t)\right|dt\right) \leq \lceil s \rceil(\lceil s \rceil - 1)\left(\frac{1}{{b_{fn}}^{\lceil s \rceil}} + \frac{1}{\lceil s \rceil!}\frac{1}{b_{fn}}\right)a_{fn}(x_0)e^{b_{fn}x}\]
+thus, if $f, g \in \mathbb{S}, \alpha \in \mathbb{C}$ then $\alpha f(x) \in \mathbb{S}$ and $f(x) + g(x) \in \mathbb{S}$. So the set of functions $\mathbb{S}$ is a vector space and is a sub-space of $C^\omega(\mathbb{C})$. Also by definition $\frac{d}{dx}f(x) \in \mathbb{S}$ and we found that $\int_{-\infty}^x f(t)dt$ necessarily exists for all x and that $\int_{-\infty}^x f(t)dt \in \mathbb{S}$. Note equivalent results can be produced when only requiring $b_{fn}>0, b_{gn}>0$ not $b_{fn}\geq b_{gn} > 0$
 \end{document}
