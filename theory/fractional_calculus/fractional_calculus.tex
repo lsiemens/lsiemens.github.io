@@ -16,6 +16,20 @@
 \date{\today}
 \maketitle
 
+\section{TEMP: properties}
+-unique definition
+
+abelian goup
+
+reproduce repeated integration and differentiation
+
+linear operator
+
+*analytic in the index
+
+**exponentials are simple
+
+
 \section{motivation, introduction}
 Fractional calculus has two aspects that I find deeply unsatisfying, the multiple incompatible definitions and that the operator forms a semigroup not a group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an algebraic group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differential and integral operators and have the desired algebraic structure. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.  
 
@@ -25,6 +39,7 @@ Let the proposed fractional calculus operator $J^\alpha$ have the following prop
 J^n f(x) := \begin{cases} \frac{1}{n!}\int_{-\infty}^x (x - t)^{n - 1}f(t)dt & n \geq 1 \\ f(x) & n = 0 \\ \frac{d^{\left|n\right|}}{dx^{\left|n\right|}}f(x) & n \leq -1 \end{cases}
 \label{integer_calculus}
 \end{equation}
+
 Using this operator a space of functions where the operator is well behaved is any function that is bounded by positive exponentials. Let us call this set $\mathbb{S}$,
 \begin{equation}
 \mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
@@ -33,6 +48,7 @@ Using this operator a space of functions where the operator is well behaved is a
 Where the sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
 \[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
 \[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+
 The set $\mathbb{S}$ is a subset of $C^{\omega}(\mathbb{C})$, it is a vector space and if $f(x) \in \mathbb{S}$ then $J^n f(x) \in \mathbb{S}$. Note that if $f(x) \in \mathbb{S}$ then $J^n J^m f(x) = J^{n + m} f(x)$, where $n, m \in \mathbb{Z}$.
 
 \subsection{RMT}
@@ -96,7 +112,29 @@ We have seen that RMT can be used to extend a calculus operator to a fractional 
 
 \appendix*
 
-\section{The set $\mathbb{S}$}
+\section{The integral as an invertable linear operator}
+
+\subsection{introduction}
+As a starting point for defining a fractional calculus we will first construct a integral operator having properties compatible with what I am looking for in fractional calculus. This operator that we will call $J^k$ should be a commuting linear operator that can reproduce repeated integration and differentiation. Also we will construct a function space $\mathbb{S}$ where the operator $J^k$ is well-behaved.
+
+\subsection{definitions}
+Let the operator $J^k$ for $k \in \mathbb{Z}$ be,
+\begin{equation}
+J^k f(x) := \begin{cases} \frac{1}{k!}\int_{-\infty}^x (x - t)^{k - 1}f(t)dt & k \geq 1 \\ f(x) & k = 0 \\ \frac{d^{\left|k\right|}}{dx^{\left|k\right|}}f(x) & k \leq -1 \end{cases}
+\label{integer_calculus}
+\end{equation}
+
+Using this operator a any function for whitch its absolute value and the absolute value of its derivatives are bounded by exponentials of the form $ae^{bx}$, with $a > 0$ and $b > 0$, are well-behaved. This set of functions can be expanded to produce a function space. Let us call this space set $\mathbb{S}$,
+\begin{equation}
+\mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
+\label{exponentialy_bounded}
+\end{equation}
+Where $\mathbb{M}$ is a set of positive monotonic increasing functions and $\mathbb{B}$ is a set of analytic functions for whitch the absolute value of the function along the real line is bounded by the exponential $e^{bx}$ rescaled by the function $a(x_0)$. The sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
+\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
+\[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+
+\subsection{properties of $\mathbb{S}$}
+
 The set $\mathbb{S}$ should be a subset of the space of analytic functions $C^\omega(\mathbb{C})$, a vector space and form an abelian group with the group operator $J^n$. Let us define two sets, first a set of positive monotonic increasing functions $\mathbb{M}$, and a set of functions that are in some sense bounded by exponential functions $\mathbb{B}$ given the parameters $a$ and $b$,
 \[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
 \[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
@@ -117,6 +155,8 @@ Then finally given $s \in \mathbb{R}, s \geq 2$,
 \[\left|\frac{1}{\Gamma(s)} \int_{-\infty}^{x_0} (x_0 - t)^{s-1} f(t)dt\right| \leq \frac{1}{(\lceil s \rceil - 2)!} \int_{-\infty}^{x_0} \left((x_0 - t)^{\lceil s \rceil -1} + 1\right) \left|f(t)\right|dt \leq \]
 \[ \frac{\lceil s \rceil(\lceil s \rceil - 1)}{\lceil s \rceil!} \left(\int_{-\infty}^{x_0} (x_0 - t)^{\lceil s \rceil -1} \left|f(t)\right|dt + \int_{-\infty}^{x_0} \left|f(t)\right|dt\right) \leq \lceil s \rceil(\lceil s \rceil - 1)\left(\frac{1}{{b_{fn}}^{\lceil s \rceil}} + \frac{1}{\lceil s \rceil!}\frac{1}{b_{fn}}\right)a_{fn}(x_0)e^{b_{fn}x}\]
 thus, if $f, g \in \mathbb{S}, \alpha \in \mathbb{C}$ then $\alpha f(x) \in \mathbb{S}$ and $f(x) + g(x) \in \mathbb{S}$. So the set of functions $\mathbb{S}$ is a vector space and is a sub-space of $C^\omega(\mathbb{C})$. Also by definition $\frac{d}{dx}f(x) \in \mathbb{S}$ and we found that $\int_{-\infty}^x f(t)dt$ necessarily exists for all x and that $\int_{-\infty}^x f(t)dt \in \mathbb{S}$. Note equivalent results can be produced when only requiring $b_{fn}>0, b_{gn}>0$ not $b_{fn}\geq b_{gn} > 0$
+
+\subsection{properties of $J^k$}
 
 \bibliographystyle{plain}
 \bibliography{fractional_calculus.bib}
