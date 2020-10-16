@@ -15,7 +15,7 @@
 \date{\today}
 \maketitle
 \section{motivation, introduction}
-Fractional calculus has two aspects that I find deeply unsatisfying, the multiple incompatible definitions and that the operator forms a semigroup not a group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an algebraic group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differential and integral operators and have the desired algebraic structure. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.  
+Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that the operator forms a semigroup not a group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an algebraic group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differential and integral operators and have the desired algebraic structure. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.  
 \section{main body}
 Let the proposed fractional calculus operator $J^\alpha$ have the following properties: for $\alpha \in \mathbb{Z}$ it can reproduce repeated integration and differentiation, it is a linear operator, that $J^\alpha$ forms an abelian group with the field $\mathbb{C}$ and group operator $J^\alpha J^\beta$ when acting on some suitable subset of differentiable functions, it is analytic in the parameter $\alpha$. First let us identify a suitable operator to extend into a fractional calculus with nice algebra, and function space for which this operator is well behaved. Let the operator $J^n$ for $n \in \mathbb{Z}$ be,
 \begin{equation}
@@ -42,7 +42,7 @@ RMT can be used to define fractional calculus in the following manner. For some 
 In this case $g(u)$ is,
 \[g(u) = \sum_{k=0}^\infty \frac{(-u)^k}{k!} \left. \frac{d^k}{dx^k}f(x)\right|_{x=x_0}\]
 Note that $g(u)$ is the Taylor expansion of $f(x_0 - u)$ in terms of $u$. Now using $f(x_0 - u)$ in the integral,
-\[\int_0^{\int} u^{s-1}f(x_0 - u)du = \Gamma(s)\phi(-s) = \Gamma(s)F(x_0, s)\]
+\[\int_0^{\infty} u^{s-1}f(x_0 - u)du = \Gamma(s)\phi(-s) = \Gamma(s)F(x_0, s)\]
 Using the substitution $t = x_0 - u$, the integral becomes,
 \[\int_{x_0}^{-\infty} -(x_0 - t)^{s-1}f(t)dt = \Gamma(s)F(x_0, s)\]
 And finally rearranging,
@@ -51,14 +51,14 @@ The function $F(x, s)$ as defined using the RMT is only valid on the region $\ma
 \[F(x, s-1) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} F(t, -1)dt = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} \frac{d}{dt}f(t)dt\]
 and given the properties of $f(x) \in \mathbb{S}$
 \[\frac{d}{dx}F(x, s) = \frac{d}{dx}\frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} f(t)dt = \frac{1}{\Gamma(s - 1)} \int_{-\infty}^{x} (x - t)^{s - 2} f(t)dt = F(x, s - 1)\]
-Therefore using RMT to interpolate between the derivatives of $f(x)$ yields an analytic function that interpolates between the derivatives and integrals. However the function $F(x, s)$ produced from RMT is not unique.
+Therefore using RMT to interpolate between the derivatives of $f(x)$ yields an analytic function that interpolates between the derivatives and integrals. However, the function $F(x, s)$ produced from RMT is not unique.
 \[\psi(s) \in C^{\omega}(\mathbb{C}), \psi(k) = 0, k \in \mathbb{Z}^-\]
 \[F'(x_0, s) = F(x_0, s) + \psi(s)\]
 Evaluating the function at the points $k \in \mathbb{Z}^-$
 \[F'(x_0, k) = F(x_0, k) + \psi(k) = F(x_0, k), k \in \mathbb{Z}^-\]
 This new function $F'(x_0, s)$ also satisfies the basic properties expected of fractional calculus. This demonstrates that using RMT to define a fractional calculus, produces many of the algebraic properties I am looking for, but it is not unique. In order to define a unique fractional calculus operator using RMT an additional constraint must be added. Let us denote an arbitrary compatible fractional calculus operator as $I^\alpha$. Define a new operator $R^\alpha$ as,
 \[R^\alpha f(x) = I^\alpha f(x) - J^\alpha f(x)\]
-where $J^\alpha$ is the operator found using RMT. If we can prove that $R^\alpha = 0$ when some additional constraint is applied, then that constraint would force the operator $I^\alpha$ to be uniquely defined. To start apply the generalized Leibniz rule given by \cite[p.~280]{samko1993fractional} to the operator $I^\alpha$,
+where $J^\alpha$ is the operator found using RMT. If we can prove that $R^\alpha = 0$ when some additional constraint is applied, then that constraint would force the operator $I^\alpha$ to be uniquely defined. To start apply the generalized Leibniz rule, given in \textit{Fractional Integrals and Derivatives} \cite[p.~280]{samko1993fractional}, to the operator $I^\alpha$,
 \[I^\alpha f(x)g(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( I^{\alpha + k}f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( \left(J^{\alpha + k} + R^{\alpha + k}\right)f(x) \right)\left( \frac{d^k}{dx^k} g(x)\right)\]
 Then subtracting $J^\alpha f(x)g(x)$ from both sides, 
 \begin{equation}
@@ -70,7 +70,7 @@ Now that we are setup, look at the set of ODEs $\frac{d^n}{dx^n}f(x) = f(x)$. Fr
 \exists f(x) \forall n \in \mathbb{Z}, \frac{d^n}{dx^n}f(x) = f(x), f(0) = 1
 \label{ConstaintOnCalculus}
 \end{equation}
-given negative integers in the index $n$ are interpreted as repeated integrals of the form $\int_{-\infty}^x f(t)dt$. This statement is true and admits only one solution $f(x) = e^x$. Let us generalize this statement to a fractional form,
+given that negative integers in the index $n$ are interpreted as repeated integrals of the form $\int_{-\infty}^x f(t)dt$. This statement is true and admits only one solution $f(x) = e^x$. Let us generalize this statement to a fractional form,
 \begin{equation}
 \exists f(x) \forall \alpha \in \mathbb{C}, \frac{d^\alpha}{dx^\alpha}f(x) = f(x), f(0) = 1
 \label{ConstaintOnFractionalCalculus}
@@ -88,16 +88,19 @@ The Caputo derivative ${}_a^C D_t^\alpha f(t)$ is,
 So when $a = -\infty$ and $f(x) \in \mathbb{S}$ then, $J^\alpha f(x) = {}_{a}I_x^\alpha f(x) = {}_{a}D_x^{-\alpha} f(x) = {}_{a}^C D_x^{-\alpha} f(x)$.
 \section{Implications and future developments}
 We have seen that RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also this fractional calculus operator uniquely satisfies the conditions we imposed on fractional calculus. And finally the operator can be generalized. Relaxing our constraint on fractional calculus to allow solutions of the form $\frac{d^\alpha}{dx^\alpha}f(x) = c^\alpha f(x)$ produces a version of fractional calculus for each selection of $c$ for $c\in \mathbb{C}$. Notably in the case of $c = i$ the resulting operator should be a version of fractional calculus defined on periodic functions.
+
+
 \appendix*
 \section{The integral as an invertable linear operator}
 As a starting point for defining a fractional calculus we will first construct a integral operator having properties compatible with what I am looking for in fractional calculus. This operator that we will call $J^k$ should be a commuting linear operator that can reproduce repeated integration and differentiation. Also we will construct a function space $\mathbb{S}$ where the operator $J^k$ is well-behaved.
-\subsection{definitions}
+
+\subsection{Definitions}
 Let the operator $J^k$ for $k \in \mathbb{Z}$ be,
 \begin{equation}
 J^k f(x) := \begin{cases} \frac{1}{(k-1)!}\int_{-\infty}^x (x - t)^{k - 1}f(t)dt & k \geq 1 \\ f(x) & k = 0 \\ \frac{d^{\left|k\right|}}{dx^{\left|k\right|}}f(x) & k \leq -1 \end{cases}
 \label{integer_calculus}
 \end{equation}
-Using this operator a any function for which its absolute value and the absolute value of its derivatives are bounded by exponentials of the form $ae^{bx}$, with $a > 0$ and $b > 0$, are well-behaved. This set of functions can be expanded to produce a function space. Let us call this space set $\mathbb{S}$,
+Using this operator any function for which its absolute value and the absolute value of its derivatives are bounded by exponentials of the form $ae^{bx}$, with $a > 0$ and $b > 0$, are well-behaved. This set of functions can be expanded to produce a function space. Let us call this space set $\mathbb{S}$,
 \begin{equation}
 \mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
 \label{exponentialy_bounded}
@@ -105,9 +108,9 @@ Using this operator a any function for which its absolute value and the absolute
 Where $\mathbb{M}$ is a set of positive monotonic increasing functions and $\mathbb{B}$ is a set of analytic functions for which the absolute value of the function along the real line is bounded by the exponential $e^{bx}$ rescaled by the function $a(x_0)$. The sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
 \[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
 \[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
-\subsection{properties of $\mathbb{S}$}
-\[\left| \frac{d^n}{dx^n} f(x) \right|\]
-looking at the properties of the space $\mathbb{S}$ let us assume the following. Given $f, g \in \mathbb{S}$ by definition there exists functions such that the following is true for $x_0 \geq x$
+
+\subsection{Properties of $\mathbb{S}$}
+Looking at the properties of the space $\mathbb{S}$ let us assume the following. Given $f, g \in \mathbb{S}$ by definition there exists functions such that the following is true for $x_0 \geq x$
 \[\left| \frac{d^n}{dx^n}f(x) \right| \leq a_n(x_0)e^{b_n x}, \left| \frac{d^n}{dx^n} g(x) \right| \leq c_n(x_0)e^{d_n x}\]
 to simplify the arguments we will assume that $b_n \geq d_n$.
 \[\left| \frac{d^n}{dx^n} \left( f(x) + g(x) \right) \right| \leq \left| \frac{d^n}{dx^n} f(x) \right| + \left| \frac{d^n}{dx^n} g(x) \right| \leq a_n(x_0)e^{b_n x} + c_n(x_0)e^{d_n x} \leq \left(a_n(x_0)e^{(b_n - d_n) x_0} + c_n(x_0)\right)e^{d_n x}\]
@@ -123,7 +126,8 @@ Using the result above repeatedly to extend the result to repeated integration. 
 and in the case of $n \leq m$,
 \[\left| \frac{d^n}{dx^n} \left(\frac{1}{(m-1)!} \int_{-\infty}^x (x - t)^{m-1} f(t)dt\right) \right| \leq a_{n-m}(x_0)e^{b_{n-m} x}\]
 This shows that repeated integrals and derivatives of functions in $\mathbb{S}$ exist and are in the space $\mathbb{S}$.
-\subsection{properties of $J^k$}
+
+\subsection{Properties of $J^k$}
 Considering the operator $J^k$ operating on functions in the space $\mathbb{S}$. Note that the operator is a linear operator for all $k \in \mathbb{Z}$ and that for $\left| k \right| > 1$ the operator $J^k$ can be constructed by repeated application of either $J^1$ or $J^{-1}$. Also note that the set $\mathbb{S}$ is closed under the action of $J^k$. Given that the function $f(x) \in \mathbb{S}$, and using the fundamental theorem of calculus and Libnitz’s integral rule we can show that, 
 \[J^1J^{-1} f(x) = \int_{-\infty}^x \frac{d}{dt} f(t)dt = f(x) - 0 = J^0 f(x)\]
 \[J^{-1}J^1 f(x) = \frac{d}{dx} \int_{-\infty}^x f(t)dt = f(x)\frac{d}{dx}x - 0 = J^0 f(x)\]
@@ -132,6 +136,7 @@ So the following identity is true $J^1J^{-1} f(x) = J^0 f(x) = J^{-1}J^1 f(x)$. 
 J^kJ^m f(x) = J^{k+m} f(x)
 \label{additiveProperty}
 \end{equation}
+
 \bibliographystyle{plain}
 \bibliography{fractional_calculus.bib}
 \end{document}
