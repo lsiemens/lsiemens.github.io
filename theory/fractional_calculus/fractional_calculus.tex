@@ -1,4 +1,4 @@
-        \documentclass[%
+\documentclass[%
  %twocolumn,
  %preprint,
  onecolumn,
@@ -8,14 +8,17 @@
 \usepackage{appendix}
 \usepackage[colorlinks,citecolor=blue,urlcolor=black,bookmarks=false,hypertexnames=true]{hyperref} 
 \begin{document}
+
 \title{Fractional Calculus}% Force line breaks with \
 \author{Luke A. Siemens}
 \email{luke.siemens@lsiemens.com}
 \noaffiliation
 \date{\today}
 \maketitle
+
 \section{motivation, introduction}
 Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that the operator forms a semigroup not a group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an algebraic group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differential and integral operators and have the desired algebraic structure. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.  
+
 \section{main body}
 Let the proposed fractional calculus operator $J^\alpha$ have the following properties: for $\alpha \in \mathbb{Z}$ it can reproduce repeated integration and differentiation, it is a linear operator, that $J^\alpha$ forms an abelian group with the field $\mathbb{C}$ and group operator $J^\alpha J^\beta$ when acting on some suitable subset of differentiable functions, it is analytic in the parameter $\alpha$. First let us identify a suitable operator to extend into a fractional calculus with nice algebra, and function space for which this operator is well behaved. Let the operator $J^n$ for $n \in \mathbb{Z}$ be,
 \begin{equation}
@@ -31,6 +34,7 @@ Where the sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
 \[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
 \[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
 Some properties of this operator and the space on which it acts is investigated in the appendix. Note that set $\mathbb{S}$ is a subset of $C^{\omega}(\mathbb{C})$, it is a vector space and if $f(x) \in \mathbb{S}$ then $J^n f(x) \in \mathbb{S}$. Also if $f(x) \in \mathbb{S}$ then $J^n J^m f(x) = J^{n + m} f(x)$, where $n, m \in \mathbb{Z}$.
+
 \subsection{RMT}
 Now that we have a suitable linear operator to extend, we need a procedure to actually extend the operator. We will use RMT for this purpose as given by G. H. Hardy \cite[p.~186]{hardy1940ramanujan}. Given a sequence $\phi(k)$, where $k \in \mathbb{Z}^+$, then
 \[g(u) = \sum_{k=0}^\infty \frac{\phi(k)(-u)^k}{k!}\]
@@ -47,10 +51,11 @@ Using the substitution $t = x_0 - u$, the integral becomes,
 \[\int_{x_0}^{-\infty} -(x_0 - t)^{s-1}f(t)dt = \Gamma(s)F(x_0, s)\]
 And finally rearranging,
 \[F(x_0, s) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x_0} (x_0 - t)^{s-1} f(t)dt\]
-The function $F(x, s)$ as defined using the RMT is only valid on the region $\mathfrak{R}(s) \geq 1$. The function can be extended using the observation that
-\[F(x, s-1) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} F(t, -1)dt = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} \frac{d}{dt}f(t)dt\]
-and given the properties of $f(x) \in \mathbb{S}$
-\[\frac{d}{dx}F(x, s) = \frac{d}{dx}\frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} f(t)dt = \frac{1}{\Gamma(s - 1)} \int_{-\infty}^{x} (x - t)^{s - 2} f(t)dt = F(x, s - 1)\]
+The function $F(x, s)$ is only defined on the region $\mathfrak{R}(s) \geq 1$, but since it is constructed by RMT it is by definition analytic on this region. So the complete Operator must be defined in terms of the analytic continuation of the interpolation produced by RMT. In the case of this operator its analytic continuation can be expressed using the relation, 
+\begin{equation}
+F(x, s-n) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} F(t, -n)dt = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{s-1} \frac{d^n}{dt^n}f(t)dt
+\label{analytic_continuation}
+\end{equation}
 Therefore using RMT to interpolate between the derivatives of $f(x)$ yields an analytic function that interpolates between the derivatives and integrals. However, the function $F(x, s)$ produced from RMT is not unique.
 \[\psi(s) \in C^{\omega}(\mathbb{C}), \psi(k) = 0, k \in \mathbb{Z}^-\]
 \[F'(x_0, s) = F(x_0, s) + \psi(s)\]
@@ -77,18 +82,44 @@ given that negative integers in the index $n$ are interpreted as repeated integr
 \end{equation}
 From statement \eqref{ConstaintOnFractionalCalculus} we can conclude that if $f(x)$ exists it must be $f(x) = e^x$, since it necessitates that $\frac{d}{dx}f(x) = f(x), f(0) = 1$. We will now require that statement \eqref{ConstaintOnFractionalCalculus} applies to fractional calculus. Using this condition $R^\alpha$ can be calculated in the case where $f(x) = e^x$. So $I^\alpha e^x = J^\alpha e^x + R^\alpha e^x = e^x$, but since $J^\alpha e^x = e^x$ then $R^\alpha e^x = 0$. Now apply this result to \eqref{RemainderOperatorProductRule} with $f(x) = e^x$ and $g(x) = e^{-x}h(x)$ with $h(x) \in \mathbb{S}$.
 \[R^\alpha h(x) = \sum_{k=0}^\infty \binom{-\alpha}{k}\left( R^{\alpha + k}e^x \right)\left( \frac{d^k}{dx^k} h(x)e^{-x}\right) = \sum_{k=0}^\infty \binom{-\alpha}{k} 0 \left( \frac{d^k}{dx^k} h(x)e^{-x}\right) = 0\]
-Given statement \eqref{ConstaintOnFractionalCalculus} is true, then $R^\alpha = 0$, and the fractional calculus operator $J^\alpha f(x) = \frac{1}{\Gamma(s)} \int_{-\infty}^{x} (x - t)^{\alpha-1} f(t)dt$ derived from RMT is the only operator satisfying all of our constraints.
+Given statement \eqref{ConstaintOnFractionalCalculus} is true, then $R^\alpha = 0$, so the operator $J^{\alpha}$ is the compatible fractional calculus operator. This operator still is only defined for $\mathfrak{\alpha} \geq 1$. Using the analytic continuation of the functions produced by RMT \eqref{analytic_continuation} a general form of the operator can be defined as,
+\begin{equation}
+J^{\alpha}f(x) = \frac{1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-1}\left( \frac{d^n}{dt^n} f(t) \right)dt
+\label{fractional_calculus}
+\end{equation}
+where $f \in \mathbb{S}, n \in \mathbb{Z}^+, \alpha \in \mathbb{C}, \mathfrak{R}(\alpha + n) \geq 1$.
+
+\section{Properties of $J^{\alpha}$}
+Now that we have $J^{\alpha}$ uniquely defined we can check if it maintains the property that where built into the operator $J^k$. Note that the operator \eqref{fractional_calculus} is a linear operator for all $\alpha \in \mathbb{C}$ and that for $\alpha \in \mathbb{Z}$ it is equivalent to the operator $J^k$. Given $f \in \mathbb{S}, \alpha \in \mathbb{C}, n \in \mathbb{Z}^+, \mathfrak{R}(\alpha + n) \geq 1$ then using Libnitz's integral rule,
+\[\frac{d}{dx} J^{\alpha} f(x) = \frac{d}{dx}\frac{1}{\Gamma(\alpha + n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^n}{dt^n} f(t) \right)dt = \frac{\alpha+n-1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-2} \left( \frac{d^n}{dt^n} f(t) \right)dt = J^{\alpha-1}f(x)\]
+and using integration by parts,
+\[J^{\alpha} \left( \frac{d}{dx} f(x) \right) = \frac{1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^{n+1}}{dt^{n+1}} f(t) \right)dt = -\frac{1-n-\alpha}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-2} \left( \frac{d^n}{dt^n} f(t) \right)dt = J^{\alpha-1}f(x)\]
+So the operator $J^\alpha$ and derivative commute, and applying this property repeatedly yields $\frac{d^m}{dx^m}J^{\alpha}f(x) = J^{\alpha-m}f(x) = J^{\alpha}\frac{d^m}{dx^m}f(x)$, where $m \in \mathbb{Z}^+$.
+Given $f \in \mathbb{S}, \alpha, \beta \in \mathbb{C}, n,m \in \mathbb{Z}^+, \mathfrak{R}(\alpha + n) \geq 1, \mathfrak{R}(\beta + m) \geq 1$ then,
+\[J^{\alpha}J^{\beta} f(x) = \frac{1}{\Gamma(\alpha + n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^n}{dt^n} \frac{1}{\Gamma(\beta+m)}\int_{-\infty}^t (t-s)^{\beta+m-1} \left( \frac{d^m}{ds^m} f(s) \right)ds \right)dt\]
+Rearranging and using the fact that derivatives commute with $J^{\alpha}$,
+\[J^{\alpha}J^{\beta} f(x) = \frac{d^{n+m}}{dx^{n+m}}\frac{1}{\Gamma(\alpha+n)\Gamma(\beta+m)}\int_{-\infty}^x \int_{-\infty}^t (x-t)^{\alpha+n-1}(t-s)^{\beta+m-1} f(s) ds dt\]
+Swapping the order of integration,
+\[J^{\alpha}J^{\beta} f(x) = \frac{d^{n+m}}{dx^{n+m}}\frac{1}{\Gamma(\alpha+n)\Gamma(\beta+m)} \int_{-\infty}^x \int_{s}^x (x-t)^{\alpha+n-1}(t-s)^{\beta+m-1} f(s) dt ds\]
+Using a change of variables with $t=x-(x-s)r$ and rearranging yields,
+\[J^{\alpha}J^{\beta} f(x) = \frac{d^{n+m}}{dx^{n+m}}\frac{1}{\Gamma(\alpha+n)\Gamma(\beta+m)} \int_{-\infty}^x (x-s)^{\alpha+\beta+n+m-1} f(s)ds \int_0^1 r^{\alpha+n-1}(1 - r)^{\beta+m-1}dr\]
+Identifying the beta integral ,$\int_0^1 r^{\alpha+n-1}(1-r)^{\beta+m-1}dr=\frac{\Gamma(\alpha+n)\Gamma(\beta+m)}{\Gamma(\alpha+\beta+n+m)}$, and then rearranging,
+\[J^{\alpha}J^{\beta} f(x) = \frac{d^{n+m}}{dx^{n+m}}\frac{1}{\Gamma(\alpha+\beta+n+m)} \int_{-\infty}^x (x-s)^{\alpha+\beta+n+m-1} f(s)ds = \frac{d^{n+m}}{dx^{n+m}} J^{\alpha+\beta+n+m} f(x) = J^{\alpha + \beta} f(x)\]
+So $J^\alpha$ is a linear commuting operator. With the property $J^{\alpha}J^{\beta} f(x) =J^{\alpha+\beta} f(x) =J^{\alpha}J^{\beta} f(x)$, where $\alpha,\beta \in \mathbb{C}, f \in \mathbb{S}$.
+
 \section{Connections to other definitions of fractional calculus}
-Relaxing constraints on $J^\alpha$ to allow distributions enables us to reconstruct other standard fractional calculus definitions. Denote the Heavyside function as $H(x)$. The Riemann-Liouvill fractional integral ${}_aI_t^\alpha$ can be defined as,
+Relaxing constraints on $J^\alpha$ to allow distributions enables us to reconstruct other standard fractional calculus definitions. Denote the Heaviside function as $H(x)$. The Riemann-Liouville fractional integral ${}_aI_t^\alpha$ can be defined as,
 \[{}_aI_t^\alpha f(t) = \frac{1}{\Gamma(\alpha)}\int_a^t (t - \tau)^{\alpha - 1}f(\tau)d\tau = \frac{1}{\Gamma(\alpha)}\int_{-\infty}^t (t - \tau)^{\alpha - 1}H(\tau - a)f(\tau)d\tau = \left. J^\alpha \left(H(x - a)f(x)\right)\right|_{x = t}\]
-The Riemann-Liouvill fractional derivative ${}_aD_t^\alpha f(t)$, where $n = \lceil \alpha \rceil$
+The Riemann-Liouville fractional derivative ${}_aD_t^\alpha f(t)$, where $n = \lceil \alpha \rceil$
 \[{}_aD_t^\alpha f(t) = \frac{d^n}{dt^n} {}_aI_t^{n - \alpha} f(t) = \left. \frac{d^n}{dx^n} J^{n - \alpha} \left(H(x - a)f(x)\right)\right|_{x = t} = \left. J^{-\alpha} \left(H(x - a)f(x)\right)\right|_{x = t}\]
 The Caputo derivative ${}_a^C D_t^\alpha f(t)$ is,
 \[{}_a^C D_t^\alpha f(t) = \frac{1}{\Gamma(n - \alpha)} \int_a^t (t - \tau)^{n - \alpha - 1}\frac{d^n}{d\tau^n}f(\tau)d\tau = \left. J^{n - \alpha} \left(H(x - a)\frac{d^n}{dx^n}f(x)\right)\right|_{x = t} \]
 So when $a = -\infty$ and $f(x) \in \mathbb{S}$ then, $J^\alpha f(x) = {}_{a}I_x^\alpha f(x) = {}_{a}D_x^{-\alpha} f(x) = {}_{a}^C D_x^{-\alpha} f(x)$.
-\section{Implications and future developments}
-We have seen that RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also this fractional calculus operator uniquely satisfies the conditions we imposed on fractional calculus. And finally the operator can be generalized. Relaxing our constraint on fractional calculus to allow solutions of the form $\frac{d^\alpha}{dx^\alpha}f(x) = c^\alpha f(x)$ produces a version of fractional calculus for each selection of $c$ for $c\in \mathbb{C}$. Notably in the case of $c = i$ the resulting operator should be a version of fractional calculus defined on periodic functions.
 
+\section{Implications and future developments}
+We have seen that RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also this fractional calculus operator uniquely satisfies the conditions we imposed on fractional calculus when statement \eqref{ConstaintOnFractionalCalculus} is added as an additional constraint. And finally the operator can be generalized. Relaxing our constraint on fractional calculus to allow solutions of the form $\frac{d^\alpha}{dx^\alpha}f(x) = c^\alpha f(x)$ produces a version of fractional calculus for each selection of $c$ for $c\in \mathbb{C}$. Notably in the case of $c = i$ the resulting operator should be a version of fractional calculus defined on periodic functions.
+
+\clearpage
 
 \appendix*
 \section{The integral as an invertable linear operator}
@@ -139,4 +170,5 @@ J^kJ^m f(x) = J^{k+m} f(x)
 
 \bibliographystyle{plain}
 \bibliography{fractional_calculus.bib}
+
 \end{document}
