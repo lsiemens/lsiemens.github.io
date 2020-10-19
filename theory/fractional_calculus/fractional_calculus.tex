@@ -24,12 +24,12 @@ J^k f(x) := \begin{cases} \frac{1}{(k-1)!}\int_{-\infty}^x (x - t)^{k - 1}f(t)dt
 \end{equation}
 Using this operator a space of functions where the operator is well behaved is any function that is bounded by positive exponentials. Let us call this set $\mathbb{S}$,
 \begin{equation}
-\mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
+\mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}), b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
 \label{exponentialy_bounded}
 \end{equation}
 Where the sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
-\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
-\[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}), x > y, a(x) > a(y) \geq 0 \right\rbrace\]
+\[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}), x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
 Some properties of this operator and the space on which it acts is investigated in the appendix. Note that set $\mathbb{S}$ is a subset of $C^{\omega}(\mathbb{C})$, it is a vector space and if $f(x) \in \mathbb{S}$ then $J^k f(x) \in \mathbb{S}$. Also if $f(x) \in \mathbb{S}$ then $J^k J^m f(x) = J^{k + m} f(x)$, where $k, m \in \mathbb{Z}$.
 
 \section{Fractional extension using RMT}
@@ -76,22 +76,23 @@ given that negative integers in the index $n$ are interpreted as repeated integr
 \exists f(x) \forall \alpha \in \mathbb{C}, \frac{d^\alpha}{dx^\alpha}f(x) = f(x), f(0) = 1
 \label{ConstaintOnFractionalCalculus}
 \end{equation}
-From statement \eqref{ConstaintOnFractionalCalculus} we can conclude that if $f(x)$ exists it must be $f(x) = e^x$, since it necessitates that $\frac{d}{dx}f(x) = f(x), f(0) = 1$. We will now require that statement \eqref{ConstaintOnFractionalCalculus} applies to fractional calculus. Using this condition $R^\alpha$ can be calculated in the case where $f(x) = e^x$. Using this constraint $I^\alpha e^x = e^x$, but since $J^\alpha e^x = e^x$ then $R^\alpha e^x = 0$. Now apply this result to \eqref{RemainderOperatorProductRule} with $f(x) = e^x$ and $g(x) = e^{-x}h(x)$ with $h(x) \in \mathbb{S}$.
+From statement \eqref{ConstaintOnFractionalCalculus} we can conclude that if $f(x)$ exists it must be $f(x) = e^x$, since it necessitates that $\frac{d}{dx}f(x) = f(x)$ and $f(0) = 1$. We will now require that statement \eqref{ConstaintOnFractionalCalculus} applies to fractional calculus. Using this condition $R^\alpha$ can be calculated in the case where $f(x) = e^x$. Using this constraint $I^\alpha e^x = e^x$, but since $J^\alpha e^x = e^x$ then $R^\alpha e^x = 0$. Now apply this result to \eqref{RemainderOperatorProductRule} with $f(x) = e^x$ and $g(x) = e^{-x}h(x)$ with $h(x) \in \mathbb{S}$.
 \[R^\alpha h(x) = \sum_{n=0}^\infty \binom{-\alpha}{n}\left( R^{\alpha + n}e^x \right)\left( \frac{d^n}{dx^n} h(x)e^{-x}\right) = \sum_{n=0}^\infty \binom{-\alpha}{n} 0 \left( \frac{d^n}{dx^n} h(x)e^{-x}\right) = 0\]
 Given statement \eqref{ConstaintOnFractionalCalculus} is true, then $R^\alpha = 0$, so the operator $J^{\alpha}$ is the compatible fractional calculus operator. This operator still is only defined for $\mathfrak{\alpha} \geq 1$. Using the analytic continuation of the functions produced by RMT \eqref{analytic_continuation} a general form of the operator can be defined as,
 \begin{equation}
 J^{\alpha}f(x) = \frac{1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-1}\left( \frac{d^n}{dt^n} f(t) \right)dt
 \label{fractional_calculus}
 \end{equation}
-where $f \in \mathbb{S}, n \in \mathbb{Z}^+, \alpha \in \mathbb{C}, \mathfrak{R}(\alpha + n) \geq 1$.
+where $f \in \mathbb{S}$, $n \in \mathbb{Z}^+$, $\alpha \in \mathbb{C}$ and $\mathfrak{R}(\alpha + n) \geq 1$.
 
 \section{Properties of $J^{\alpha}$}
-Now that we have $J^{\alpha}$ uniquely defined we can check if it maintains the property that where built into the operator $J^k$. Note that the operator \eqref{fractional_calculus} is a linear operator for all $\alpha \in \mathbb{C}$ and that for $\alpha \in \mathbb{Z}$ it is equivalent to the operator $J^k$. Given $f \in \mathbb{S}, \alpha \in \mathbb{C}, n \in \mathbb{Z}^+, \mathfrak{R}(\alpha + n) \geq 1$ then using Libnitz's integral rule,
+Now that we have $J^{\alpha}$ uniquely defined we can check if it maintains the property that where built into the operator $J^k$. Note that the operator \eqref{fractional_calculus} is a linear operator for all $\alpha \in \mathbb{C}$ and that for $\alpha \in \mathbb{Z}$ it is equivalent to the operator $J^k$. Given $f \in \mathbb{S}$, $\alpha \in \mathbb{C}$, $n \in \mathbb{Z}^+$ and $\mathfrak{R}(\alpha + n) \geq 1$ then using Libnitz's integral rule,
 \[\frac{d}{dx} J^{\alpha} f(x) = \frac{d}{dx}\frac{1}{\Gamma(\alpha + n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^n}{dt^n} f(t) \right)dt = \frac{\alpha+n-1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-2} \left( \frac{d^n}{dt^n} f(t) \right)dt = J^{\alpha-1}f(x)\]
 and using integration by parts,
 \[J^{\alpha} \left( \frac{d}{dx} f(x) \right) = \frac{1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^{n+1}}{dt^{n+1}} f(t) \right)dt = -\frac{1-n-\alpha}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-2} \left( \frac{d^n}{dt^n} f(t) \right)dt = J^{\alpha-1}f(x)\]
 So the operator $J^\alpha$ and derivative commute, and applying this property repeatedly yields $\frac{d^m}{dx^m}J^{\alpha}f(x) = J^{\alpha-m}f(x) = J^{\alpha}\frac{d^m}{dx^m}f(x)$, where $m \in \mathbb{Z}^+$.
-Given $f \in \mathbb{S}, \alpha, \beta \in \mathbb{C}, n,m \in \mathbb{Z}^+, \mathfrak{R}(\alpha + n) \geq 1, \mathfrak{R}(\beta + m) \geq 1$ then,
+
+Given $f \in \mathbb{S}$, $\alpha, \beta \in \mathbb{C}$, $n,m \in \mathbb{Z}^+$, $\mathfrak{R}(\alpha + n) \geq 1$ and $\mathfrak{R}(\beta + m) \geq 1$ then,
 \[J^{\alpha}J^{\beta} f(x) = \frac{1}{\Gamma(\alpha + n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^n}{dt^n} \frac{1}{\Gamma(\beta+m)}\int_{-\infty}^t (t-s)^{\beta+m-1} \left( \frac{d^m}{ds^m} f(s) \right)ds \right)dt\]
 Rearranging and using the fact that derivatives commute with $J^{\alpha}$,
 \[J^{\alpha}J^{\beta} f(x) = \frac{d^{n+m}}{dx^{n+m}}\frac{1}{\Gamma(\alpha+n)\Gamma(\beta+m)}\int_{-\infty}^x \int_{-\infty}^t (x-t)^{\alpha+n-1}(t-s)^{\beta+m-1} f(s) ds dt\]
@@ -107,7 +108,7 @@ The Riemann-Liouville fractional derivative ${}_aD_x^\alpha f(x)$, where $n = \l
 \[{}_aD_x^\alpha f(x) = \frac{d^n}{dx^n} {}_aI_x^{n - \alpha} f(x) = \frac{d^n}{dx^n} J^{n - \alpha} \left(H(x - a)f(x)\right) = J^{-\alpha} \left(H(x - a)f(x)\right)\]
 The Caputo derivative ${}_a^C D_x^\alpha f(x)$ is,
 \[{}_a^C D_x^\alpha f(x) = \frac{1}{\Gamma(n - \alpha)} \int_a^x (x - t)^{n - \alpha - 1} \left( \frac{d^n}{dt^n}f(t) \right) dt = J^{n - \alpha} \left(H(x - a)\frac{d^n}{dx^n}f(x)\right) \]
-So $J^\alpha$ is a commuting linear operator. With the property $J^{\alpha}J^{\beta} f(x) =J^{\alpha+\beta} f(x) =J^{\alpha}J^{\beta} f(x)$, where $\alpha,\beta \in \mathbb{C}, f \in \mathbb{S}$. Also given Schwartz distributions are allowed, when $a = -\infty$ and $f(x) \in \mathbb{S}$ then, $J^\alpha f(x) = {}_{a}I_x^\alpha f(x) = {}_{a}D_x^{-\alpha} f(x) = {}_{a}^C D_x^{-\alpha} f(x)$.
+So $J^\alpha$ is a commuting linear operator. With the property $J^{\alpha}J^{\beta} f(x) =J^{\alpha+\beta} f(x) =J^{\alpha}J^{\beta} f(x)$, where $\alpha,\beta \in \mathbb{C}$ and $f \in \mathbb{S}$. Also given Schwartz distributions are allowed, when $a = -\infty$ and $f(x) \in \mathbb{S}$ then, $J^\alpha f(x) = {}_{a}I_x^\alpha f(x) = {}_{a}D_x^{-\alpha} f(x) = {}_{a}^C D_x^{-\alpha} f(x)$.
 
 \section{Conclusion}
 We have seen that RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also this fractional calculus operator uniquely satisfies the conditions we imposed on fractional calculus when statement \eqref{ConstaintOnFractionalCalculus} is added as an additional constraint. And finally the operator can be generalized. If we modified the operator $J^k$ to use a different lower limit and found a corresponding space of functions on which the operator is invertable then is should be possible to apply RMT to define a unique fractional calculus on that set of functions. So if the lower limit of integration was set to $\infty i$ the resulting operator should be a version of fractional calculus defined on a set including periodic functions.
@@ -126,15 +127,15 @@ J^k f(x) := \begin{cases} \frac{1}{(k-1)!}\int_{-\infty}^x (x - t)^{k - 1}f(t)dt
 \end{equation}
 Using this operator any function for which its absolute value and the absolute value of its derivatives are bounded by exponentials of the form $ae^{bx}$, with $a > 0$ and $b > 0$, are well-behaved. This set of functions can be expanded to produce a function space. Let us call this space set $\mathbb{S}$,
 \begin{equation}
-\mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}) b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
+\mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}), b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
 \label{exponentialy_bounded}
 \end{equation}
 Where $\mathbb{M}$ is a set of positive monotonic increasing functions and $\mathbb{B}$ is a set of analytic functions for which the absolute value of the function along the real line is bounded by the exponential $e^{bx}$ rescaled by the function $a(x_0)$. The sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
-\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}) x > y, a(x) > a(y) \geq 0 \right\rbrace\]
-\[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}) x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
+\[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}), x > y, a(x) > a(y) \geq 0 \right\rbrace\]
+\[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}), x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
 
 \subsection{Properties of $\mathbb{S}$}
-Looking at the properties of the space $\mathbb{S}$ let us assume the following. Given $f, g \in \mathbb{S}$ by definition there exists functions such that the following is true for $x_0 \geq x$, with $a_n, c_n \in \mathbb{M}, b_n, d_n \in \mathbb{R}$
+Looking at the properties of the space $\mathbb{S}$ let us assume the following. Given $f, g \in \mathbb{S}$ by definition there exists functions such that the following is true for $x_0 \geq x$, with $a_n, c_n \in \mathbb{M}$ and $b_n, d_n \in \mathbb{R}$
 \[\left| \frac{d^n}{dx^n}f(x) \right| \leq a_n(x_0)e^{b_n x}, \left| \frac{d^n}{dx^n} g(x) \right| \leq c_n(x_0)e^{d_n x}\]
 to simplify the arguments we will assume that $b_n \geq d_n$.
 \[\left| \frac{d^n}{dx^n} \left( f(x) + g(x) \right) \right| \leq \left| \frac{d^n}{dx^n} f(x) \right| + \left| \frac{d^n}{dx^n} g(x) \right| \leq a_n(x_0)e^{b_n x} + c_n(x_0)e^{d_n x} \leq \left(a_n(x_0)e^{(b_n - d_n) x_0} + c_n(x_0)\right)e^{d_n x}\]
