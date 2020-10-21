@@ -37,8 +37,8 @@ Now that we have a suitable linear operator to extend, we need a procedure to ac
 \[g(u) = \sum_{k=0}^\infty \frac{\phi(k)(-u)^k}{k!}\]
 If the series converges and its Mellin transform exists then the following result holds,
 \[\int_0^{\infty} u^{s-1}g(u)du = \Gamma(s)\phi(-s)\]
-Where $\phi(-s)$ is the analytic interpolation of the sequence $\phi(k)$ subject to some growth constraints \cite[p.~188--189]{hardy1940ramanujan}.
-RMT can be used to define fractional calculus in the following manner. For some function $f(x) \in \mathbb{S}$ consider the action of the operator $J^k$ at a point $x_0$. Every version of fractional calculus consists of producing an interpolation over some or all of this sequence. RMT can be used to find one such interpolation. Let us define $\phi(k)$ in terms of a function $f(x) \in \mathbb{S}$ ,
+where $\phi(-s)$ is the analytic interpolation of the sequence $\phi(k)$ subject to some growth constraints \cite[p.~188--189]{hardy1940ramanujan}.
+Using RMT fractional calculus can be defined in the following manner. For some function $f(x) \in \mathbb{S}$ consider the action of the operator $J^k$ at a point $x_0$. Every version of fractional calculus consists of producing an interpolation over some or all of this sequence. RMT can be used to find one such interpolation. Let us define $\phi(k)$ in terms of a function $f(x) \in \mathbb{S}$ ,
 \[\phi(k) = \left. J^{-k}f(x)\right|_{x = x_0} = \left. \frac{d^k}{dx^k}f(x) \right|_{x = x_0}\]
 In this case $g(u)$ is,
 \[g(u) = \sum_{k=0}^\infty \frac{(-u)^k}{k!} \left. \frac{d^k}{dx^k}f(x)\right|_{x=x_0}\]
@@ -48,7 +48,7 @@ Using the substitution $t = x_0 - u$, the integral becomes,
 \[\int_{x_0}^{-\infty} -(x_0 - t)^{\alpha-1}f(t)dt = \left. \Gamma(\alpha)J^{\alpha}f(x) \right|_{x=x_0}\]
 Finally rearranging, and applying for arbitrary $x$,
 \[J^{\alpha}f(x) = \frac{1}{\Gamma(\alpha)} \int_{-\infty}^{x} (x - t)^{\alpha-1} f(t)dt\]
-The operator $J^{\alpha}$ is only defined on the region $\mathfrak{R}(\alpha) \geq 1$, but since it is constructed by RMT it is analytic on this region. So the complete Operator must be defined in terms of the analytic continuation of the interpolation produced by RMT. In the case of this operator its domain can be extended by using integration by parts given $f(x) \in \mathbb{S}$
+The operator $J^{\alpha}$ is only defined on the region $\mathfrak{R}(\alpha) \geq 1$, but since it is constructed by RMT it is analytic on this region. So the complete Operator must be defined in terms of the analytic continuation of the interpolation produced by RMT. In the case of this operator its domain can be extended by using integration by parts given $f(x) \in \mathbb{S}$,
 \[J^{\alpha}\frac{d}{dx}f(x) = \frac{1}{\Gamma(\alpha)}\int_{-\infty}^x (x-t)^{\alpha-1} \left( \frac{d}{dt} f(t) \right)dt = \frac{\alpha-1}{\Gamma(\alpha)}\int_{-\infty}^x (x-t)^{\alpha-2}f(t)dt=\frac{1}{\Gamma(\alpha-1)}\int_{-\infty}^x (x-t)^{\alpha-2}f(t)dt = J^{\alpha-1}f(x)\]
 Using this repeatedly allows for $J^{\alpha}$ to be extended to the region $\mathfrak{R}(\alpha-n) \geq 1$ for $n \in \mathbb{Z}^+$,
 \begin{equation}
@@ -86,7 +86,7 @@ J^{\alpha}f(x) = \frac{1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-1}\l
 where $f \in \mathbb{S}$, $n \in \mathbb{Z}^+$, $\alpha \in \mathbb{C}$ and $\mathfrak{R}(\alpha + n) \geq 1$.
 
 \section{Properties of $J^{\alpha}$}
-Now that we have $J^{\alpha}$ uniquely defined we can check if it maintains the property that where built into the operator $J^k$. Note that the operator \eqref{fractional_calculus} is a linear operator for all $\alpha \in \mathbb{C}$ and that for $\alpha \in \mathbb{Z}$ it is equivalent to the operator $J^k$. Given $f \in \mathbb{S}$, $\alpha \in \mathbb{C}$, $n \in \mathbb{Z}^+$ and $\mathfrak{R}(\alpha + n) \geq 1$ then using Libnitz's integral rule,
+Now that we have $J^{\alpha}$ uniquely defined we can check if it maintains the properties that were built into the operator $J^k$. Note that the operator \eqref{fractional_calculus} is a linear operator for all $\alpha \in \mathbb{C}$ and that for $\alpha \in \mathbb{Z}$ it is equivalent to the operator $J^k$. Given $f \in \mathbb{S}$, $\alpha \in \mathbb{C}$, $n \in \mathbb{Z}^+$ and $\mathfrak{R}(\alpha + n) \geq 1$ then using Libnitz's integral rule,
 \[\frac{d}{dx} J^{\alpha} f(x) = \frac{d}{dx}\frac{1}{\Gamma(\alpha + n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^n}{dt^n} f(t) \right)dt = \frac{\alpha+n-1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-2} \left( \frac{d^n}{dt^n} f(t) \right)dt = J^{\alpha-1}f(x)\]
 and using integration by parts,
 \[J^{\alpha} \left( \frac{d}{dx} f(x) \right) = \frac{1}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-1} \left( \frac{d^{n+1}}{dt^{n+1}} f(t) \right)dt = -\frac{1-n-\alpha}{\Gamma(\alpha+n)}\int_{-\infty}^x (x-t)^{\alpha+n-2} \left( \frac{d^n}{dt^n} f(t) \right)dt = J^{\alpha-1}f(x)\]
@@ -111,13 +111,13 @@ The Caputo derivative ${}_a^C D_x^\alpha f(x)$ is,
 So $J^\alpha$ is a commuting linear operator. With the property $J^{\alpha}J^{\beta} f(x) =J^{\alpha+\beta} f(x) =J^{\alpha}J^{\beta} f(x)$, where $\alpha,\beta \in \mathbb{C}$ and $f \in \mathbb{S}$. Also given Schwartz distributions are allowed, when $a = -\infty$ and $f(x) \in \mathbb{S}$ then, $J^\alpha f(x) = {}_{a}I_x^\alpha f(x) = {}_{a}D_x^{-\alpha} f(x) = {}_{a}^C D_x^{-\alpha} f(x)$.
 
 \section{Conclusion}
-We have seen that RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also this fractional calculus operator uniquely satisfies the conditions we imposed on fractional calculus when statement \eqref{ConstaintOnFractionalCalculus} is added as an additional constraint. And finally the operator can be generalized. If we modified the operator $J^k$ to use a different lower limit and found a corresponding space of functions on which the operator is invertable then is should be possible to apply RMT to define a unique fractional calculus on that set of functions. So if the lower limit of integration was set to $\infty i$ the resulting operator should be a version of fractional calculus defined on a set including periodic functions.
+We have seen that RMT can be used to extend a calculus operator to a fractional version, and that the fractional calculus operator described is compatible with multiple definitions of fractional calculus operators given the constraints applied. Also this fractional calculus operator uniquely satisfies the conditions we imposed on fractional calculus when statement \eqref{ConstaintOnFractionalCalculus} is added as an additional constraint. And finally the operator can be generalized. If we modified the operator $J^k$ to use a different lower limit of integration and found a corresponding space of functions on which the operator is invertible then it should be possible to apply RMT to define a unique fractional calculus on that set of functions. So if the lower limit of integration was set to $\infty i$ the resulting operator should be a version of fractional calculus defined on a set that includes periodic functions.
 
 \clearpage
 
 \appendix*
-\section{The integral as an invertable linear operator}
-As a starting point for defining a fractional calculus we will first construct a integral operator having properties compatible with what I am looking for in fractional calculus. This operator that we will call $J^k$ should be a commuting linear operator that can reproduce repeated integration and differentiation. Also we will construct a function space $\mathbb{S}$ where the operator $J^k$ is well-behaved.
+\section{The integral as an invertible linear operator}
+As a starting point for defining a fractional calculus we will first construct an integral operator having properties compatible with what I am looking for in fractional calculus. This operator that we will call $J^k$ should be a commuting linear operator that can reproduce repeated integration and differentiation. Also we will construct a function space $\mathbb{S}$ where the operator $J^k$ is well-behaved.
 
 \subsection{Definitions}
 Let the operator $J^k$ for $k \in \mathbb{Z}$ be,
