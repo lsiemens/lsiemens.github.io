@@ -341,6 +341,98 @@ Using this to construct arbitrary exponential polynomials and their derivates it
 
 Using this to construct arbitrary gaussian polynomials and their derivates it is clear that $e^{-x^2}\sum_{k=0}^n c_k x^k \in \mathbb{S}$ for $n<\infty$
 
+
+
+\section{Black Board 10-22-2020}
+
+A transcription of the contents of my black board, as of 10/22/2020
+
+The Grunwald-Letnikov derivative can be defined as
+
+\[\mathbb{D}^{\alpha}f(x) = \lim_{h \to 0^+} \frac{1}{h^{\alpha}} \sum_{n=0}^{\infty} (-1)^n \binom{\alpha}{n} f(x-nh)\]
+
+I would like to show that $\mathbb{D}^{\alpha} f(x)$ is equivelent to $J^{\alpha}f(x)$ when $f(x) \in \mathbb{S}$,
+
+\[J^{\alpha}f(x) = \frac{1}{\Gamma(\alpha + n)} \int_{-\infty}^x (x-t)^{\alpha + n -1} \left( \frac{d^n}{dt^n} f(t) \right) dt\]
+
+where $\mathfrak{R}(\alpha + n) \geq 1$. One major issue with the Grunwald-Letnikov derivative when compairing it to Riemann-Louiville type integrals is the ambiguity about the bounds of integration. That is that $\lim_{h \to 0^+} x-nh$ is indeterminate. So we will redefine the derivative as follows,
+
+\[\mathbb{D}_{x_0}^{\alpha}f(x) = \lim_{h \to 0^+} \frac{1}{h^{\alpha}} \sum_{n=0}^{\left\lfloor \frac{x-x_0}{h} \right\rfloor} (-1)^n \binom{\alpha}{n} f(x-nh)\]
+
+Using this derivative the ambiguity is cleared up, $\lim_{h \to 0^+} x-nh$ ranges from $x$ to $x_0$ depending on whitch term of the summ is beaing checked.
+
+Let $\mathfrak{R}(\alpha) \geq 1$ and check $\mathbb{D}^{-\alpha}f(x) = \mathbb{D}_{-\infty}^{-\alpha}f(x)$ for $f(x) \in \mathbb{S}$.
+
+Expanding the binomial coeficint and simplifying,
+
+\[\mathbb{D}^{-\alpha}f(x) = \lim_{x_0 \to -\infty} \lim_{h \to 0^+} h^{\alpha} \sum_{n=0}^{\left\lfloor \frac{x-x_0}{h} \right\rfloor} (-1)^n \frac{\Gamma(1-\alpha)}{\Gamma(n + 1)\Gamma(1 - \alpha - n)} f(x-nh) \]
+
+Using the property $\Gamma(\epsilon - N) = (-1)^{N-1}\frac{\Gamma(-\epsilon)\Gamma(\epsilon + 1)}{\Gamma(N + 1 - \epsilon)}$, derived from Euler's reflection formula, with $\epsilon = -\alpha$ and $N = n - 1$. Using the substitution and simplifying, $\Gamma(1 - n - \alpha) = (-1)^n\frac{\Gamma(\alpha)\Gamma(1-\alpha)}{\Gamma(n + \alpha)}$, using this in the derivative produces,
+
+\[\mathbb{D}^{-\alpha}f(x) = \lim_{x_0 \to -\infty} \lim_{h \to 0^+} h^{\alpha} \sum_{n=0}^{\left\lfloor \frac{x-x_0}{h} \right\rfloor} \frac{\Gamma(n+\alpha)}{\Gamma(\alpha)\Gamma(n + 1)} f(x-nh) \]
+
+From Gautschi's inequality we get the limit, $\lim_{n \to \infty} \frac{\Gamma(n + \alpha)}{\Gamma(n + 1)n^{\alpha - 1}} = 1$. This could be used to simplify the terms in the sum but it does not apply for all terms. To fix this we will split the sum into two parts, depending on whether $(x - nh) - x_1$ is positive of negative. Then under the limit that $h$ goes to zero and if $(x - nh) - x_1 < 0$ we can say that the terms $\frac{\Gamma(n + \alpha)}{\Gamma(n+1)}$ go to $n^{\alpha - 1}$.
+
+\[\mathbb{D}^{-\alpha}f(x) = \lim_{x_1 \to x^-} \lim_{x_0 \to -\infty} \lim_{h \to 0^+} \left( h^{\alpha} \sum_{n=\left\lfloor \frac{x - x_1}{h} \right\rfloor}^{\left\lfloor \frac{x-x_0}{h} \right\rfloor} \frac{\Gamma(n+\alpha)}{\Gamma(\alpha)\Gamma(n + 1)} f(x-nh) +  h^{\alpha} \sum_{n=0}^{\left\lfloor \frac{x-x_1}{h} \right\rfloor} \frac{\Gamma(n+\alpha)}{\Gamma(\alpha)\Gamma(n + 1)} f(x-nh)\right)\]
+
+Let us call the second sum $E$,
+
+\[E = \lim_{x_1 \to x^-} \lim_{x_0 \to -\infty} \lim_{h \to 0^+} h^{\alpha} \sum_{n=0}^{\left\lfloor \frac{x-x_1}{h} \right\rfloor} \frac{\Gamma(n+\alpha)}{\Gamma(\alpha)\Gamma(n + 1)} f(x-nh) \]
+
+Setting the term $E$ asside for the moment, using the asymtotic limit described in the previuos paragraph and simplify.
+
+\[\mathbb{D}^{-\alpha}f(x) = \lim_{x_1 \to x^-} \lim_{x_0 \to -\infty} \lim_{h \to 0^+} h^{\alpha} \sum_{n=\left\lfloor \frac{x - x_1}{h} \right\rfloor}^{\left\lfloor \frac{x-x_0}{h} \right\rfloor} \frac{n^{\alpha - 1}}{\Gamma(\alpha)} f(x-nh) +  E\]
+
+Rearanging,
+
+\[\mathbb{D}^{-\alpha}f(x) = \lim_{x_1 \to x^-} \lim_{x_0 \to -\infty} \lim_{h \to 0^+} \frac{1}{\Gamma(\alpha)} \sum_{n=\left\lfloor \frac{x - x_1}{h} \right\rfloor}^{\left\lfloor \frac{x-x_0}{h} \right\rfloor} (nh)^{\alpha - 1} f(x-nh)h +  E\]
+
+Interpreting this as a Riemann integral, where the variable of integration is $nh=u$, then
+
+\[\mathbb{D}^{-\alpha}f(x) = \lim_{x_1 \to x^-} \lim_{x_0 \to -\infty} \frac{1}{\Gamma(\alpha)} \int_{x-x_1}^{x-x_0} u^{\alpha - 1} f(x-u)du +  E\]
+
+Using the varible substitution $t = x - u$, then
+
+\[\mathbb{D}^{-\alpha}f(x) = \lim_{x_1 \to x^-} \lim_{x_0 \to -\infty} \frac{1}{\Gamma(\alpha)} \int_{x_0}^{x_1} (x - t)^{\alpha - 1} f(t)dt +  E\]
+
+Finaly appling the last two limits,
+
+\[\mathbb{D}^{-\alpha}f(x) = \frac{1}{\Gamma(\alpha)} \int_{-\infty}^x (x - t)^{\alpha - 1} f(t)dt +  E\]
+
+\subsection{The Error term $E$}
+Returning to the definition of $E$. We will attempt to evaluate $E$ using Gautschi's inequality, but first the inequality needs to be genralized. The inequality can be expresssed as, 
+\[N^{\epsilon - 1} > \frac{\Gamma(N + \epsilon)}{\Gamma(N + 1)}\]
+where, $N, \epsilon \in \mathbb{R}$, $N > 0$ and $0 < \epsilon < 1$. Using the variable substitution $N=n + \left\lfloor \alpha \right\rfloor$ and $\epsilon = \alpha - \left\lfloor \alpha \right\rfloor$, then we get the inequality,
+\[(n + \left\lfloor \alpha \right\rfloor)^{\alpha - \left\lfloor \alpha \right\rfloor - 1} > \frac{\Gamma(n + \alpha)}{\Gamma(n + \left\lfloor \alpha \right\rfloor + 1)} \]
+Pochhammer symbol is related to the gamma function by the equation, $x^{(n)} = \frac{\Gamma(x + n)}{\Gamma(x)}$. Also if $x$ and $n$ are positive integers note that $x^{(n)} = x(x+1)(x+2)\ldots(x+n-1) < (x+n-1)^n$. So using these properties,
+\[(n + \left\lfloor \alpha \right\rfloor)^{\alpha - \left\lfloor \alpha \right\rfloor - 1} > \frac{\Gamma(n + \alpha)}{(n + 1)^{(\left\lfloor \alpha \right\rfloor)}\Gamma(n + 1)} \]
+Multipling both sides by $(n + 1)^{(\left\lfloor \alpha \right\rfloor)}$ gives,
+\[(n + 1)^{(\left\lfloor \alpha \right\rfloor)}(n + \left\lfloor \alpha \right\rfloor)^{\alpha - \left\lfloor \alpha \right\rfloor - 1} > \frac{\Gamma(n + \alpha)}{\Gamma(n + 1)} \]
+And then note that $(n + 1)^{(\left\lfloor \alpha \right\rfloor)} < (n+\left\lfloor \alpha \right\rfloor)^{\left\lfloor \alpha \right\rfloor}$,
+\[(n + \left\lfloor \alpha \right\rfloor)^{\alpha - 1} > (n + 1)^{(\left\lfloor \alpha \right\rfloor)}(n + \left\lfloor \alpha \right\rfloor)^{\alpha - \left\lfloor \alpha \right\rfloor - 1} > \frac{\Gamma(n + \alpha)}{\Gamma(n + 1)} \]
+So the new inequality is $(n + \left\lfloor \alpha \right\rfloor)^{\alpha - 1} > \frac{\Gamma(n + \alpha)}{\Gamma(n + 1)}$, where $n \in \mathbb{Z}^+$, $\alpha \in \mathbb{R}$ and $\alpha > 1$. Using this to evaluate $E$, note that there are no terms of $x_0$ and simplifying,
+\[\left|E\right| = \lim_{x_1 \to x^-} \lim_{h \to 0^+} h^{\alpha} \sum_{n=0}^{\left\lfloor \frac{x-x_1}{h} \right\rfloor} \frac{\Gamma(n+\alpha)}{\Gamma(\alpha)\Gamma(n + 1)} \left| f(x-nh) \right| < \lim_{x_1 \to x^-} \lim_{h \to 0^+} h^{\alpha} \sum_{n=0}^{\left\lfloor \frac{x-x_1}{h} \right\rfloor} \frac{(n + \left\lfloor \alpha \right\rfloor)^{\alpha - 1}}{\Gamma(\alpha)} \left| f(x-nh) \right|\]
+Simplifying
+\[\left|E\right| < \lim_{x_1 \to x^-} \lim_{h \to 0^+} \frac{1}{\Gamma(\alpha)} \sum_{n=0}^{\left\lfloor \frac{x-x_1}{h} \right\rfloor} (nh + \left\lfloor \alpha \right\rfloor h)^{\alpha - 1} \left| f(x-nh) \right|h \]
+Interpreting this as a Riemann integral, with a variable of integration $nh=u$ and noting that $\left\lfloor \alpha \right\rfloor h$ fanishes under the limit. Then we get,
+\[\left|E\right| < \lim_{x_1 \to x^-} \frac{1}{\Gamma(\alpha)} \int_{0}^{x-x_1} u^{\alpha - 1} \left| f(x-u) \right|du \]
+Using the variable substitution $t = x-u$,
+\[\left|E\right| < \lim_{x_1 \to x^-} \frac{1}{\Gamma(\alpha)} \int_{x_1}^{x} (x-t)^{\alpha - 1} \left| f(t) \right|dt \]
+And finaly noting that since $f(x) \in \mathbb{S}$ then it is a continuous function. So then,
+\[\left|E\right| < \lim_{x_1 \to x^-} \frac{1}{\Gamma(\alpha)} \int_{x_1}^{x} (x-t)^{\alpha - 1} \left| f(t) \right|dt = 0\]
+If $f(x) \in \mathbb{S}$, $\alpha \in \mathbb{R}$ and $\alpha > 1$ then $E = 0$ in that case.
+
+\subsection{Conclusion}
+Assuming that $E=0$ in general, then
+\[\mathbb{D}^{-\alpha}f(x) = \frac{1}{\Gamma(\alpha)} \int_{-\infty}^x (x - t)^{\alpha - 1} f(t)dt\]
+given that $f(x) \in \mathbb{S}$ and $\mathfrak{R}(\alpha) \geq 1$. Then relating it to the fractional integral $J^{\alpha}$,
+\begin{equation}
+\mathbb{D}^{-(\alpha+n)}\frac{d^n}{dx^n}f(x) = \frac{1}{\Gamma(\alpha + n)} \int_{-\infty}^x (x-t)^{\alpha + n - 1} \left( \frac{d^n}{dt^n} f(t) \right) dt = J^{\alpha}f(x)
+\label{Grunwald-LetnikovCalculus}
+\end{equation}
+
+where $f(x) \in \mathbb{S}$ and $\mathfrak{R}(\alpha + n) \geq 1$. So the R-L integral/derivative, Caputo derivative and G-L derivative are all equivelent when taking the apropriate limits such that they are compatible with $J^\alpha$ and acting on functions in $\mathbb{S}$.
+
 \begin{thebibliography}{1}
 
 \bibitem{Leibniz}
