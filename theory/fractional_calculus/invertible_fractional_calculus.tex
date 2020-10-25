@@ -8,14 +8,14 @@
 \usepackage{appendix}
 \usepackage[colorlinks,citecolor=blue,urlcolor=black,bookmarks=false,hypertexnames=true]{hyperref} 
 \begin{document}
-\title{Fractional Calculus}% Force line breaks with \
+\title{Invertible Fractional Calculus}% Force line breaks with \
 \author{Luke A. Siemens}
 \email{luke.siemens@lsiemens.com}
 \noaffiliation
 \date{\today}
 \maketitle
 
-Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that the operator forms a semigroup not a group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an algebraic group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differential and integral operators and have the desired algebraic structure. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.
+Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that composition of operator with itself forms a semigroup not an abelian group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an abelian group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differntiation and integration and also have the desired algebraic properties. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.
 
 Let the proposed fractional calculus operator $J^\alpha$ have the following properties: for $\alpha \in \mathbb{Z}$ it can reproduce repeated integration and differentiation, it is a linear operator, that $J^\alpha$ forms an abelian group when acting on some suitable subset of differentiable functions and it is analytic in the parameter $\alpha$. First let us identify a suitable operator to extend into a fractional calculus with nice algebra, and function space for which this operator is well behaved. Let the operator $J^k$ for $k \in \mathbb{Z}$ be,
 \begin{equation}
@@ -121,15 +121,9 @@ As a starting point for defining a fractional calculus we will first construct a
 
 \subsection{Definitions}
 Let the operator $J^k$ for $k \in \mathbb{Z}$ be,
-\begin{equation}
-J^k f(x) := \begin{cases} \frac{1}{(k-1)!}\int_{-\infty}^x (x - t)^{k - 1}f(t)dt & k \geq 1 \\ f(x) & k = 0 \\ \frac{d^{\left|k\right|}}{dx^{\left|k\right|}}f(x) & k \leq -1 \end{cases}
-\label{integer_calculus}
-\end{equation}
+\[ J^k f(x) := \begin{cases} \frac{1}{(k-1)!}\int_{-\infty}^x (x - t)^{k - 1}f(t)dt & k \geq 1 \\ f(x) & k = 0 \\ \frac{d^{\left|k\right|}}{dx^{\left|k\right|}}f(x) & k \leq -1 \end{cases} \]
 Using this operator any function for which its absolute value and the absolute value of its derivatives are bounded by exponentials of the form $ae^{bx}$, with $a > 0$ and $b > 0$, are well-behaved. This set of functions can be expanded to produce a function space. Let us call this space set $\mathbb{S}$,
-\begin{equation}
-\mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}), b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
-\label{exponentialy_bounded}
-\end{equation}
+\[ \mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}), b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace \]
 Where $\mathbb{M}$ is a set of positive monotonic increasing functions and $\mathbb{B}$ is a set of analytic functions for which the absolute value of the function along the real line is bounded by the exponential $e^{bx}$ rescaled by the function $a(x_0)$. The sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
 \[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}), x > y, a(x) > a(y) \geq 0 \right\rbrace\]
 \[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}), x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
