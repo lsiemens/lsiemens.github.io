@@ -2,6 +2,28 @@ from matplotlib import pyplot
 from scipy import special
 import numpy
 
+def _GammaRHW(x):
+    """
+    Approximation by Robert H. Windschitl
+
+    accuracy improves with the distance from the negative real half axis.
+    """
+    return numpy.sqrt(2*numpy.pi/x)*numpy.power(x*numpy.sqrt(x*numpy.sinh(1/x) + 1/(810*x**6))/numpy.e, x)
+
+def Gamma(x):
+    """
+    Using Eulers reflection formula on Robert H. Windschitl's aproximation of the Gamma function.
+    The accuracy of this aproximation improves with the distance from 0 + 0i.
+    """
+    output = 0.0*x
+    mask = numpy.real(x) > 0
+    try:
+        output[mask] = _GammaRHW(x[mask] + 1)/x[mask]
+        output[~mask] = numpy.pi/(numpy.sin(numpy.pi*x[~mask])*_GammaRHW(1-x[~mask]))
+    except TypeError: # handle non-iterable types
+        return Gamma(numpy.array([x], dtype=numpy.complex256))[0]
+    return output
+
 class polydisk:
     """
     define a C^2 polydisk with 2d cross section
@@ -33,7 +55,7 @@ class polydisk:
         direction_x = direction_x/numpy.abs(direction_x)
         direction_a = direction_a/numpy.abs(direction_a)
 
-        self.Parameter_t = numpy.linspace(-1.0, 1.0, self.resolution)
+        self.Parameter_t = numpy.linspace(-1.0, 1.0, self.resolution, dtype=numpy.complex256)
         self.Path_x = self.x + direction_x*self.radius_x*self.Parameter_t
         self.Path_a = self.a + direction_a*self.radius_a*self.Parameter_t
         self.label_x = "x: ({:.2f}, {:.2f}), radius: {:.2f}".format(self.x - direction_x*self.radius_x, self.x + direction_x*self.radius_x, self.radius_x)
@@ -43,6 +65,7 @@ class polydisk:
         self.da = numpy.mean(self.Path_a[1:] - self.Path_a[:-1])
 
         self.Grid_x, self.Grid_a = numpy.meshgrid(self.Path_x, self.Path_a[::-1])
+        self.Parameter_t = numpy.real(self.Parameter_t)
 
 class taylor_encoding:
     """
@@ -165,7 +188,7 @@ class function_FD:
         pyplot.title("$abs(f(x, a))$\n" + self.generating_function_label)
         pyplot.show()
 
-        pyplot.imshow(numpy.angle(data), extent=extent)
+        pyplot.imshow(numpy.angle(data)/(2*numpy.pi), extent=extent, cmap="hsv")
         pyplot.xlabel(self.polydisk.label_x)
         pyplot.ylabel(self.polydisk.label_a)
         pyplot.title("$arg(f(x, a))$\n" + self.generating_function_label)
@@ -204,7 +227,7 @@ def generator_2d_from_1d(encoding, order = 100):
             order = _order
         output = 0.0
         for i in range(order):
-            output += encoding.encoding_function(a - i)*x**i/special.gamma(i + 1)
+            output += encoding.encoding_function(a - i)*x**i/Gamma(i + 1)
         return output
 
     data = function_FD(fractional_function, encoding.polydisk, encoding.function_label)
