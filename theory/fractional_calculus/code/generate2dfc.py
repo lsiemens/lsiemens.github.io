@@ -49,6 +49,20 @@ def foobar4(x, a, order=None, b=-1.0+0.0j):
 def foobar3(x, a, order=None):
     return (x**a*(numpy.log(x) + special.digamma(1.0) - special.digamma(a + 1))/fc2dpy.Gamma(a + 1))
 
+def foobar5(x, a, order=None):
+    """
+    equivelent to function encoding (a)**-1
+    """
+    import mpmath
+    gammaincomplete = numpy.frompyfunc(mpmath.gammainc, 2, 1)
+    output = (-x)**a*(gammaincomplete(-a, -x) - special.gamma(-numpy.array(a, dtype=numpy.complex128)))
+    if hasattr(x, "__len__") or hasattr(a, "__len__"):
+        print("array")
+        return numpy.array(output, dtype=numpy.complex256)
+    else:
+        print("complex")
+        return numpy.complex(output)
+
 T = fc2dpy.taylor_encoding(encoding, PD, "A")
 fd = fc2dpy.generator_2d_from_1d(T, order=order)
 
@@ -58,6 +72,8 @@ fd = fc2dpy.generator_2d_from_1d(T, order=order)
 #fd.function_label = "LOG(b + (x  - b))"
 #fd.function = foobar3
 #fd.function_label = "ln(x)"
+#fd.function = foobar5
+#fd.function_label = "X^a GAMMAINC"
 
 pyplot.ylim(-10, 10)
 T.graph_encoding()
