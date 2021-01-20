@@ -2,6 +2,9 @@ from matplotlib import pyplot
 from scipy import special
 import numpy
 
+array_dtype = numpy.complex256
+approximate_gamma = True
+
 def _GammaRHW(x):
     """
     Approximation by Robert H. Windschitl
@@ -15,13 +18,17 @@ def Gamma(x):
     Using Eulers reflection formula on Robert H. Windschitl's aproximation of the Gamma function.
     The accuracy of this aproximation improves with the distance from 0 + 0i.
     """
+    # for accurate gamma use scipy, for large input values use approximate function
+    if not approximate_gamma:
+        return special.gamma(x)
+
     output = 0.0*x
     mask = numpy.real(x) > 0
     try:
         output[mask] = _GammaRHW(x[mask] + 1)/x[mask]
         output[~mask] = numpy.pi/(numpy.sin(numpy.pi*x[~mask])*_GammaRHW(1-x[~mask]))
     except TypeError: # handle non-iterable types
-        return Gamma(numpy.array([x], dtype=numpy.complex256))[0]
+        return Gamma(numpy.array([x], dtype=array_dtype))[0]
     return output
 
 class polydisk:
@@ -47,6 +54,9 @@ class polydisk:
         self.Grid_x = None
         self.Grid_a = None
 
+#        self.Complex_Plane_x = None
+#        self.Complex_Plane_a = None
+
         self.set_parameterization(1.0, 1.0)
 
     def set_parameterization(self, direction_x, direction_a):
@@ -55,7 +65,7 @@ class polydisk:
         direction_x = direction_x/numpy.abs(direction_x)
         direction_a = direction_a/numpy.abs(direction_a)
 
-        self.Parameter_t = numpy.linspace(-1.0, 1.0, self.resolution, dtype=numpy.complex256)
+        self.Parameter_t = numpy.linspace(-1.0, 1.0, self.resolution, dtype=array_dtype)
         self.Path_x = self.x + direction_x*self.radius_x*self.Parameter_t
         self.Path_a = self.a + direction_a*self.radius_a*self.Parameter_t
         self.label_x = "x: ({:.2f}, {:.2f}), radius: {:.2f}".format(self.x - direction_x*self.radius_x, self.x + direction_x*self.radius_x, self.radius_x)

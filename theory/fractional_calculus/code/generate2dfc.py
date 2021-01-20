@@ -58,7 +58,7 @@ def foobar5(x, a, order=None):
     output = (-x)**a*(gammaincomplete(-a, -x) - special.gamma(-numpy.array(a, dtype=numpy.complex128)))
     if hasattr(x, "__len__") or hasattr(a, "__len__"):
         print("array")
-        return numpy.array(output, dtype=numpy.complex256)
+        return numpy.array(output, dtype=fc2dpy.array_dtype)
     else:
         print("complex")
         return numpy.complex(output)
