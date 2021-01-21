@@ -54,8 +54,8 @@ class polydisk:
         self.Grid_x = None
         self.Grid_a = None
 
-#        self.Complex_Plane_x = None
-#        self.Complex_Plane_a = None
+        self.Complex_Plane_x = None
+        self.Complex_Plane_a = None
 
         self.set_parameterization(1.0, 1.0)
 
@@ -75,6 +75,12 @@ class polydisk:
         self.da = numpy.mean(self.Path_a[1:] - self.Path_a[:-1])
 
         self.Grid_x, self.Grid_a = numpy.meshgrid(self.Path_x, self.Path_a[::-1])
+
+        plane_x, plane_xj = numpy.meshgrid(self.Path_x, self.Path_x[::-1]*1.0j)
+        self.Complex_Plane_x = plane_x + plane_xj
+        plane_a, plane_aj = numpy.meshgrid(self.Path_a, self.Path_a[::-1]*1.0j)
+        self.Complex_Plane_a = plane_a + plane_aj
+
         self.Parameter_t = numpy.real(self.Parameter_t)
 
 class taylor_encoding:
@@ -167,8 +173,29 @@ class function_FD:
         pyplot.legend()
         pyplot.show()
 
+    def graph2dxplane(self, a=None):
+        if a is None:
+            a = self.polydisk.a
+        extent = [-1.0, 1.0, -1.0, 1.0]
+        data = self.function(self.polydisk.Complex_Plane_x, a, self.order)
+
+        pyplot.imshow(numpy.real(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
+        pyplot.show()
+
+        pyplot.imshow(numpy.imag(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
+        pyplot.show()
+
+        pyplot.imshow(numpy.abs(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
+        pyplot.show()
+
+        pyplot.imshow(numpy.angle(data)/(2*numpy.pi), extent=extent, vmin=-0.5, vmax=0.5)
+        pyplot.show()
+
+        pyplot.imshow(numpy.log(numpy.abs(data)), extent=extent)
+        pyplot.show()
+
     def graph2d(self):
-        extent = [-1, 1.0, -1.0, 1.0]
+        extent = [-1.0, 1.0, -1.0, 1.0]
 
         data = self.function(self.polydisk.Grid_x, self.polydisk.Grid_a, self.order)
 
@@ -236,6 +263,7 @@ def generator_2d_from_1d(encoding, order = 100):
         if order is None:
             order = _order
         output = 0.0
+
         for i in range(order):
             output += encoding.encoding_function(a - i)*x**i/Gamma(i + 1)
         return output
