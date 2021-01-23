@@ -1,6 +1,7 @@
 from matplotlib import pyplot
 from scipy import special
 import numpy
+import cplot
 
 array_dtype = numpy.complex256
 approximate_gamma = True
@@ -46,7 +47,9 @@ class polydisk:
         self.Path_x = None
         self.Path_a = None
         self.label_x = None
+        self.label_xj = None
         self.label_a = None
+        self.label_aj = None
 
         self.dx = None
         self.da = None
@@ -69,7 +72,9 @@ class polydisk:
         self.Path_x = self.x + direction_x*self.radius_x*self.Parameter_t
         self.Path_a = self.a + direction_a*self.radius_a*self.Parameter_t
         self.label_x = "x: ({:.2f}, {:.2f}), radius: {:.2f}".format(self.x - direction_x*self.radius_x, self.x + direction_x*self.radius_x, self.radius_x)
+        self.label_xj = "x: ({:.2f}, {:.2f}), radius: {:.2f}".format((self.x - direction_x*self.radius_x)*1.0j, (self.x + direction_x*self.radius_x)*1.0j, self.radius_x)
         self.label_a = "a: ({:.2f}, {:.2f}), radius: {:.2f}".format(self.a - direction_a*self.radius_a, self.a + direction_a*self.radius_a, self.radius_a)
+        self.label_aj = "a: ({:.2f}, {:.2f}), radius: {:.2f}".format((self.a - direction_a*self.radius_a)*1.0j, (self.a + direction_a*self.radius_a)*1.0j, self.radius_a)
 
         self.dx = numpy.mean(self.Path_x[1:] - self.Path_x[:-1])
         self.da = numpy.mean(self.Path_a[1:] - self.Path_a[:-1])
@@ -128,6 +133,7 @@ class function_FD:
         if a is None:
             a = self.polydisk.a
         data = self.function(self.polydisk.Path_x, a)
+
         pyplot.plot(self.polydisk.Parameter_t, numpy.real(data), label="$real(f(x, a_0))$")
         pyplot.plot(self.polydisk.Parameter_t, numpy.imag(data), label="$imag(f(x, a_0))$")
 
@@ -142,6 +148,7 @@ class function_FD:
         if x is None:
             x = self.polydisk.x
         data = self.function(x, self.polydisk.Path_a)
+
         pyplot.plot(self.polydisk.Parameter_t, numpy.real(data), label="$real(f(x_0, a))$")
         pyplot.plot(self.polydisk.Parameter_t, numpy.imag(data), label="$imag(f(x_0, a))$")
 
@@ -173,42 +180,116 @@ class function_FD:
         pyplot.legend()
         pyplot.show()
 
-    def graph2dxplane(self, a=None):
+    def graphXplane(self, a=None):
         if a is None:
             a = self.polydisk.a
+
         extent = [-1.0, 1.0, -1.0, 1.0]
         data = self.function(self.polydisk.Complex_Plane_x, a, self.order)
 
-        pyplot.imshow(numpy.real(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
+        cplot.cimshow(data, extent=extent, modRange=True, vmin=self.vmin, vmax=self.vmax)
+        pyplot.xlabel(self.polydisk.label_x)
+        pyplot.ylabel(self.polydisk.label_xj)
+        pyplot.title("$abs(f(x, a_0))$ $mod$ ${:.1f}$, $arg(f(x, a_0))$, $a_0={:.2f}$\n".format(self.vmax - self.vmin, a) + self.generating_function_label)
         pyplot.show()
 
-        pyplot.imshow(numpy.imag(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
+        vmax = None
+        if (self.vmax is not None) and (self.vmin is not None):
+            vmax = max(numpy.abs(self.vmax), numpy.abs(self.vmin))
+        else:
+            if self.vmin is not None:
+                vmax = numpy.abs(self.vmin)
+            if self.vmax is not None:
+                vmax = numpy.abs(self.vmax)
+        pyplot.imshow(numpy.abs(data), extent=extent, vmin=0.0, vmax=vmax)
+        pyplot.xlabel(self.polydisk.label_x)
+        pyplot.ylabel(self.polydisk.label_xj)
+        pyplot.title("$abs(f(x, a_0))$, $a_0={:.2f}$\n".format(a) + self.generating_function_label)
         pyplot.show()
 
-        pyplot.imshow(numpy.abs(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
+        pyplot.imshow(numpy.angle(data)/(2*numpy.pi), extent=extent, cmap="hsv")
+        pyplot.xlabel(self.polydisk.label_x)
+        pyplot.ylabel(self.polydisk.label_xj)
+        pyplot.title("$arg(f(x, a_0))$, $a_0={:.2f}$\n".format(a) + self.generating_function_label)
         pyplot.show()
 
-        pyplot.imshow(numpy.angle(data)/(2*numpy.pi), extent=extent, vmin=-0.5, vmax=0.5)
+        cplot.cimshow(data, extent=extent, logMag=True)
+        pyplot.xlabel(self.polydisk.label_x)
+        pyplot.ylabel(self.polydisk.label_xj)
+        pyplot.title("$log_{{10}}(abs(f(x, a_0)))$, $arg(f(x, a_0))$, $a_0={:.2f}$\n".format(a) + self.generating_function_label)
         pyplot.show()
 
-        pyplot.imshow(numpy.log(numpy.abs(data)), extent=extent)
+        cplot.cimshow(data, extent=extent, logMag=True, modRange=True, vmin=0, vmax=1)
+        pyplot.xlabel(self.polydisk.label_x)
+        pyplot.ylabel(self.polydisk.label_xj)
+        pyplot.title("$log_{{10}}(abs(f(x, a_0)))$ $mod$ $1.0$, $arg(f(x, a_0))$, $a_0={:.2f}$\n".format(a) + self.generating_function_label)
+        pyplot.show()
+
+        pyplot.imshow(numpy.log(numpy.abs(data))/numpy.log(10), extent=extent)
+        pyplot.xlabel(self.polydisk.label_x)
+        pyplot.ylabel(self.polydisk.label_xj)
+        pyplot.title("$log_{{10}}(abs(f(x, a_0)))$, $a_0={:.2f}$\n".format(a) + self.generating_function_label)
+        pyplot.show()
+
+    def graphAplane(self, x=None):
+        if x is None:
+            x = self.polydisk.x
+
+        extent = [-1.0, 1.0, -1.0, 1.0]
+        data = self.function(x, self.polydisk.Complex_Plane_a, self.order)
+
+        cplot.cimshow(data, extent=extent, modRange=True, vmin=self.vmin, vmax=self.vmax)
+        pyplot.xlabel(self.polydisk.label_a)
+        pyplot.ylabel(self.polydisk.label_aj)
+        pyplot.title("$abs(f(x_0, a))$ $mod$ ${:.1f}$, $arg(f(x_0, a))$, $x_0={:.2f}$\n".format(self.vmax - self.vmin, x) + self.generating_function_label)
+        pyplot.show()
+
+        vmax = None
+        if (self.vmax is not None) and (self.vmin is not None):
+            vmax = max(numpy.abs(self.vmax), numpy.abs(self.vmin))
+        else:
+            if self.vmin is not None:
+                vmax = numpy.abs(self.vmin)
+            if self.vmax is not None:
+                vmax = numpy.abs(self.vmax)
+        pyplot.imshow(numpy.abs(data), extent=extent, vmin=0.0, vmax=vmax)
+        pyplot.xlabel(self.polydisk.label_a)
+        pyplot.ylabel(self.polydisk.label_aj)
+        pyplot.title("$abs(f(x_0, a))$, $x_0={:.2f}$\n".format(x) + self.generating_function_label)
+        pyplot.show()
+
+        pyplot.imshow(numpy.angle(data)/(2*numpy.pi), extent=extent, cmap="hsv")
+        pyplot.xlabel(self.polydisk.label_a)
+        pyplot.ylabel(self.polydisk.label_aj)
+        pyplot.title("$arg(f(x_0, a))$, $x_0={:.2f}$\n".format(x) + self.generating_function_label)
+        pyplot.show()
+
+        cplot.cimshow(data, extent=extent, logMag=True)
+        pyplot.xlabel(self.polydisk.label_a)
+        pyplot.ylabel(self.polydisk.label_aj)
+        pyplot.title("$log_{{10}}(abs(f(x_0, a)))$, $arg(f(x_0, a))$, $x_0={:.2f}$\n".format(x) + self.generating_function_label)
+        pyplot.show()
+
+        cplot.cimshow(data, extent=extent, logMag=True, modRange=True, vmin=0, vmax=1)
+        pyplot.xlabel(self.polydisk.label_a)
+        pyplot.ylabel(self.polydisk.label_aj)
+        pyplot.title("$log_{{10}}(abs(f(x_0, a)))$ $mod$ $1.0$, $arg(f(x_0, a))$, $x_0={:.2f}$\n".format(x) + self.generating_function_label)
+        pyplot.show()
+
+        pyplot.imshow(numpy.log(numpy.abs(data))/numpy.log(10), extent=extent)
+        pyplot.xlabel(self.polydisk.label_a)
+        pyplot.ylabel(self.polydisk.label_aj)
+        pyplot.title("$log_{{10}}(abs(f(x_0, a)))$, $x_0={:.2f}$\n".format(x) + self.generating_function_label)
         pyplot.show()
 
     def graph2d(self):
         extent = [-1.0, 1.0, -1.0, 1.0]
-
         data = self.function(self.polydisk.Grid_x, self.polydisk.Grid_a, self.order)
 
-        pyplot.imshow(numpy.real(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
+        cplot.cimshow(data, extent=extent, modRange=True, vmin=self.vmin, vmax=self.vmax)
         pyplot.xlabel(self.polydisk.label_x)
         pyplot.ylabel(self.polydisk.label_a)
-        pyplot.title("$real(f(x, a))$\n" + self.generating_function_label)
-        pyplot.show()
-
-        pyplot.imshow(numpy.imag(data), extent=extent, vmin=self.vmin, vmax=self.vmax)
-        pyplot.xlabel(self.polydisk.label_x)
-        pyplot.ylabel(self.polydisk.label_a)
-        pyplot.title("$imag(f(x, a))$\n" + self.generating_function_label)
+        pyplot.title("$abs(f(x, a))$ $mod$ ${0:.1f}$, $arg(f(x, a))$\n".format(self.vmax - self.vmin) + self.generating_function_label)
         pyplot.show()
 
         vmax = None
@@ -231,24 +312,23 @@ class function_FD:
         pyplot.title("$arg(f(x, a))$\n" + self.generating_function_label)
         pyplot.show()
 
-        pyplot.imshow(numpy.log(numpy.abs(data)), extent=extent)
+        cplot.cimshow(data, extent=extent, logMag=True)
         pyplot.xlabel(self.polydisk.label_x)
         pyplot.ylabel(self.polydisk.label_a)
-        pyplot.title("$ln(abs(f(x, a)))$\n" + self.generating_function_label)
+        pyplot.title("$log_{10}(abs(f(x, a)))$, $arg(f(x, a))$\n" + self.generating_function_label)
         pyplot.show()
 
-    def graph2d_zeros(self, show=True):
-        extent = [-1, 1.0, -1.0, 1.0]
-
-        data = self.function(self.polydisk.Grid_x, self.polydisk.Grid_a, self.order)
-
-        pyplot.imshow(numpy.log(numpy.abs(data)), extent=extent)
+        cplot.cimshow(data, extent=extent, logMag=True, modRange=True, vmin=0, vmax=1)
         pyplot.xlabel(self.polydisk.label_x)
         pyplot.ylabel(self.polydisk.label_a)
-        pyplot.title("$ln(abs(f(x, a)))$\n" + self.generating_function_label)
+        pyplot.title("$log_{10}(abs(f(x, a)))$ $mod$ $1.0$, $arg(f(x, a))$\n" + self.generating_function_label)
+        pyplot.show()
 
-        if show:
-            pyplot.show()
+        pyplot.imshow(numpy.log(numpy.abs(data))/numpy.log(10), extent=extent)
+        pyplot.xlabel(self.polydisk.label_x)
+        pyplot.ylabel(self.polydisk.label_a)
+        pyplot.title("$log_{10}(abs(f(x, a)))$\n" + self.generating_function_label)
+        pyplot.show()
 
 def generator_2d_from_1d(encoding, order = 100):
     """
