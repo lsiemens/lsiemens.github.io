@@ -1,5 +1,4 @@
 from matplotlib import pyplot
-import hsluv
 import numpy
 from skimage import color
 
