@@ -1,0 +1,68 @@
+\documentclass[%
+ %twocolumn,
+ %preprint,
+ onecolumn,
+ amsmath, amssymb, aps, pra, 10pt
+]{revtex4-2}
+\usepackage{amsmath}
+\usepackage{appendix}
+\usepackage[colorlinks,citecolor=blue,urlcolor=black,bookmarks=false,hypertexnames=true]{hyperref} 
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\title{Invertible Calculus}% Force line breaks with \
+\author{Luke A. Siemens}
+\email{luke.siemens@lsiemens.com}
+\noaffiliation
+\date{\today}
+\maketitle
+
+Paraphrasing some of my notes from 09/02/2018 to 09/27/2018. At the time I was interested in Fractional Calculus (FC) but found the semigroup propertie of FC inellegent. I noteiced that an equivelent semigroup propertie aplied in calculus and that it was a result of the fact that the derivative is not invertible. The goal of this project was to develop and investigate the properties of an invertible calculus with the hope that replacing the semigroup propertiy in calculus with an additive group propertie might provide some hints on how to apply a simular procedure to fractional calculus.
+
+Goal define object such that $\frac{d}{dx}f(x)=f'(x)$, $\frac{d}{dx}^{-1}f(x) = \int	f(x)dx$, $\frac{d}{dx}\frac{d}{dx}^{-1}f(x) = \frac{d}{dx}^{-1}\frac{d}{dx}f(x) = f(x)$ and where $\frac{d}{dx}$ is a linear operator.
+
+\section{Stacks}
+Given two elements $a$ and $b$ the denote an ordered pair as $(a, b)$. The coordenants of the ordered pair can be extracted using the functions $\pi_1$ and $\pi_2$. Given the ordered pair $p=(a, b)$, then $\pi_1(p) =  a$ and $\pi_2(p) =  b$. Using ordered pairs it is posible to define a stack. Given $a_i \in \mathbb{C}$ are elements of the stack indexed by $i \in \mathbb{N}$. The stack $p$ can be defined by nesting ordered pairs,
+\begin{equation}
+p = (a_1, (a_2, (a_3, (\dots, (a_{k-2}, (a_{k-1}, a_k))\dots))))
+\label{definition_finite_stack}
+\end{equation}
+or for an infinite stack,
+\begin{equation}
+p = (a_1, (a_2, (a_3, (a_4, \dots))))
+\label{definition_infinite_stack}
+\end{equation}
+The top element of the stack is given by $\pi_1(p)$, and the remainder of the stack after removing the top element is given by $\pi_2(p)$. To simplify the notation let $[a_1, a_2, a_3, \cdots, a_{k-2}, a_{k-1}, a_k]$ denote nested pairs such that,
+\[ [a_1, a_2, a_3, \cdots, a_{k-2}, a_{k-1}, a_k] = (a_1, (a_2, (a_3, (\dots, (a_{k-2}, (a_{k-1}, a_k))\dots)))) \]
+So if $a_i$ for $i \in \{1, 2, 3, \cdots, k\}$ are elements of a stack $p$ then the stack can be defined as,
+\[p = [a_1, a_2, a_3, \cdots, a_{k-2}, a_{k-1}, a_k] = (a_1, (a_2, (a_3, (\dots, (a_{k-2}, (a_{k-1}, a_k))\dots))))\]
+So given two stacks $p$ with elements $a_i$ for $i \in \{1, 2, \cdots, k\}$ and $q$ with elements $b_i$ for $i \in \{1, 2, \cdots, j\}$, $q$ appended to $p$ is,
+\[[a_1, a_2, \cdots, a_k, b_1, b_2, \cdots, b_j] = [a_1, a_2, \cdots, a_k, [b_1, b_2, \cdots, b_j]] = [a_1, a_2, \cdots, a_k, q]\]
+Note, using this notation for any stack $p$, it can be writen as $p = [\pi_1(p), \pi_2(p)]$
+From now on unless otherwise spesified all stacks used will be infinite stacks, if only a finite number of elements are specified assume it is padded with zeros. Given two stacks $p = [a_1, a_2, \cdots, a_i, \cdots]$ and $p = [b_1, b_2, \cdots, b_i, \cdots]$ then let
+\[p + q = [a_1 + b_1, a_2 + b_2, \cdots, a_i + b_i, \cdots]\]
+\[p \cdot q = [a_1 \cdot b_1, a_2 \cdot b_2, \cdots, a_i \cdot b_i, \cdots]\]
+and for $\alpha \in \mathbb{C}$
+\[\alpha + p = [a_1 + \alpha, a_2 + \alpha, \cdots, a_i + \alpha, \cdots]\]
+\[\alpha \cdot p = [\alpha \cdot a_1, \alpha \cdot a_2, \cdots, \alpha \cdot a_i, \cdots]\]
+also if $p$ is a stack with elements $a_i$ for $i \in \mathbb{N}$ and $q$ is a finite stack with elements $b_i$ for $i \in \{1, 2, \cdots, k\}$ then a new stack $r$ can be constructed by appending $p$ to $q$,
+\[r = [b_1, b_2, \cdots, b_k, p] = [b_1, b_2, \cdots, b_k, [a_1, a_2, \cdots, a_i, \cdots]] = [b_1, b_2, \cdots, b_k, a_1, a_2, \cdots, a_i, \cdots]\]
+Also define the action of a function $f$ that acts on stacks can be defined element wise. So given stacks $p_i$ with elements $a_{j, i}$ for $j \in \mathbb{N}$ and $i \in \{1, 2, \cdots, n\}$ and a function $f:\mathbb{C}^n \leftarrow \mathbb{C}$. Then let $f(p_1, p_2, \cdots)$ be defined as,
+\[f(p_1, p_2, \cdots) = [f(a_{1, 1}, a_{1, 2}, a_{1, 3}, \cdots, a_{1, n}), f(a_{2, 1}, a_{2, 2}, a_{2, 3}, \cdots, a_{2, n}), \cdots, f(a_{j, 1}, a_{j, 2}, a_{j, 3}, \cdots, a_{j, n}), \cdots]\]
+
+\section{Stack Function}
+Informaly the antiderivative is described as the invers operation to the derivateive, however this is not formaly true. Spesificaly $\frac{d}{dx} \int_{0}^x f(t)dt = f(x) \neq \int_{0}^x \frac{d}{dt} f(t) dt$. Using the fundimental theorem of calculus $\int_{0}^x \frac{d}{dt} f(t) dt + f(0) = f(x) = \frac{d}{dx} \left( \int_{0}^x f(t) dt + F(0) \right)$, where $F'(x) = f(x)$. However $F(x)$ is not uniquely defined by $f(x)$ but a collection of functions wich all have the derivative $f(x)$. Thinking of $\frac{d}{dx}$ as a linear operator, it is a linear transform with nontrivial kernel and assuch is not invertible.
+
+The goal is to produce an analogue to the derivative which is a linear operator with a trivial kernel , and to find its invers. The first step is to define a new type of generalized function, I will call a stack function. Let $a(x)$ be an analytic function $a:\mathbb{C}\rightarrow\mathbb{C}$ and a stack $p_a$ with elements $a_i \in \mathbb{C}$ for $i \in \mathbb{N}$ so $p_a = [a_1, a_2, \cdots, a_i, \cdots]$. Let $A$ be a stack function $A = (a(x), p_a)$.
+
+The idea behind this object is that the first component should be a function $f(x):\mathbb{C}\rightarrow\mathbb{C}$ that should maintain the expected behavior from calculus as much as possible, while the seccond component retains all of the information that is lost during differentiation. So the values in the stack when deffining a specific function is like setting the intal values of an IVP. Given this retention of information, for each stack function the result of any iterated integration and differentiation should be uniquely determined.
+
+Given a stack function $A(x)=(a(x), p_a)$, let the derivative be $A'(x) = \frac{d}{dx}A(x) = (a'(x), [a(0), p_a])$, note the choice of refrence point $x=0$ is arbitrary. Let the antiderivative be $\frac{d}{dx}^{-1}A(x) = \left(\int_{0}^x a(t)dt + \pi_1(p_a), \pi_2(p_a)\right)$. Given an arbitrary stack function $A = (a(x), p_a)$ if $a(x)$ is both integrable and differentiable then,
+\[\frac{d}{dx}\frac{d}{dx}^{-1} A(x) = \frac{d}{dx}\left( \int_{0}^x a(t)dt + \pi_1(p_a), \pi_2(p_a) \right) = \left(\frac{d}{dx}\left(\int_{0}^x a(t)dt + \pi_1(p_a)\right), \left[\int_{0}^0 a(t)dt + \pi_1(p_a), \pi_2(p_a)\right]\right)\]
+simplifying yields,
+\[ \frac{d}{dx}\frac{d}{dx}^{-1} A(x) = (a(x), p_a) = A(x)\]
+also,
+\[\frac{d}{dx}^{-1}\frac{d}{dx}A(x) = \frac{d}{dx}^{-1} \left(a'(x), [a(0), p_a]\right) = \left(\int_{0}^x a'(t)dt + a(0), p_a\right)=(a(x)-a(0) + a(0), p_a) = A(x)\]
+So under this definition $\frac{d}{dx}^{-1}$ is the inverse of $\frac{d}{dx}$.
+
+\end{document}
