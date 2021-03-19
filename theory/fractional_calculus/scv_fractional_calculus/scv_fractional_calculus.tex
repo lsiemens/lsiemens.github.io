@@ -15,11 +15,58 @@
 \date{\today}
 \maketitle
 
-The defining equation,
+I have found a general description of variable order fractional derivative. I will show that this description applies to any variable order fractional derivative provideid it maps analytic functions to analytic functions and that it is analytic with respect to the order of differntiation. I will make the simplifying assumption that functions are analytic, that the domain of the functions is either $\mathbb{C}$ or $\mathbb{C} \times \mathbb{C}$, that they are analytic in the neiborhood of the oragin and that they are analytic almost every where. Denoting the set of all analytic functions on the domain $\mathbb{C} \times \mathbb{C}$ as $\mathcal{O}(\mathbb{C}^2)$. Let us define a function space $\mathbb{S}$ as the set,
+
 \begin{equation}
-\partial_x F(x, a) = F(x, a - 1)
-\label{SCV_condition}
+\mathbb{S} = \left\lbrace f(x, a) \in \mathcal{O}(\mathbb{C}^2) \middle| \partial_x f(x, a) = f(x, a - 1) \right\rbrace
+\label{differentiable_set}
 \end{equation}
+
+define the operator $J^{\alpha}$ acting on elements of the set $\mathbb{S}$ as,
+
+\begin{equation}
+J^{\alpha} f(x, a) = \Delta_{a}^{\alpha} f(x, a) = f(x, a - \alpha)
+\label{fractional_derivative}
+\end{equation}
+
+where $\Delta_{a}^{\alpha}$ is an operator shifting the variable $a$ by the amount $\alpha$. Note that if $f(x, a) \in \mathbb{S}$ then $J^{\alpha} f(x, a) \in \mathbb{S}$. This operator when acting on functions in the function space $\mathbb{S}$ satisfies the necisary properties to be considered a variable order fractional derivative and it is equivelent to any sufficiently analytic variable order fractional derivative on some subspace of $\mathbb{S}$.
+
+From your paper "What is a fractional derivative" I will use the set of criterion $\,^3P$, although ill leave discusion of $\,^3P5$ for later. Given $f(x, a), g(x, a) \in \mathbb{S}$ and $C_1, C_2, \alpha, \beta \in \mathbb{C}$ is defined for the following arguments.
+
+
+
+$\,^3P1$ : linearity
+Since the shift operator $\Delta_{a}^{\alpha}$ is a linear operator then the operator $J^{\alpha}$, defined in equation \eqref{fractional_derivative}, is also a linear operator.
+
+
+
+$\,^3P2$ : Identity
+Using the definition of $J^{\alpha}$ for $\alpha=0$ acting on $f(x, a)$ results in, $J^{0}f(x, a) = \Delta_{a}^{0}f(x, a) = f(x, a)$. So propertie $\,^3P2$ is satisfied.
+
+
+
+$\,^3P3$ : Backwards compatibility
+In the case where $\alpha$ is a negative integer we can apply $\partial_x f(x, a) = f(x, a - 1)$ repeatedly. Let $\alpha = -k$ with $k \in \mathbb{Z}^+$, $J^{-k} f(x, a) = \Delta_{a}^{-k} f(x, a)=\Delta_{a}^{-k + 1}\Delta_{a}^{+1} f(x, a) = \Delta{a}^{-k + 1}f(x, a - 1) = \Delta_{a}^{-k + 1}\partial_x f(x, a)$, Since $\partial_x f(x, a) \in \mathbb{S}$ we can repeat this argument, so $J^{-k} f(x, a) = \partial_{x}^{-k} f(x, a)$. For the positive case first let us try $k=1$. In this case $J^{1} f(x, a) = f(x, a + 1)$, so $\partial_x f(x, a + 1) = f(x, a)$ leading to the solution $J^{1} f(x, a) = \int_{x_0}^{x} f(t, a)dt + f(x_0, a + 1)$. Provided that $f(x, a)$ is an entire function for all $a$, then appling this repeadedly results in $J^{k} f(x, a) = \frac{1}{\Gamma(k)}\int_{x_0}^{x} (x - t)^{k - 1}f(t, a)dt + \sum_{i = 0}^{k - 1}f(x_0, a + k - i)\frac{x^i}{i!}$. So if $\alpha \in \mathbb{Z}$ then $J^{\alpha}$ represents either repeated integration or differentiation.
+
+
+
+$A\,^3P4$ : The index law
+Applying frational derivative twice and simplifying, $J^{\beta}J^{\alpha} f(x, a) = \Delta{a}^{\beta}\Delta_{a}^{\alpha} f(x, a) = \Delta_{a}^{\beta} f(x, a + \alpha) = f(x, a + \alpha + \beta) = J^{\beta + \alpha} f(x, a)$.
+
+
+
+So criterion $\,^3P1 - \,^3P4$ are satisfied and I will set asside discusion of $\,^3P5$ for the moment.
+
+Now let $J'^{\alpha}$ be an arbitrary variable order fractional derivative that satisfied $\,^3P1 - \,^3P4$ and that there exists a set $\mathbb{S}''$ of analytic functions on which the operator $J'^{\alpha}$ satisfies $\,^3P1 - \,^3P4$ and where $\forall f(x) \in \mathbb{S}'', J'^{\alpha}f(x) \in \mathcal{O}(\mathbb{C}^2)$. The action of $J'^{\alpha}$ acting on $f(x) \in \mathbb{S}''$ can be expressed as $F(x, a) = J'^{\alpha} f(x)$. Using this let $\mathbb{S}' = \left\lbrace f(x, a) \in \mathcal{O}(\mathbb{C}^2) \middle| \exists f(x) \in \mathbb{S}'', f(x, a) = J'^{\alpha} f(x) \right\rbrace$. Now $J'^{-1}f(x, a) = \partial_x f(x, a)$ by $\,^3P3$ and $J'^{-1} f(x, a) = J'^{-1}J'^{\alpha} f(x) = J'^{\alpha - 1} f(x) = f(x, \alpha - 1)$ by $\,^3P4$, so $\forall f(x, a) \in \mathbb{S}', \partial_x f(x, a) = f(x, a - 1)$. Now for $f(x, a) \in \mathbb{S}'$ taking a fractional derivative $J'^{\alpha} f(x, a) = J'^{\alpha}J'^{a} f(x)$, using $\,3^P4$, $J'^{\alpha} f(x, a) = f(x, a + \alpha) = \Delta_{a}^{\alpha} f(x, a)$. Clearly $\mathbb{S}' \subset \mathbb{S}$ and $\forall f(x, a) \in \mathbb{S}', J'^{\alpha} f(x, a) = J^{\alpha} f(x, a)$. So every variable order fractional derivative wich is sufficiently analytic is eqivelent to $J^{\alpha}$ acting on some subspace of $\mathbb{S}$. So the fractional derivative defined in \eqref{fractional_derivative} when acting on functions in the space \eqref{differentiable_set} provides a general descriptoin of all suffieciently analytic variable order fractional derivatievs subject to $\,3^P1 - \,3^P4$.
+
+So far I have used the equation $\partial_x f(x, a) = f(x, a - 1)$ to determine if a function is in the set $\mathbb{S}$ but have not considered wheater or not this eqation holds on the entire domain of $f(x, a)$ or only on some subset. Because we are only considering analytic functions this equation holds every where or almost no where. Since given $f(x, a) \in \mathcal{O}(\mathbb{C}^2)$ we can define $g(x, a) = \partial_x f(x, a) - f(x, a - 1)$, note that if $f(x, a) \in \mathcal{O}(\mathbb{C}^2)$ then $g(x, a) \in \mathcal{O}(\mathbb{C}^2)$ and that if $\partial_x f(x, a) = f(x, a - 1)$ then $g(x, a) = 0$. Because $g(x, a)$ is a complex analytic function it can be analiticaly continued such that it is either zero every where or it is zero almost nowhere. Likewise $\partial_x f(x, a) = f(x, a - 1)$ must either be satisfied on the entire domain of $f(x, a)$ or satisfied almost nowhere since $f(x, a)$ is complex analytic.
+
+So far I have not found a consistent way to difine multiplication in general. If $f(x, a), g(x, a) \in \mathbb{S}$ and $h(x, a) = f(x, a) \cdot g(x, a)$ then $\partial_x h(x, a) = f(x, a - 1) \cdot g(x, a) + f(x, a) \cdot g(x, a - 1) \neq h(x, a - 1)$ unless either $f(x, a)$ or $g(x, a)$ is a constant function. So if multiplication by nonconstant functions is posible then the product operator needs to be modified, and due to $\,3^P3$ it needs to be compatible with the General Leibniz rule. In the simpler case of multiplication by an analytic function of one variable $g(x) \in \mathcal{O}(\mathbb{C})$ then a solution is to use the a modification of the equation given in $\,^3P5$. Given $f(x, a) \in \mathcal{O}(\mathbb{C}^2)$ and $g(x) \in \mathcal{O}(\mathbb{C})$, let $f(x, a) * g(x) = \sum_{k=0}^{\infty} \binom{-a}{k}f(x, a_0 + a + k) \cdot \frac{d^k}{dx^k} g(x)$. Let $h(x, a) = f(x, a) * g(x)$, then $\partial_x h(x, a) = \sum_{k=0}^{\infty} \binom{-a}{k}f(x, a_0 + a + k - 1) \cdot \frac{d^k}{dx^k} g(x) + \binom{-a}{k}f(x, a_0 + a + k) \cdot \frac{d^{k + 1}}{dx^{k + 1}} g(x)$. Using $k = k' - 1$ in the second term and $k = k'$ in the first and since $\binom{-a}{k-1}$ is zero if $k=0$ the sum is unchanged so $\partial_x h(x, a) = \sum_{k'=0}^{\infty} \left( \binom{-a}{k'} + \binom{-a}{k' - 1} \right)f(x, a_0 + (a - 1) + k') \cdot \frac{d^{k'}}{dx^{k'}} g(x)$. Now using the fact that $\binom{-a}{k} + \binom{-a}{k - 1} = \binom{-a + 1}{k}$, then $\partial_x h(x, a) = \sum_{k'=0}^{\infty} \binom{-(a - 1)}{k'}f(x, a_0 + (a - 1) + k') \cdot \frac{d^{k'}}{dx^{k'}} g(x) = h(x, a - 1)$. So if $h(x, a)$ converges and is analytic, then $h(x, a) \in \mathbb{S}$. So if $f(x, a) \in \mathbb{S}$ and $g(x) \in \mathcal{O}(\mathbb{C})$ then $f(x, a) * g(x) \in \mathbb{S}$, if it exists, and clearly $f(x, a) * g(x)$ satisfies $\,3^P5$. Currently I am working on finding an operator that natrualy generalizes multiplication that works when both functions are in the set $\mathbb{S}$.
+
+We can construct an alternative for of $\partial_x f(x, a) = f(x, a - 1)$ by using the definition of the shift operator $\Delta_{x}^{t} = e^{t \partial_x}$. So expanding the exponential function is this definition $\Delta_{x}^t = \sum_{k=0}^{\infty} \frac{t^k}{k!} \partial_{x}^{k}$, which alowes us to express $\partial_x f(x, a) = f(x, a - 1)$ as the PDE $\partial_x f(x, a) - \sum_{k=0}^{\infty} \frac{(-1)^k}{k!}\partial_{a}^{k} f(x, a) = 0$. So we can solve for elements of $\mathbb{S}$ by solving the system of PDEs $\partial_x f(x, a) - \sum_{k=0}^{\infty} \frac{(-1)^k}{k!} \partial_{a}^{k} f(x, a) = 0$, $\partial_{\bar{x}} f(x, a) = 0$, $\partial_{\bar{a}} f(x, a) = 0$ where the last two PDEs enshure that $f(x, a)$ is complex analytic.
+
+Given $f(x, a) \in \mathcal{O}(\mathbb{C}^2)$ it can be described by the power series $f(x, a) = \sum_{j=0}^{\infty} \sum_{k=0}^{\infty} C_{j, k} \frac{x^j}{j!} \frac{a^k}{k!}$. we can rearange the series to  the form $f(x, a) = \sum_{j=0}^{\infty} \frac{x^j}{j!} \sum_{k=0}^{\infty} C_{j, k} \frac{a^k}{k!}$, and define $g_n(a) = \sum_{k=0}^{\infty} C_{n, k} \frac{a^k}{k!}$, so that $f(x, a) = \sum_{j=0}^{\infty} \frac{x^j}{j!} g_j(a)$, if $g_n(a)$ converges for all $n \in \mathbb{Z}^+$. If $f(x, a) \in \mathbb{S}$ then $\partial_x f(x, a) = \sum_{j=0}^{\infty} \sum_{k=0}^{\infty} C_{j + 1, k} \frac{x^j}{j!} \frac{a^k}{k!} = \sum_{j=0}^{\infty} \sum_{k=0}^{\infty} C_{j, k} \frac{x^j}{j!} \frac{(a - 1)^k}{k!}$. Taking the nth partial derivative of $x$ on both sides and letting $x=0$ yeilds, $\sum_{k=0}^{\infty} C_{n + 1, k} \frac{a^k}{k!} = \sum_{k=0}^{\infty} C_{n, k} \frac{(a -1)^k}{k!}$. So then using the definition of $g_n(a)$ in the previous equation $g_{n+1}(a) = g_{n}(a - 1)$ and applying this repeatedly gives the equation, $g_{n}(a) = g_{0}(a - n)$. so if $f(x, a) \in \mathbb{S}$ then $f(x, a) = \sum_{j=0}^{\infty} \frac{x^j}{j!} g_{j}(a) = \sum_{j=0}^{\infty} \frac{x^j}{j!} g_{0}(a - j)$, thus for any $g(a) \in \mathcal{O}(\mathbb{C})$ if $f(x, a) = \sum_{j=0}^{\infty} \frac{x^j}{j!} g(a - j)$ converges then $f(x, a) \in \mathbb{S}$. Note that $g_{0}(a) = f(0, a)$, so if $f(x, a) \in \mathbb{S}$ then $f(x, a) = \sum_{j=0}^{\infty} \frac{x^j}{j!} f(0, a)$ and for entire functions $f(x, a)$ converges for all finite $x$ and $a$.
+
 
 \bibliographystyle{plain}
 \bibliography{scv_fractional_calculus.bib}
