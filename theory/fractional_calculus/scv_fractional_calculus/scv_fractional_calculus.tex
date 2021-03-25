@@ -8,14 +8,14 @@
 \usepackage{appendix}
 \usepackage[colorlinks,citecolor=blue,urlcolor=black,bookmarks=false,hypertexnames=true]{hyperref} 
 \begin{document}
-\title{SCV Fractional Calculus}% Force line breaks with \
+\title{Unifying Variable Order Fractional Derivatives}% Force line breaks with \
 \author{Luke A. Siemens}
 \email{luke.siemens@lsiemens.com}
 \noaffiliation
 \date{\today}
 \maketitle
 
-I have found a general description of variable order fractional derivatives. I will show that this description applies to any variable order fractional derivative provided it maps analytic functions to analytic functions and that they are analytic with respect to the order of differentiation. I will make the simplifying assumptions that the functions are analytic, that the domain of the functions is either $\mathbb{C}$ or $\mathbb{C} \times \mathbb{C}$, that they are analytic in the neighborhood of the origin and that they are analytic almost everywhere (in a measure theory sense). Denote the set of all analytic functions on the domain $\mathbb{C} \times \mathbb{C}$ as $\mathcal{O}(\mathbb{C}^2)$. Let us define a function space $\mathbb{S}$ as the set,
+I have found a generalized definition of variable order fractional derivatives. I will show that this definition applies to any variable order fractional derivative provided it maps analytic functions to analytic functions and that they are analytic with respect to the order of differentiation. I will make the simplifying assumptions that the functions are analytic, that the domain of the functions is either $\mathbb{C}$ or $\mathbb{C} \times \mathbb{C}$, that they are analytic in the neighborhood of the origin and that they are analytic almost everywhere (in a measure theory sense). Denote the set of all analytic functions on the domain $\mathbb{C} \times \mathbb{C}$ as $\mathcal{O}(\mathbb{C}^2)$. Let us define a function space $\mathbb{S}$ as the set,
 \begin{equation}
 \mathbb{S} = \left\lbrace f(x, a) \in \mathcal{O}(\mathbb{C}^2) \middle| \partial_x f(x, a) = f(x, a - 1) \right\rbrace
 \label{differentiable_set}
@@ -35,7 +35,7 @@ Since the shift operator $T_{a}^{\alpha}$ is a linear operator, then the operato
 Using the definition of $J^{\alpha}$ for $\alpha=0$ acting on $f(x, a)$ results in, $J^{0}f(x, a) = T_{a}^{0}f(x, a) = f(x, a)$. So the property $\,^3P2$ is satisfied.
 
 \subsection*{$\,^3P3$ : Backwards compatibility}
-Taking taking the fractional derivative, $J^{\alpha} f(x, a)$, for $\alpha \in\ \mathbb{Z}$. In the case where $\alpha$ is a negative integer we can apply $\partial_x f(x, a) = f(x, a - 1)$ repeatedly, let $\alpha = -k$ with $k \in \mathbb{Z}^+$,
+Taking the fractional derivative, $J^{\alpha} f(x, a)$, for $\alpha \in\ \mathbb{Z}$. In the case where $\alpha$ is a negative integer we can apply $\partial_x f(x, a) = f(x, a - 1)$ repeatedly, let $\alpha = -k$ with $k \in \mathbb{Z}^+$,
 $$J^{-k} f(x, a) = T_{a}^{-k} f(x, a)=T_{a}^{-k + 1}T_{a}^{-1} f(x, a) = T_{a}^{-k + 1}f(x, a - 1) = T_{a}^{-k + 1}\partial_x f(x, a)$$
 Since $\partial_x f(x, a) \in \mathbb{S}$ we can repeat this argument, resulting in
 $$J^{-k} f(x, a) = \partial_{x}^{-k} f(x, a)$$
@@ -49,11 +49,13 @@ $$J^{\beta}J^{\alpha} f(x, a) = T{a}^{\beta}T_{a}^{\alpha} f(x, a) = T_{a}^{\bet
 So the index law is satisfied.
 
 \section*{Implications of $\,^3P1 - \,^3P4$ for $J^{\alpha}$}
-The criterion $\,^3P1 - \,^3P4$ are satisfied, but before addressing criterion $\,^3P5$ I show that any sufficiently analytic variable order fractional derivative is equivalent to the operator \eqref{fractional_derivative} acting on some subspace of the set $\mathbb{S}$. Now let $J'^{\alpha}$ be an arbitrary variable order fractional derivative that satisfies $\,^3P1 - \,^3P4$, and that there exists a set $\mathbb{S}''$ of analytic functions on which the operator $J'^{\alpha}$ satisfies $\,^3P1 - \,^3P4$ and where $\forall f(x) \in \mathbb{S}'', J'^{\alpha}f(x) \in \mathcal{O}(\mathbb{C}^2)$. The action of $J'^{\alpha}$ acting on $f(x) \in \mathbb{S}''$ can be expressed as $F(x, a) = J'^{\alpha} f(x)$. Using this let
-$$\mathbb{S}' = \left\lbrace f(x, a) \in \mathcal{O}(\mathbb{C}^2) \middle| \exists f(x) \in \mathbb{S}'', f(x, a) = J'^{\alpha} f(x) \right\rbrace$$
-Now $J'^{-1}f(x, a) = \partial_x f(x, a)$ by $\,^3P3$ and $J'^{-1} f(x, a) = J'^{-1}J'^{\alpha} f(x) = J'^{\alpha - 1} f(x) = f(x, \alpha - 1)$ by $\,^3P4$, so
-$$\forall f(x, a) \in \mathbb{S}', \partial_x f(x, a) = f(x, a - 1)$$
-Now for $f(x, a) \in \mathbb{S}'$ taking a fractional derivative $J'^{\alpha} f(x, a) = J'^{\alpha}J'^{a} f(x)$, using $\,^3P4$, $J'^{\alpha} f(x, a) = f(x, a + \alpha) = T_{a}^{\alpha} f(x, a)$. Clearly $\mathbb{S}' \subseteq \mathbb{S}$ and $\forall f(x, a) \in \mathbb{S}', J'^{\alpha} f(x, a) = J^{\alpha} f(x, a)$. So every variable order fractional derivative which is sufficiently analytic is equivalent to $J^{\alpha}$ acting on some subspace of $\mathbb{S}$. The fractional derivative defined in \eqref{fractional_derivative} when acting on functions in the space \eqref{differentiable_set} provides a general description of all sufficiently analytic variable order fractional derivatives subject to $\,^3P1 - \,^3P4$.
+The criterion $\,^3P1 - \,^3P4$ are satisfied, but before addressing criterion $\,^3P5$ I show that any sufficiently analytic variable order fractional derivative is equivalent to the operator \eqref{fractional_derivative} acting on some subspace of the set $\mathbb{S}$. Now let $J'^{\alpha}$ be an arbitrary variable order fractional derivative that satisfies $\,^3P1 - \,^3P4$, and that there exists a set $\mathbb{S}''$ of analytic functions on which the operator $J'^{\alpha}$ satisfies $\,^3P1 - \,^3P4$ and where $\forall F(x) \in \mathbb{S}'', J'^{\alpha}F(x) \in \mathcal{O}(\mathbb{C}^2)$. The action of $J'^{\alpha}$ acting on $F(x) \in \mathbb{S}''$ can be expressed as $f(x, a) = J'^{\alpha} F(x)$. Using this let
+$$\mathbb{S}' = \left\lbrace f(x, a) \in \mathcal{O}(\mathbb{C}^2) \middle| \exists F(x) \in \mathbb{S}'', f(x, a) = J'^{\alpha} F(x) \right\rbrace$$
+Given $f(x, a) \in \mathbb{S}'$ then $J'^{-1}f(x, a) = \partial_x f(x, a)$ by $\,^3P3$ and $J'^{-1} f(x, a) = J'^{-1}J'^{\alpha} F(x) = J'^{\alpha - 1} F(x) = f(x, \alpha - 1)$ by $\,^3P4$, so
+$$\forall f(x, a) \in \mathbb{S}', \partial_x f(x, a) = f(x, a - 1) \therefore \mathbb{S}' \subseteq \mathbb{S}$$
+Given $f(x, a) \in \mathbb{S}'$ then taking a fractional derivative and using $\,^3P4$ results in $J'^{\alpha} f(x, a) = J'^{\alpha}J'^{a} F(x) = J'^{\alpha + a} F(x) = f(x, a + \alpha) = T_{a}^{\alpha} f(x, a)$, so
+$$J'^{\alpha} f(x,a) = T_{a}^{\alpha} f(x, a) = J^{\alpha} f(x, a)$$
+We have shown that $\mathbb{S}' \subseteq \mathbb{S}$ and that $\forall f(x, a) \in \mathbb{S}', J'^{\alpha} f(x, a) = J^{\alpha} f(x, a)$. So every variable order fractional derivative which is sufficiently analytic is equivalent to $J^{\alpha}$ acting on some subspace of $\mathbb{S}$. The fractional derivative defined in \eqref{fractional_derivative} when acting on functions in the space \eqref{differentiable_set} provides a general description of all sufficiently analytic variable order fractional derivatives subject to $\,^3P1 - \,^3P4$.
 
 Up until this point I have used the equation $\partial_x f(x, a) = f(x, a - 1)$ to determine if a function is in the set $\mathbb{S}$ but have not considered whether or not this equation holds on the entire domain of $f(x, a)$ or only on some subset. Given $f(x, a) \in \mathcal{O}(\mathbb{C}^2)$ we can define $g(x, a) = \partial_x f(x, a) - f(x, a - 1)$. Note that if $f(x, a) \in \mathcal{O}(\mathbb{C}^2)$ then $g(x, a) \in \mathcal{O}(\mathbb{C}^2)$ and that at every point in the domain $\partial_x f(x, a) = f(x, a - 1) \iff g(x, a) = 0$. Since $g(x, a)$ is a complex analytic function it can be analytically continued and its continuation is either zero everywhere, or it is zero almost nowhere on the domain of the analytic continuation. Therefore $\partial_x f(x, a) = f(x, a - 1)$ must either be satisfied on the entire domain of $f(x, a)$, or satisfied almost nowhere since $f(x, a)$ is complex analytic.
 
@@ -87,7 +89,7 @@ We can rearrange the series to the form $f(x, a) = \sum_{j=0}^{\infty} \frac{x^j
 $$\partial_x f(x, a) = \sum_{j=0}^{\infty} \sum_{k=0}^{\infty} C_{j + 1, k} \frac{x^j}{j!} \frac{a^k}{k!} = \sum_{j=0}^{\infty} \sum_{k=0}^{\infty} C_{j, k} \frac{x^j}{j!} \frac{(a - 1)^k}{k!}$$
 Taking the $n$th partial derivative of $x$ on both sides and letting $x=0$ yields,
 $$\sum_{k=0}^{\infty} C_{n + 1, k} \frac{a^k}{k!} = \sum_{k=0}^{\infty} C_{n, k} \frac{(a -1)^k}{k!}$$
-After substitutin in the definition of $g_n(a)$ we get,
+Using the definition of $g_n(a)$ results in,
 $$g_{n+1}(a) = g_{n}(a - 1)$$
 Applying this equation repeatedly yields the equation,
 $$g_{n}(a) = g_{0}(a - n)$$
