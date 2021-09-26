@@ -5,20 +5,45 @@ tags: [Math, Calculus, Fractional-Calculus]
 math: true
 ---
 
-intro / problem
-solution preserve data
-use (function, constants of integration stack)
-shifting list representation
-relationship to normal integral
-and solutions to linear PDEs (recursive solutions with negative indecies)
+intro
+Fractional calcolus did't know how to fix problems, so ty simplified slightly tangential problem in calculus
+invertibility of the derivative - symbolic D S f /= S D f
+another ay  analytic / taylor - symbolic derivative a_n -> a_{n - 1}
+example - Code f as symbolic andd taylor def D def S. show and plot D S f and S D f for a particular f
+note only iff a in S(f', a) is a == f(0) then S D f = D S f
 
-quick audio transcript
-so lets look at the derivative and its non invertible stating with the fundamental theorem of calculus which relates definite integrals and anti-differentiation we ca and comparing that to taking the derivative of an integral we can see that the derivative is not invertible because is is not a one to one map between functions since two functions differing by a constant have the same derivative so it is not possible to invert that process. When considering analytic functions they can be uniquely defined by their Taylor series, the information being lost is the first term of the Taylor series when differentiation. so what if we could change the derivative so the information was not discarded but kept in the function.
+stack functions
+so what if the derivativ edid not lose infromation then it would be possible to inverte the operation in principle
+why stacks (infine derivative, operer of operations, ...)
+new calculus operations - symbolic D, S
+information is moved Taylor <--> Stack so it is invertible - code D S f == S D f
+invertable operator so it defines an abelian group under repeated composition
 
-so using this new derivative when differentiation a function is should store the information that is normally lost with the function be cause we want to compute high order derivative is should be able to store multiple pieces of information an in principle an infinite amount if the function is analytic. since to properly invert differentiation the information that was stored with the last differentiation should be used with the first integration so it should be access in a last in first out manner, like a stack from computer science. so consider a new object that consists of a function and a list of numbers treated like a stack. calling this object a stack function the derivative of a stack function is a stack function consisting of the derivative of the function part plus a new stack that is the value of the function at p on top of the old stack, (f'(x), [f(p), b_1, b_2, ...]) the inverse operation is then (\int_p^x f(t)dt + b_1, [b_2, b_3, ...]) lets call the the antiderivative. note that this derivative is left and right inheritable and so given repeated application of this operator forms an abelian group on stack functions.
+analytic functions
+limiting to analytic functions, representation functions by taylor serist
+apply to stack functions consider derivativs- symbolic ([a, a, a, ...], [b, b, b, ...]) -> ([a, a, ...], [a, b, b, b, ...])
+combining the two list to one with positive and negative indices then functions can be represented by combining the lists
+calculus operators on this representation shif the list left or right - symblic define Delta, then use that to define D, S
 
-if we take on of these stack functions given it is analytic it can be represented by a Taylor function expanded around some point p in its domain. and since it uniquely represents the function we can work with the sequence of terms in the Taylor series directly and it will uniquely define the function. so an equivalent representation of a stack function is a list of numbers defining the Taylor series and then a list of numbers representing the stack, in principle both are infinity long lists. notice that taking the derivative of this representation causes the first element of the Taylor series to be popped from the Taylor series and pushed on to the stack, and conversely when integrating the first element is popped off of the stack and added to the from of the terms of the Taylor series list, this can be represented as a single sequence of numbers where the terms of the Taylor series index by positive integers including zero, and the stack is index by negative integers excluding zero, then differentiation and integration simply corresponded to shifting this list one element to the forward or backwards. so this defines a linear inheritable calculus
+traditional definition of derivative
+we have an operator we call the derivative but how does it compare to the ordinary limit definition of a derivative.
+compute shifted function interms of taylor series, allways posible for small shifts of analytic functions - symbolic shift operation
+apply the ordinary limit definition of derivatie to stack functions using shift operator - symbolic
+notice that the limit definiiton of derivatives applied to stack functions reproduces our original definition of the derivative
 
-So we have constructed these stack functions where differentiation and integration consists of shifting the list forward and backward. but how does this relate to the ordinary derivative and integral. lets define two functions the first $\pi()$ is a projection of the list to one where all values with negative indecies are set to zero and the second $\psi()$$ which takes a stack function and constructs the Taylor polynomial building an analytic function. then the ordinary derivative is just the the PSI operator on the derivative of a stack function is equal to the derivative of PSI of a stack function, so the stack function derivative can model ordinary differentiation. Also the PSI of the integral of PI of a stack function is equal to the integral from p to x of PSI of a stack function and then by adding arbitrary constants as stack functions (0, [a, 0, 0, ...]) you can reproduce definite integration with any constant bounds. So stack functions can model any basic derivative or definite integral by discarding the stored extra information and adding constants of integration if necessary.
+Reproducing definite integrals
+how to stack functions relate to calculus
+define the conversion and projection functions - symbolic psi=:sequience->taylor polynomial pi=:projection setting negative indecies to zero
+construc derivative and indegrals - symbolic def dx int interms of D and I
+show equivelence to stack functions can be used to reproduce any definite intagral of that form
 
-Stack functions and how this procedure of producing stack functions in terms of Taylor series  might provide insight into fractional calculus. that being said are there any situations where these stack functions arrive naturally rather than being constructed rather arbitrary. Consider Linear Homogeneous Ordinary Differential Equations with Constant Coefficients any ODEs of this form can be solved by considering the Taylor series of the solution and constructing a recursive equation for the terms which when given the initial conditions can be solved for all of the terms of the ODE which defines an analytic function that solves the ODE. In a modified version of this problem what if instead of normal initial conditions are given what if a sufficient sequence of higher order derivative are given it is possible that these conditions also are sufficient to generate all of the higher order terms of the Taylor series but the recursive relation would need to be rearranged to solve for lower order terms in order to find all of the terms of the Taylor series, solving the ODE. the solution is the only function which satisfies the initial conditions and for which it and all of its derivative satisfy the recursive relation. generalizing that idea we an antiderivative of the solution which satisfies the recursive relation, and in this case it is garnisheed to be unique and the constant of integration of this antiderivative is exactly given by the rearranged recursive relation. Using this we can compute arbitrary high order derivative for which it and all of its derivatives satisfies the recursive relation and such that the solution satisfies the initial conditions and this solution is unique. Now notice that this solution is exactly the solution you would find if you try and solve the ODE for stack functions and then compute an arbitrary integral or derivative of the solution you find. so in some sense ODEs naturally define stack functions and they could have been found terms of the "natural" antiderivative of the solutions of ODE problems.
+ODEs
+is the extra data in stack functions always arbitrary is there anothery way to get to stack functinons
+consdider homogenius linear ordinary differential equations with constant coeffishients
+IVP solved by finding recursive solutions - code example
+now igven a IVP f^(3)(0) = a, f^(4)(0) = b can also be solved by reversing the recursive equation - code example
+this gives a solutions f(x) that solves IV and where Lf^(n) = 0
+us reverse recursion to compute a^{-1} then y = int_0^x f(t)dt + a^{-1} this is the only antiderivative of f which solves Ly=0
+taking a_n with ndegative indecies seariosly it can be thought of as finding the unique antiderivatives which satisfy Lf^(n)=0 for any n
+this generalized sequence is exactly what you would find when solving Lf=0 where f is a stack function - symbolic solution
+so HLODEs with constant coefficnents naruraly define stack functions as their solutions.
