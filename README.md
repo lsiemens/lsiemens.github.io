@@ -9,6 +9,7 @@ back to you as soon as I can.
 
 Setup
 =====
+
 Instructions for setting up jekyll from "https://jekyllrb.com/docs/installation/ubuntu/".
 Install ruby with the command `sudo apt install ruby-full build-essential zlib1g-dev`.
 Then append the following lines to your `~/.bashrc` file.

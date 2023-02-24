@@ -7,7 +7,7 @@ math: true
 keep_html: true
 ---
 
-This post presents a derivation of the Euler equations of fluid mechanics from particle motion and is based on a paper I wrote, available [Here](/papers/fluid_mechanics.pdf). This paper describes a derivation of fluid mechanics from first principles that I developed while taking my first class on fluid mechanics. After producing this derivation, I searched the literature and found that this derivation is largely equivalent to Chapman-Enskog theory. In this case I derive the Euler equations, which can be done by taking the Chapman-Enskog expansion to zeroth order. In this post I will first give a quick overview of the derivation of fluid mechanics that I was taught which uses conservation equation and results from statistical mechanics and thermodynamics. Then I will present the derivation of the Euler equations from particle motion.
+This post presents a derivation of the Euler equations of fluid mechanics from particle motion and is based on a paper I wrote, available [Here](/papers/fluid_mechanics/fluid_mechanics.pdf). This paper describes a derivation of fluid mechanics from first principles that I developed while taking my first class on fluid mechanics. After producing this derivation, I searched the literature and found that this derivation is largely equivalent to Chapman-Enskog theory. In this case I derive the Euler equations, which can be done by taking the Chapman-Enskog expansion to zeroth order. In this post I will first give a quick overview of the derivation of fluid mechanics that I was taught which uses conservation equation and results from statistical mechanics and thermodynamics. Then I will present the derivation of the Euler equations from particle motion.
 
 # Phenomenological derivation #
 

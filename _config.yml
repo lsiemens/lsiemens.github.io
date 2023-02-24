@@ -35,9 +35,10 @@ plugins:
 # theme settings for theme minima
 show_excerpts: true
 
-#header_pages:
-#- about.md
-#- qbox.md
+# pages to include the in site header
+header_pages:
+  - about.md
+  - QBox.md
 
 # Exclude from processing.
 # The following items will not be processed, by default.
