@@ -18,6 +18,8 @@ export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 ```
 
-Then use the make file to install required gems with the command `make gem_update`.
-The site can be tested locally with the commands `make all` or `make draft`.
+Now that the environment is setup, install jekyll and bundler with
+`gem install jekyll bundler`. Then use the make file to install required
+gems with the command `make gem_update`. The site can be tested locally
+with the commands `make all` or `make draft`.
 
