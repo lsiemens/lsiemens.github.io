@@ -22,9 +22,13 @@ layout: default
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <p class="post-meta">{{ post.date | date: date_format }}
         {%- include tags.html -%}</p>
-        
+
         {%- if site.show_excerpts -%}
-          {{ post.excerpt | strip_html | truncatewords: 50}}
+            {%- if post.keep_html -%}
+                {{ post.excerpt | truncatewords: 50}}
+            {%- else -%}
+                {{ post.excerpt | strip_html | truncatewords: 50}}
+            {%- endif -%}
         {%- endif -%}
       </li>
       {%- endfor -%}

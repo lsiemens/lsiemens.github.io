@@ -4,7 +4,12 @@ title: "Fluid Mechanics from Particle Motion"
 date: 2016-05-28
 tags: [Physics, Classical-mechanics, Continuum-mechanics, Fluid-mechanics]
 math: true
+keep_html: true
 ---
+
+This post presents a derivation of the Euler equations of fluid mechanics from particle motion and is based on a paper I wrote, available [Here](/papers/fluid_mechanics.pdf). This paper describes a derivation of fluid mechanics from first principles that I developed while taking my first class on fluid mechanics. After producing this derivation, I searched the literature and found that this derivation is largely equivalent to Chapman-Enskog theory. In this case I derive the Euler equations, which can be done by taking the Chapman-Enskog expansion to zeroth order. In this post I will first give a quick overview of the derivation of fluid mechanics that I was taught which uses conservation equation and results from statistical mechanics and thermodynamics. Then I will present the derivation of the Euler equations from particle motion.
+
+# Phenomenological derivation #
 
 In January of 2016 I started taking my first class on fluid mechanics. In the first or second week of that class we started going over the derivation of the partial differential equations of fluid mechanics, but before covering the derivation we covered the concept of a fluid element. In essence for any given fluid the fluid element defines the smallest size scale for which the the equations of fluid mechanics still remain valid. A region of fluid satisfies the definition of a fluid element if it satisfies the following constraints. That the interactions of the particles within the element are sufficiently strong that the mean free path is small relative to the element's size and that the characteristic length scale of variations in the material properties is small relative to the element's size. That is the equations of fluid mechanics only apply at a given length scale if the statistical properties of the fluid are both well defined and smooth at that length scale.
 
