@@ -15,7 +15,7 @@
 \date{\today}
 \maketitle
 
-Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that composition of operator with itself forms a semigroup not an abelian group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an abelian group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differntiation and integration and also have the desired algebraic properties. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.
+Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that the composition of these operators with themselves form a semigroup not an abelian group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an abelian group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differntiation and integration and also have the desired algebraic properties. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.
 
 Let the proposed fractional calculus operator $J^\alpha$ have the following properties: for $\alpha \in \mathbb{Z}$ it can reproduce repeated integration and differentiation, it is a linear operator, that $J^\alpha$ forms an abelian group when acting on some suitable subset of differentiable functions and it is analytic in the parameter $\alpha$. First let us identify a suitable operator to extend into a fractional calculus with nice algebra, and function space for which this operator is well behaved. Let the operator $J^k$ for $k \in \mathbb{Z}$ be,
 \begin{equation}
@@ -27,7 +27,7 @@ Using this operator a space of functions where the operator is well behaved is a
 \mathbb{S} := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall n \in \mathbb{Z}^+)(\exists a_n \in \mathbb{M}, b_n \in \mathbb{R}), b_n > 0, \frac{d^n}{dx^n}f(x) \in \mathbb{B}(a_n, b_n) \right\rbrace
 \label{exponentialy_bounded}
 \end{equation}
-Where the sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
+where the sets $\mathbb{M}$ and $\mathbb{B}$ are defined as follows,
 \[\mathbb{M} := \left\lbrace a \in C(\mathbb{R}) \middle| (\forall x, y \in \mathbb{R}), x > y, a(x) > a(y) \geq 0 \right\rbrace\]
 \[\mathbb{B}(a, b) := \left\lbrace f \in C^\omega(\mathbb{C}) \middle| (\forall x, x_0 \in \mathbb{R}), x \leq x_0, |f(x)| \leq a(x_0)e^{bx} \right\rbrace\]
 Some properties of this operator and the space on which it acts is investigated in the appendix. Note that set $\mathbb{S}$ is a subset of $C^{\omega}(\mathbb{C})$, it is a vector space and if $f(x) \in \mathbb{S}$ then $J^k f(x) \in \mathbb{S}$. Also if $f(x) \in \mathbb{S}$ then $J^k J^m f(x) = J^{k + m} f(x)$, where $k, m \in \mathbb{Z}$.

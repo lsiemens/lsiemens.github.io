@@ -26,7 +26,7 @@ J^{\alpha} f(x, a) = T_{a}^{\alpha} f(x, a) = f(x, a + \alpha)
 \label{fractional_derivative}
 \end{equation}
 where $T_{a}^{\alpha}$ is an operator shifting the variable $a$ by the amount $\alpha$. Note that if $f(x, a) \in \mathbb{S}$ then $J^{\alpha} f(x, a) \in \mathbb{S}$. I will now show that this operator, when acting on functions in the function space $\mathbb{S}$, satisfies the necessary properties to be considered a variable order fractional derivative, and it is equivalent to any sufficiently analytic variable order fractional derivative on some subspace of $\mathbb{S}$.
-I will use the criterion, $\,^3P$, given in your paper, \textit{What is a fractional derivative} \cite{ORTIGUEIRA20154}, to determine if the operator \eqref{fractional_derivative} is a fractional derivative when acting on functions in the set \eqref{differentiable_set}. In the following arguments let us assume that $f(x, a), g(x, a) \in \mathbb{S}$ and $C_1, C_2, \alpha, \beta \in \mathbb{C}$.
+I will use the criterion, $\,^3P$, given in the paper, \textit{What is a fractional derivative} \cite{ORTIGUEIRA20154}, to determine if the operator \eqref{fractional_derivative} is a fractional derivative when acting on functions in the set \eqref{differentiable_set}. In the following arguments let us assume that $f(x, a), g(x, a) \in \mathbb{S}$ and $C_1, C_2, \alpha, \beta \in \mathbb{C}$.
 
 \subsection*{$\,^3P1$ : Linearity}
 Since the shift operator $T_{a}^{\alpha}$ is a linear operator, then the operator $J^{\alpha}$ is also a linear operator.
@@ -49,7 +49,7 @@ $$J^{\beta}J^{\alpha} f(x, a) = T{a}^{\beta}T_{a}^{\alpha} f(x, a) = T_{a}^{\bet
 So the index law is satisfied.
 
 \section*{Implications of $\,^3P1 - \,^3P4$ for $J^{\alpha}$}
-The criterion $\,^3P1 - \,^3P4$ are satisfied, but before addressing criterion $\,^3P5$ I show that any sufficiently analytic variable order fractional derivative is equivalent to the operator \eqref{fractional_derivative} acting on some subspace of the set $\mathbb{S}$. Note I will use the fractional integral derived from the variable order fractional derivative. Now let $J'^{\alpha}$ be an arbitrary variable order fractional derivative that satisfies $\,^3P1 - \,^3P4$, and that there exists a set $\mathbb{S}''$ of analytic functions on which the operator $J'^{\alpha}$ satisfies $\,^3P1 - \,^3P4$ and where $\forall F(x) \in \mathbb{S}'', J'^{\alpha}F(x) \in \mathcal{O}(\mathbb{C}^2)$. The action of $J'^{\alpha}$ acting on $F(x) \in \mathbb{S}''$ can be expressed as $f(x, a) = J'^{\alpha} F(x)$. Using this let
+The criterion $\,^3P1 - \,^3P4$ are satisfied, but before addressing criterion $\,^3P5$ I show that any sufficiently analytic variable order fractional derivative is equivalent to the operator \eqref{fractional_derivative} acting on some subspace of the set $\mathbb{S}$. Note, I will use the fractional integral derived from the variable order fractional derivative. Now let $J'^{\alpha}$ be an arbitrary variable order fractional derivative that satisfies $\,^3P1 - \,^3P4$, and that there exists a set $\mathbb{S}''$ of analytic functions on which the operator $J'^{\alpha}$ satisfies $\,^3P1 - \,^3P4$ and where $\forall F(x) \in \mathbb{S}'', J'^{\alpha}F(x) \in \mathcal{O}(\mathbb{C}^2)$. The action of $J'^{\alpha}$ acting on $F(x) \in \mathbb{S}''$ can be expressed as $f(x, a) = J'^{\alpha} F(x)$. Using this let
 $$\mathbb{S}' = \left\lbrace f(x, a) \in \mathcal{O}(\mathbb{C}^2) \middle| \exists F(x) \in \mathbb{S}'', f(x, a) = J'^{\alpha} F(x) \right\rbrace$$
 Given $f(x, a) \in \mathbb{S}'$ then $J'^{-1}f(x, a) = \partial_x f(x, a)$ by $\,^3P3$ and $J'^{-1} f(x, a) = J'^{-1}J'^{\alpha} F(x) = J'^{\alpha - 1} F(x) = f(x, \alpha - 1)$ by $\,^3P4$, so
 $$\forall f(x, a) \in \mathbb{S}', \partial_x f(x, a) = f(x, a - 1) \therefore \mathbb{S}' \subseteq \mathbb{S}$$
@@ -102,6 +102,6 @@ f(x, a) = \sum_{j=0}^{\infty} \frac{x^j}{j!} f(0, a - j)
 \end{equation}
 and if $f(x, a)$ is an entire function, then the series solution converges for all finite $x$ and $a$. Currently I am looking into using this idea to construct an alternative representation of the fractional calculus I have described in this document, as it looks like it might be a more natural description.
 
-\bibliographystyle{plain}
+\bibliographystyle{apalike}
 \bibliography{scv_fractional_calculus.bib}
 \end{document}
