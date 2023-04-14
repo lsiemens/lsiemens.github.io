@@ -15,7 +15,7 @@
 \date{\today}
 \maketitle
 
-Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that the composition of these operators with themselves form a semigroup not an abelian group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an abelian group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differntiation and integration and also have the desired algebraic properties. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.
+Fractional calculus has two aspects that I find deeply unsatisfying: the multiple incompatible definitions and that the composition of these operators with themselves form a semigroup not an abelian group. In this paper I demonstrate a series of conditions under which a version of fractional calculus can be uniquely defined and forms an abelian group. First I will explicitly define which operator will be extended to a fractional version. It must reproduce differentiation and integration and also have the desired algebraic properties. Then I will use Ramanujan's Master Theorem (RMT) to define the extension of the operator, and investigate its properties.
 
 Let the proposed fractional calculus operator $J^\alpha$ have the following properties: for $\alpha \in \mathbb{Z}$ it can reproduce repeated integration and differentiation, it is a linear operator, that $J^\alpha$ forms an abelian group when acting on some suitable subset of differentiable functions and it is analytic in the parameter $\alpha$. First let us identify a suitable operator to extend into a fractional calculus with nice algebra, and function space for which this operator is well behaved. Let the operator $J^k$ for $k \in \mathbb{Z}$ be,
 \begin{equation}
@@ -138,7 +138,7 @@ So the set $\mathbb{S}$ is a function space. Now investigating the action of der
 \[\left| \frac{d^n}{dx^n} \left(\frac{d^m}{dx^m} f(x)\right) \right| \leq \left| \frac{d^{n+m}}{dx^{n+m}} f(x) \right| \leq a_{n+m}(x_0)e^{b_{n+m} x}\]
 In the case of integration we will check for closure in two steps, first if $n = 0$
 \[\left| \frac{d^0}{dx^0} \left( \int_{-\infty}^x f(t)dt \right) \right| \leq \int_{-\infty}^x \left| f(t) \right|dt \leq \int_{-\infty}^x a_0(x_0)e^{b_0 t}dt = a_0(x_0)\frac{1}{b_0}e^{b_0 x}\]
-and then in the case of $n \geq 1$, using Leibniz’s integral rule,
+and then in the case of $n \geq 1$, using Leibniz's integral rule,
 \[\left| \frac{d^n}{dx^n} \left( \int_{-\infty}^x f(t)dt \right) \right| \leq \left| \frac{d^{n-1}}{dx^{n-1}} f(x) \right| \leq a_{n-1}(x_0)e^{b_{n-1} x}\]
 Using the result above repeatedly to extend the result to repeated integration. In the case of $m>n$, 
 \[\left| \frac{d^n}{dx^n} \left(\frac{1}{(m-1)!} \int_{-\infty}^x (x - t)^{m-1} f(t)dt\right) \right| \leq a_0(x_0)\frac{1}{{b_0}^{m-n}}e^{b_0 x}\]
