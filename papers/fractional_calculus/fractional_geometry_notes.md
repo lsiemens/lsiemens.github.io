@@ -92,3 +92,22 @@ $$\left[A,\ A_0{-1}\right]\frac{x^n}{n!} = \begin{cases}0 & \text{if } n > 0\\ \
 So evaluating at the "origin" is $E_0 = \left[A,\ A_0^{-1}\right]$ and the location of the origin is determined by the selection of $A_0^{-1}$.
 
 So far I have referred to "points" and the "origin" with out defining them. I argue that a point is the operator that evaluates functions at the "point", so the point labelled $t$ is $E_t = E_0 e^{tA}$. Then given a coordinate function $f$ the coordinate representation of the point is the evaluation operator associated with that point applied to the coordinate function.
+
+## Fractional Calculus and Fractional Dimension
+While this project started as trying to incorporate fractional calculus into differential geometry it has expanded to include a much broader class of linear operators, however the operator $A$ can always be taken to be a fractional derivative. On the background Euclidean space use $\chi$ as the coordinate. Let $A = K^\gamma$ where $K^\gamma f(\chi) = \frac{1}{\Gamma(-\gamma)}\int_0^\chi f(t)(\chi - t)^{-\gamma - 1}dt$ and $A_0^{-1} = K^{-\gamma}$. Define the function $f_\beta(\chi, \alpha) = \frac{\chi^{\beta - \alpha}}{\Gamma(1 + \beta - \alpha)}$ and note that using the beta function $K^\gamma f_\beta(\chi, \alpha) = f_\beta(\chi, \alpha + \gamma)$. Taking the unit constant function to be $\mathbb{I} = f_{\gamma - 1}(\chi, 0) = \frac{\chi^{\gamma - 1}}{\Gamma(\gamma)}$, then the monomial terms are $\frac{x^n}{n!} = (A_0^{-1})^n\mathbb{I} = f_{\gamma - 1}(\chi, -n\gamma) = \frac{\chi^{\gamma(n + 1) - 1}}{\Gamma(\gamma(n + 1))}$, with $A\mathbb{I} = f_{\gamma - 1}(\chi, \gamma) = \frac{\chi^{-1}}{\Gamma(0)} = 0$.
+
+Now let us consider a line segment between the points $E_0$ and $E_1$. While I am not at this point yes, let us assume that a metric and the other necessary structures can be defined and that an Euclidean like metric exists where the coordinate function is $x(\chi) = \frac{\chi^{2\gamma - 1}}{\Gamma(2\gamma)}$ and the distance between points $p$, $q$ is $Len(p, q) = (E_q - E_p)x = (q - p)\mathbb{I}$. The length of the segment in question is $Len(0, 1) = \mathbb{I}$. Splitting this into $n$ smaller line segments of equal size. The small segments have points at $\frac{k}{n}$ with $k \in [0, n]$. The sum of the lengths of the small segments is $\sum_{k=1}^n(E_{\frac{k}{n}} - E_{\frac{k - 1}{n}})x = \sum_{k=1}^n(\frac{k}{n} - \frac{k - 1}{n})\mathbb{I} = \mathbb{I}$, so the length of the interval is not changed when splitting into multiple small intervals.
+
+Now let us consider transformations of the underlying space. Let $\chi \to s\chi$, then applying this scaling of space to $\frac{x^n}{n!}$ gives
+
+$$\frac{x^n}{n!}(s\chi) = \frac{(s\chi)^{\gamma(n + 1) - 1}}{\Gamma(\gamma(n + 1))} = s^{\gamma(n + 1) - 1}\frac{x^n}{n!}(\chi)$$
+
+Applying this to a function $f(x(\chi)) = \sum_{k=0}^\infty a_k \frac{x^k}{k!}(\chi)$ then gives
+
+$$f(x(s\chi)) = \sum_{k=0}^\infty a_k s^{\gamma(k + 1) - 1} \frac{x^k}{k!}(\chi) = s^{\gamma - 1}\sum_{k=0}^\infty a_k s^{\gamma k} \frac{x^k}{k!}(\chi) = s^{\gamma - 1}f(s^\gamma x(\chi))$$
+
+Aside from the constant factor $s^{\gamma - 1}$ this looks like scaling the underlying space $\chi$ by $s$ is equivalent to scaling the generated space $x$ by $s^\gamma$ where $\gamma$ is the exponent of the fractional derivative. Note if $\gamma = 1$ (i.e. the generated space is not fractional) then the constant factor is $1$ and this just corresponds to scaling. So let us define scaling in a fractional space as the map $g(\chi) \to s^{1 - \gamma}g(s\chi)$ which is just ordinary scaling if the space is not fractional. Using this definition of scaling
+
+$$f(x(\chi)) \to s^{1 - \gamma}f(x(s\chi)) = f(s^\gamma x(\chi))$$
+
+So the length of an interval from $0$ to $p$ transforms under scaling the underlying space as $Len(0, p) \to s^{1 - \gamma}(E_p - E_0)x(s\chi) = s^{\gamma}Len(0, p)$ implying that the "dimension" is $d = \gamma$. In particular the topological dimension is $d = 1$ and the Hausdorff dimension is $d = \gamma$ with respect to the ambient space.
