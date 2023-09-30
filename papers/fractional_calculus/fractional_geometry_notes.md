@@ -111,3 +111,10 @@ Aside from the constant factor $s^{\gamma - 1}$ this looks like scaling the unde
 $$f(x(\chi)) \to s^{1 - \gamma}f(x(s\chi)) = f(s^\gamma x(\chi))$$
 
 So the length of an interval from $0$ to $p$ transforms under scaling the underlying space as $Len(0, p) \to s^{1 - \gamma}(E_p - E_0)x(s\chi) = s^{\gamma}Len(0, p)$ implying that the "dimension" is $d = \gamma$. In particular the topological dimension is $d = 1$ and the Hausdorff dimension is $d = \gamma$ with respect to the ambient space.
+
+## Vectors and Dual Vectors
+Although it is somewhat trivial in $1D$ a vector field can be constructed as $f(x) \times A$, for some function $f(x)$, Then a vector at a point $p$ is $E_p(f(x) \times A) = \vec{v}$. Acting the vector $\vec{v}$ on a function $g(x)$ gives $\vec{v}(g(x)) = E_p(f(x)) \times E_p(A g(x))$, that is $\vec{v} = f(p)E_p A$. For a vector space $V$, a dual vector $\vec{w}$ is an element of the space $V^*$ consisting of the linear maps of the form $\vec{w}:V \to \mathbb{R}$. There is a canonical map from functions to dual vectors such that for a function $g$ and a vector field $\vec{X} = f(x) \times A$ then the dual vector $dg$ is a dual vector field where
+
+$$dg(\vec{X}) = \vec{X}(g(x)) = f(x) \times A g(x)$$
+
+Applying any point $E_p$ to $dg$ gives a linear map from vectors at $p$ to $\mathbb{R}$ and so $dg$ is a dual vector field.
