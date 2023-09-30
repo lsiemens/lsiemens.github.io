@@ -6,8 +6,10 @@ math: true
 
 The following is a summary of my recent notes on a project to define a version of differential geometry based on fractional calculus. Note that the project has extended beyond that original goal and is no longer directly related to fractional calculus. However fractional derivatives still play a roll in special cases and provide a connection to fractals and objects with fractional dimension.
 
+
 # Motivation
 In the generalize fractional calculus that I have been developing, see [here](/scv_fractional_calculus.pdf), the fundamental equations is $\partial_x f(x, a) = f(x, a + 1)$ ...
+
 
 # Preliminary Work
 Starting in May of 2021 I spent a couple of months thinking through some conceptual problems around fractals under the assumption that geometry using fractional calculus would produce fractals of that they might at least be useful analogues. I cam to the conclusion that it should be possible to consider dynamics in a fractal space. For appropriate fractals they would appear from within the space to be ordinary euclidean space. Also it became apparent that the dimension in the sense of the Hausdorff dimension should be thought of in terms of the topological dimension, which is always an integer and accounts for the number of coordinates ..., and the "scaling" dimension, which contains the fractional part and relates to how the system scales.
@@ -26,13 +28,14 @@ $$\mathbb{D}^q f(x) = \lim_{h \to 0} \frac{\Delta_h^q f(x)}{\|h\|}$$
 
 If this difference operator and norm where natural definitions in some space, then the derivative would be the fractional derivative $\mathbb{D}^q$. So if a space could be constructed where the notion of a finite difference and the lengths of intervals is modified, then the limit definition of the derivative would be modified. Finally if it is possible to construct differential geometry in that space, then it should in some sense use this modified derivative.
 
+
 # Current work
 I will briefly mention the main ideas I am building from and then cover the notes for the case of one topological dimension.
 
 As noted with the Grünwald-Letnikov fractional derivative if the what it means to be a finite difference is modified, then could lead to a change in the derivative. However I started to think along slightly different lines. For analytic functions a shift operator can be defined in terms of the exponential of the derivative. What if instead we expatiated a fractional derivative but still tried to interpret it as some kind of shift operator acting on a function space. Everything that follows comes from and expands on this idea.
 
-## Setup and Shift Operators
 
+## Setup and Shift Operators
 For an infinite dimensional linear operator $A$ with 1D null space acting on a suitable function space, then define the exponential to be,
 
 $$e^{tA} = I + tA + \frac{t^2}{2!}A^2 + \frac{t^3}{3!}A^3 + \cdots$$
@@ -58,3 +61,34 @@ $$f \times g = \sum_{k=0}^\infty \frac{x^k}{k!} \left( \sum_{j = 0}^k \binom{k}{
 Note $\mathbb{I} = \frac{x^0}{0!}$ is the multiplicative identity.$x(\mathcal{x})$
 
 ## Points and Function Evaluation
+For real functions the evaluation of a function at a point is a linear map from the space of functions to the real numbers. Given this operator, evaluation at other points can be achieved by composing this operator with the shift operator. So given evaluation at the "origin" $E_0$, evaluation at other points is $E_0 e^{tA}$. I would expect that evaluating the terms $\frac{x^n}{n!}$ at the "origin" give the results
+
+$$E_0(\frac{x^n}{n!}) = \begin{cases}0 & \text{if } n > 0\\ 1 & \text{if } n = 0\end{cases}$$
+
+To properly define evaluation I constructed the Taylor series of a Gaussian with unit area, taking this to be the Dirac delta "function" as the width goes to zero. Using this function, shifts and multiplication, an arbitrary function can be evaluated at the origin. In the end the definition I used was
+
+$$E_0(f) = \lim_{\sigma \to 0^+}\left[e^{A/\sqrt{\sigma}} - e^{-A/\sqrt{\sigma}} \right]A_0^{-1}(G_\sigma \times f)$$
+
+where $G_\sigma$ is the function
+
+$$G_\sigma = \frac{1}{\sqrt{\sigma \pi}} \sum_{k=0}^\infty \frac{(-1/\sigma)^k(2k)!}{k!}\frac{x^{2k}}{(2k)!}$$
+
+After computing the result of $E_0(\frac{x^n}{n!})$ explicitly using using this definition the result was
+
+$$E_0(\frac{x^n}{n!}) = \begin{cases}0 & \text{if } n > 0\\ \mathbb{I} & \text{if } n = 0\end{cases}$$
+
+The only difference from my initial guess is that result is a multiple of the constant function rather than simply a real number. While it is straight forward to get a real number result it is convenient if function evaluation can be treated in the same way as the other linear operators. Now using this definition to evaluate the function $f = \sum a_k \frac{x^k}{k!}$ the result is
+
+$$E_0(f) = \sum a_k E_0\left(\frac{x^k}{k!}\right) = a_0\mathbb{I}$$
+
+Using the result that $E_0(e^{tA}\frac{x^n}{n!}) = \frac{t^n}{n!}$, it is possible to evaluate functions at other points and the result is
+
+$$E_0(e^{tA}f) = \sum a_k E_0\left( e^{tA} \frac{x^k}{k!} \right) = \sum a_k \frac{t^k}{k!} \mathbb{I} = f(t)\mathbb{I}$$
+
+Later I realized that there was a simpler but equivalent definition of $E_0$. Recall that $A\mathbb{I} = 0$ and $A_0^{-1}\frac{x^n}{n!} = \frac{x^{n + 1}}{(n + 1)!}$ so $AA_0^{-1}\frac{x^n}{n!} = A\frac{x^{n + 1}}{(n + 1)!} = \frac{x^n}{n!}$ but if $n > 0$ then $A_0^{-1}A\frac{x^n}{n!} = A_0^{-1}\frac{x^{n - 1}}{(n - 1)!} = \frac{x^n}{n!}$ otherwise if $n=0$ then $A_0^{-1}A\mathbb{I} = A_0^{-1}0 = 0$. So the commutator of $A$ and $A_0^{-1}$ applied to the basis functions is
+
+$$\left[A,\ A_0{-1}\right]\frac{x^n}{n!} = \begin{cases}0 & \text{if } n > 0\\ \mathbb{I} & \text{if } n = 0\end{cases} = E_0(\frac{x^n}{n!})$$
+
+So evaluating at the "origin" is $E_0 = \left[A,\ A_0^{-1}\right]$ and the location of the origin is determined by the selection of $A_0^{-1}$.
+
+So far I have referred to "points" and the "origin" with out defining them. I argue that a point is the operator that evaluates functions at the "point", so the point labelled $t$ is $E_t = E_0 e^{tA}$. Then given a coordinate function $f$ the coordinate representation of the point is the evaluation operator associated with that point applied to the coordinate function.
