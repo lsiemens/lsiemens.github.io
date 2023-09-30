@@ -6,11 +6,6 @@ math: true
 
 The following is a summary of my recent notes on a project to define a version of differential geometry based on fractional calculus. Note that the project has extended beyond that original goal and is no longer directly related to fractional calculus. However fractional derivatives still play a roll in special cases and provide a connection to fractals and objects with fractional dimension.
 
-
-# Motivation
-In the generalize fractional calculus that I have been developing, see [here](/scv_fractional_calculus.pdf), the fundamental equations is $\partial_x f(x, a) = f(x, a + 1)$ ...
-
-
 # Preliminary Work
 Starting in May of 2021 I spent a couple of months thinking through some conceptual problems around fractals under the assumption that geometry using fractional calculus would produce fractals of that they might at least be useful analogues. I cam to the conclusion that it should be possible to consider dynamics in a fractal space. For appropriate fractals they would appear from within the space to be ordinary euclidean space. Also it became apparent that the dimension in the sense of the Hausdorff dimension should be thought of in terms of the topological dimension, which is always an integer and accounts for the number of coordinates ..., and the "scaling" dimension, which contains the fractional part and relates to how the system scales.
 
@@ -34,31 +29,36 @@ I will briefly mention the main ideas I am building from and then cover the note
 
 As noted with the Grünwald-Letnikov fractional derivative if the what it means to be a finite difference is modified, then could lead to a change in the derivative. However I started to think along slightly different lines. For analytic functions a shift operator can be defined in terms of the exponential of the derivative. What if instead we expatiated a fractional derivative but still tried to interpret it as some kind of shift operator acting on a function space. Everything that follows comes from and expands on this idea.
 
-
 ## Setup and Shift Operators
-For an infinite dimensional linear operator $A$ with 1D null space acting on a suitable function space, then define the exponential to be,
+For a fractional derivative $A$ define the exponential to be,
 
-$$e^{tA} = I + tA + \frac{t^2}{2!}A^2 + \frac{t^3}{3!}A^3 + \cdots$$
+$$e^{A} = I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots$$
 
-where $t$ is a real variable. Suppose this operator acts to "shift" functions in some space analogous to how
+where $I$ is the identity operator. Suppose this operator acts to "shift" functions in some space analogous to how
 
-$$e^{t\frac{d}{dx}} f(x) = f(x) + tf'(x) + \frac{t^2}{2!}f''(x) + \cdots = f(x + t)$$
+$$e^{frac{d}{dx}} f(x) = f(x) + f'(x) + \frac{1}{2!}f''(x) + \cdots = f(x + 1)$$
 
-shifts analytic functions by $t$. If $e^{tA}$ taken in some sense to shift functions by $t$ in some space then the derivative in this space is,
+shifts analytic functions by $1$. If $e^{tA}$ taken in some sense to shift functions by $t$ in some space then the derivative in this space is,
 
 $$\lim_{h \to 0} \frac{e^{hA} - I}{h} = \lim_{h \to 0} \frac{I - I + hA + \frac{h^2}{2!}A^2 + \cdots}{h} = \lim_{h \to 0} A + h(\frac{1}{2!}A^2 + \frac{h}{3!}A^3 + \cdots) = A$$
 
-So if there exists some space where the shift operator is $e^{tA}$ then $A$ is the derivative on that space. Let us assume such a space exists and see how far this idea can go. Given a right inverse $A_0^{-1}$ such that $AA_0^{-1} = I$ and an element $\mathbb{I}$ from the null space of $A$, define the functions $\frac{x^n}{n!}=(A_0^{-1})^n\mathbb{I}$ which will form a basis for analytic functions on this space and are compatible with $A$ and $A_0^{-1}$. Then the function $\mathbb{I}$ is the analogue of the unit constant function and $A_0^{-1}$ is the analogue of $\int_0^x f(u)du$. An "analytic" function $f$ can be constructed as $f = \sum_{k=0}^\infty a_k \frac{x^k}{k!}$ with $\frac{x^0}{0!} = \mathbb{I}$.
+So if there exists some space where the shift operator is $e^{tA}$ then the fractional derivative $A$ is the derivative on that space. let's assume that such spaces exists and see how far this idea can go.
 
-Multiplication can now be defined as the bilinear operator $\times$ such that $x^n \times x^m = x^{n+m}$ so use the definition,
+Up until this point I had been assuming that I would only be dealing with fractional derivatives. However, I realized that this relationship between the exponential of an operator and the derivative applies to more general operators than fractional derivatives and at about the same time that the process used to generate fractional calculus, described in my [paper](scv_fractional_calculus.pdf), can be used to make fractional versions of operators in the same, more general, set of operators. So this geometry does not directly use fractional calculus, but for any geometry constructed using an operator $A$ there are related geometries built on fractional versions of the operator $A$.
+
+To start with, let's setup the space in which the operators will act. Since we are working in $1D$ let's use $\mathbb{R}$ and by default I will use $\chi$ to mean a variable in this space. Finally lets call this space the ambient space. I will call the space that is "shifted" by the exponential the generated space and by default I will use $x$ to mean coordinates in this space. Note that all of the primary objects that we will work with will exist both in the ambient and generated spaces. For simplicity I will assume that everything is analytic and that all of the operators map analytic functions to analytic functions.
+
+On the ambient space define an operator $A$ which is an infinite dimensional linear operator with one dimensional null space when acting on some specified functions space. Also we will need and operator $A_0^{-1}$, which is a right inverse of $A$, and an element $\mathbb{I}$, of the null space of $A$, so that $AA_0^{-1}\mathbb{I}(\chi) = 0$. As noted above the linear operator $e^{tA}$ shifts functions in the generated space and using this the derivative in the generated space would be the operator $A$. Define the functions $\frac{x^n}{n!}=(A_0^{-1})^n\mathbb{I}$ which will form a basis for analytic functions on the generated space and are compatible with $A$ and $A_0^{-1}$. Then the function $\mathbb{I}$ is the analogue of the unit constant function and $A_0^{-1}$ is the analogue of $\int_0^x f(u)du$. An "analytic" function $f$ can be constructed as $f = \sum_{k=0}^\infty a_k \frac{x^k}{k!}$ with $\frac{x^0}{0!} = \mathbb{I}$.
+
+Multiplication can now be defined as the bilinear operator $\times$ such that $x^n \times x^m = x^{n+m}$ so we will use the definition,
 
 $$\frac{x^n}{n!} \times \frac{x^m}{m!} = \frac{(n + m)!}{n!m!}\frac{x^{n + m}}{(n + m)!} = \binom{n + m}{n}\frac{x^{n + m}}{(n + m)!}$$
 
-So for functions $f = \sum a_k \frac{x^k}{k!}$ and $g = \sum b_k \frac{x^k}{k!}$, then the product of the functions is,
+So for functions $f = \sum a_k \frac{x^k}{k!}$ and $g = \sum b_k \frac{x^k}{k!}$, the product of the functions is,
 
 $$f \times g = \sum_{k=0}^\infty \frac{x^k}{k!} \left( \sum_{j = 0}^k \binom{k}{j}a_{k - j}b_j \right)$$
 
-Note $\mathbb{I} = \frac{x^0}{0!}$ is the multiplicative identity.$x(\mathcal{x})$
+Note $\mathbb{I} = \frac{x^0}{0!}$ is the multiplicative identity.
 
 ## Points and Function Evaluation
 For real functions the evaluation of a function at a point is a linear map from the space of functions to the real numbers. Given this operator, evaluation at other points can be achieved by composing this operator with the shift operator. So given evaluation at the "origin" $E_0$, evaluation at other points is $E_0 e^{tA}$. I would expect that evaluating the terms $\frac{x^n}{n!}$ at the "origin" give the results
@@ -96,9 +96,9 @@ So far I have referred to "points" and the "origin" with out defining them. I ar
 ## Fractional Calculus and Fractional Dimension
 While this project started as trying to incorporate fractional calculus into differential geometry it has expanded to include a much broader class of linear operators, however the operator $A$ can always be taken to be a fractional derivative. On the background Euclidean space use $\chi$ as the coordinate. Let $A = K^\gamma$ where $K^\gamma f(\chi) = \frac{1}{\Gamma(-\gamma)}\int_0^\chi f(t)(\chi - t)^{-\gamma - 1}dt$ and $A_0^{-1} = K^{-\gamma}$. Define the function $f_\beta(\chi, \alpha) = \frac{\chi^{\beta - \alpha}}{\Gamma(1 + \beta - \alpha)}$ and note that using the beta function $K^\gamma f_\beta(\chi, \alpha) = f_\beta(\chi, \alpha + \gamma)$. Taking the unit constant function to be $\mathbb{I} = f_{\gamma - 1}(\chi, 0) = \frac{\chi^{\gamma - 1}}{\Gamma(\gamma)}$, then the monomial terms are $\frac{x^n}{n!} = (A_0^{-1})^n\mathbb{I} = f_{\gamma - 1}(\chi, -n\gamma) = \frac{\chi^{\gamma(n + 1) - 1}}{\Gamma(\gamma(n + 1))}$, with $A\mathbb{I} = f_{\gamma - 1}(\chi, \gamma) = \frac{\chi^{-1}}{\Gamma(0)} = 0$.
 
-Now let us consider a line segment between the points $E_0$ and $E_1$. While I am not at this point yes, let us assume that a metric and the other necessary structures can be defined and that an Euclidean like metric exists where the coordinate function is $x(\chi) = \frac{\chi^{2\gamma - 1}}{\Gamma(2\gamma)}$ and the distance between points $p$, $q$ is $Len(p, q) = (E_q - E_p)x = (q - p)\mathbb{I}$. The length of the segment in question is $Len(0, 1) = \mathbb{I}$. Splitting this into $n$ smaller line segments of equal size. The small segments have points at $\frac{k}{n}$ with $k \in [0, n]$. The sum of the lengths of the small segments is $\sum_{k=1}^n(E_{\frac{k}{n}} - E_{\frac{k - 1}{n}})x = \sum_{k=1}^n(\frac{k}{n} - \frac{k - 1}{n})\mathbb{I} = \mathbb{I}$, so the length of the interval is not changed when splitting into multiple small intervals.
+Now let's consider a line segment between the points $E_0$ and $E_1$. While I am not at this point yes, let's assume that a metric and the other necessary structures can be defined and that an Euclidean like metric exists where the coordinate function is $x(\chi) = \frac{\chi^{2\gamma - 1}}{\Gamma(2\gamma)}$ and the distance between points $p$, $q$ is $Len(p, q) = (E_q - E_p)x = (q - p)\mathbb{I}$. The length of the segment in question is $Len(0, 1) = \mathbb{I}$. Splitting this into $n$ smaller line segments of equal size. The small segments have points at $\frac{k}{n}$ with $k \in [0, n]$. The sum of the lengths of the small segments is $\sum_{k=1}^n(E_{\frac{k}{n}} - E_{\frac{k - 1}{n}})x = \sum_{k=1}^n(\frac{k}{n} - \frac{k - 1}{n})\mathbb{I} = \mathbb{I}$, so the length of the interval is not changed when splitting into multiple small intervals.
 
-Now let us consider transformations of the underlying space. Let $\chi \to s\chi$, then applying this scaling of space to $\frac{x^n}{n!}$ gives
+Now let's consider transformations of the underlying space. Let $\chi \to s\chi$, then applying this scaling of space to $\frac{x^n}{n!}$ gives
 
 $$\frac{x^n}{n!}(s\chi) = \frac{(s\chi)^{\gamma(n + 1) - 1}}{\Gamma(\gamma(n + 1))} = s^{\gamma(n + 1) - 1}\frac{x^n}{n!}(\chi)$$
 
@@ -106,7 +106,7 @@ Applying this to a function $f(x(\chi)) = \sum_{k=0}^\infty a_k \frac{x^k}{k!}(\
 
 $$f(x(s\chi)) = \sum_{k=0}^\infty a_k s^{\gamma(k + 1) - 1} \frac{x^k}{k!}(\chi) = s^{\gamma - 1}\sum_{k=0}^\infty a_k s^{\gamma k} \frac{x^k}{k!}(\chi) = s^{\gamma - 1}f(s^\gamma x(\chi))$$
 
-Aside from the constant factor $s^{\gamma - 1}$ this looks like scaling the underlying space $\chi$ by $s$ is equivalent to scaling the generated space $x$ by $s^\gamma$ where $\gamma$ is the exponent of the fractional derivative. Note if $\gamma = 1$ (i.e. the generated space is not fractional) then the constant factor is $1$ and this just corresponds to scaling. So let us define scaling in a fractional space as the map $g(\chi) \to s^{1 - \gamma}g(s\chi)$ which is just ordinary scaling if the space is not fractional. Using this definition of scaling
+Aside from the constant factor $s^{\gamma - 1}$ this looks like scaling the underlying space $\chi$ by $s$ is equivalent to scaling the generated space $x$ by $s^\gamma$ where $\gamma$ is the exponent of the fractional derivative. Note if $\gamma = 1$ (i.e. the generated space is not fractional) then the constant factor is $1$ and this just corresponds to scaling. So let's define scaling in a fractional space as the map $g(\chi) \to s^{1 - \gamma}g(s\chi)$ which is just ordinary scaling if the space is not fractional. Using this definition of scaling
 
 $$f(x(\chi)) \to s^{1 - \gamma}f(x(s\chi)) = f(s^\gamma x(\chi))$$
 
