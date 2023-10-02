@@ -6,7 +6,7 @@ math: true
 
 The following is a summary of my recent notes on a project to define a version of differential geometry based on fractional calculus. Note that the project has extended beyond that original goal and is no longer directly related to fractional calculus. However fractional derivatives still play a roll in special cases and provide a connection to fractals and objects with fractional dimension.
 
-# Preliminary Work
+## Preliminary Work
 Starting in May of 2021 I spent a couple of months thinking through some conceptual problems around fractals under the assumption that geometry using fractional calculus would produce fractals that might at least be useful analogues. I came to the conclusion that it should be possible to consider dynamics in a fractal space. For appropriate fractals they would appear from within the space to be ordinary euclidean space. It also became apparent that the dimension in the sense of the Hausdorff dimension should be thought of in terms of the topological dimension, which is always an integer and accounts for the number of coordinates and the "scaling" dimension, which contains the fractional part and relates to how the system scales.
 
 Following this I tried to develop a version of differential geometry using fractional calculus with "An Introduction To Riemannian Geometry" by Godinho and Natário as a guide. While I was able to develop a little more intuition about how this might work, the project failed. My final note from this approach suggests considering the Grünwald-Letnikov fractional derivative, defined as
@@ -24,13 +24,14 @@ $$\mathbb{D}^q f(x) = \lim_{h \to 0} \frac{\Delta_h^q f(x)}{\|h\|}$$
 If this difference operator and norm were natural definitions in some space, then the derivative would be the fractional derivative $\mathbb{D}^q$. So if a space could be constructed where the notion of a finite difference and the lengths of intervals is modified, then the limit definition of the derivative would be modified. Finally, if it is possible to construct differential geometry in that space, then it should in some sense use this modified derivative.
 
 
-# Current work
-I will briefly mention the main ideas I am building from in the following paragraph, and then cover the notes for the case of one topological dimension.
+## Current Work
+I will briefly mention the main ideas I am building from in the following paragraph, and then cover the notes for the case of $1$ topological dimension before moving on the the case of $n$ topological dimensions.
 
 As noted with the Grünwald-Letnikov fractional derivative, if what it means to be a finite difference is modified, then it could lead to a change in the derivative. However, I started to think along slightly different lines. For analytic functions a shift operator can be defined in terms of the exponential of the derivative. What if, instead, we exponentiated a fractional derivative but still tried to interpret it as some kind of shift operator acting on a function space? Everything that follows comes from and expands on this idea.
 
+## One Topological Dimension
 
-## Setup and Shift Operators
+### Setup and Shift Operators
 For a fractional derivative $A$ define the exponential to be,
 
 $$e^{A} = I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots$$
@@ -61,7 +62,7 @@ $$f \times g = \sum_{k=0}^\infty \frac{x^k}{k!} \left( \sum_{j = 0}^k \binom{k}{
 
 Note $\mathbb{I} = \frac{x^0}{0!}$ is the multiplicative identity.
 
-## Points and Function Evaluation
+### Points and Function Evaluation
 For real functions the evaluation of a function at a point is a linear map from the space of functions to the real numbers. Given this operator, evaluation at other points can be achieved by composing this operator with the shift operator. So given evaluation at the "origin" $E_0$, evaluation at other points is $E_0 e^{tA}$. I would expect that evaluating the terms $\frac{x^n}{n!}$ at the "origin" give the results
 
 $$E_0(\frac{x^n}{n!}) = \begin{cases}0 & \text{if } n > 0\\ 1 & \text{if } n = 0\end{cases}$$
@@ -94,7 +95,7 @@ So evaluating at the "origin" is $E_0 = \left[A,\ A_0^{-1}\right]$ and the locat
 
 So far I have referred to "points" and the "origin" without defining them. I argue that a point is the operator that evaluates functions at the "point", so the point labelled $t$ is $E_t = E_0 e^{tA}$. Then given a coordinate function $f$ the coordinate representation of the point is the evaluation operator associated with that point applied to the coordinate function.
 
-## Fractional Calculus and Fractional Dimension
+### Fractional Calculus and Fractional Dimension
 While this project started as trying to incorporate fractional calculus into differential geometry it has expanded to include a much broader class of linear operators, however the operator $A$ can always be taken to be a fractional derivative. On the background Euclidean space use $\chi$ as the coordinate. Let $A = K^\gamma$ where $K^\gamma f(\chi) = \frac{1}{\Gamma(-\gamma)}\int_0^\chi f(t)(\chi - t)^{-\gamma - 1}dt$ and $A_0^{-1} = K^{-\gamma}$. Define the function $f_\beta(\chi, \alpha) = \frac{\chi^{\beta - \alpha}}{\Gamma(1 + \beta - \alpha)}$ and note that using the beta function $K^\gamma f_\beta(\chi, \alpha) = f_\beta(\chi, \alpha + \gamma)$. Taking the unit constant function to be $\mathbb{I} = f_{\gamma - 1}(\chi, 0) = \frac{\chi^{\gamma - 1}}{\Gamma(\gamma)}$, then the monomial terms are $\frac{x^n}{n!} = (A_0^{-1})^n\mathbb{I} = f_{\gamma - 1}(\chi, -n\gamma) = \frac{\chi^{\gamma(n + 1) - 1}}{\Gamma(\gamma(n + 1))}$, with $A\mathbb{I} = f_{\gamma - 1}(\chi, \gamma) = \frac{\chi^{-1}}{\Gamma(0)} = 0$.
 
 Now let's consider a line segment between the points $E_0$ and $E_1$. While I am not at this point yet, let's assume that a metric and the other necessary structures can be defined, and that an Euclidean-like metric exists where the coordinate function is $x(\chi) = \frac{\chi^{2\gamma - 1}}{\Gamma(2\gamma)}$, and the distance between points $p$ and $q$ is $Len(p, q) = (E_q - E_p)x = (q - p)\mathbb{I}$. The length of the segment in question is $Len(0, 1) = \mathbb{I}$. Splitting this into $n$ smaller line segments of equal size, the small segments have points at $\frac{k}{n}$ with $k \in [0, n]$. The sum of the lengths of the small segments is $\sum_{k=1}^n(E_{\frac{k}{n}} - E_{\frac{k - 1}{n}})x = \sum_{k=1}^n(\frac{k}{n} - \frac{k - 1}{n})\mathbb{I} = \mathbb{I}$, so the length of the interval is not changed when splitting into multiple small intervals.
@@ -113,9 +114,43 @@ $$f(x(\chi)) \to s^{1 - \gamma}f(x(s\chi)) = f(s^\gamma x(\chi))$$
 
 So the length of an interval from $0$ to $p$ transforms under scaling the underlying space as $Len(0, p) \to s^{1 - \gamma}(E_p - E_0)x(s\chi) = s^{\gamma}Len(0, p)$ implying that the "dimension" is $d = \gamma$. In particular the topological dimension is $d = 1$ and the Hausdorff dimension is $d = \gamma$ with respect to the ambient space.
 
-## Vectors and Dual Vectors
+### Vectors and Dual Vectors
 Although it is somewhat trivial, in $1D$ a vector field can be constructed as $f(x) \times A$ for some function $f(x)$. Then a vector at a point $p$ is $E_p(f(x) \times A) = \vec{v}$, acting the vector $\vec{v}$ on a function $g(x)$ gives $\vec{v}(g(x)) = E_p(f(x)) \times E_p(A g(x))$, that is $\vec{v} = f(p)E_p A$. For a vector space $V$, a dual vector $\vec{w}$ is an element of the space $V^*$ consisting of the linear maps of the form $\vec{w}:V \to \mathbb{R}$. There is a canonical map from functions to dual vectors such that for a function $g$ and a vector field $\vec{X} = f(x) \times A$, then the dual vector $dg$ is a dual vector field where
 
 $$dg(\vec{X}) = \vec{X}(g(x)) = f(x) \times A g(x)$$
 
 Applying any point $E_p$ to $dg$ gives a linear map from vectors at $p$ to $\mathbb{R}$ and so $dg$ is a dual vector field.
+
+## N Topological Dimensions
+Using an ambient space $\mathbb{R}^n$, with coordinates $\vec{\chi}$, define the operators $A_i$ and $A_{0i}^{-1}$ acting on functions in this ambient space. The set of operators $A_i$ should be a Lie algebra with respect to the commutator so that $[A_i, A_j] = A_i A_j - A_j A_i$ exists and the result is a linear combination of the operators $A_i$. Then there are structure coefficients $f_{ij}^k$ such that $[A_i, A_j] = f_{ij}^kA_k$. If the structure coefficients are all zero the operators commute and shift operators will compose simply using the equation $e^{tA_i}e^{sA_j} = e^{tA_i + sA_j}$. If the operators $A_i$ do not commute then the Baker-Campbell-Hausdorff formula should describe how shift operators will compose. In that case I also expect similar complications to cause function multiplication to not commute.
+
+### Product Space
+To make the algebra simpler, going forward I will assume that the generated space is a product space of $n$ 1D generated spaces. In this case for all $i$ and $j$, $[A_i, A_j] = 0$ and $[A_{0i}^{-1}, A_{0j}^{-1}] = 0$, also if $i \neq j$ then $[A_i, A_{0j}^{-1}] = 0$ and finally the basis of the function space is the product the basis of the individual function spaces for each dimension. So functions are defined as a multi-variable Taylor series and a function, $f$ for example, will be denoted using one of $f$, $f(\vec{\chi})$, $f(\vec{x})$ or $f(x_1, \cdots, x_n)$ where $x_i = A_{0i}^{-1} \mathbb{I}(\chi)$ and $\vec{x} = (x_1, \cdots, x_n)$. Note, $\mathbb{I}(\vec{\chi})$ is the product of the individual constant unit functions. Vector fields have the form $\vec{X} = f_i(\vec{x}) \times A_i$ for $n$ functions $f_i(\vec{x})$. The commutator of two vector fields $\vec{X} = f_i \times A_i$ and $\vec{Y} = g_i \times A_i$ is $[\vec{X}, \vec{Y}] = \left(f_i(A_i g_j) - g_i(A_i f_j)\right)A_j$ which is itself a vector field, however note that this is not necessarily true if the space is not a product space.
+
+### Flow of Vector Fields
+Out of curiosity I tried computing $e^{t\vec{X}}$ for some simple vector fields and found that the result of these operators acting on functions was the flow of the function along the vector field. I was surprised to find that this seems to be true in general, this can be see by the following argument. For a vector field $\vec{X}$ due to the product rule for two functions $f(\vec{x})$ and $g(\vec{x})$ the following holds
+
+$$e^{\vec{X}}(f \times g) = \left( e^{\vec{X}}f \right) \times \left( e^{\vec{X}}g \right)$$
+
+The implication is that since $e^{\vec{X}}$ is a linear operator it acts on functions term by term and since each term is the the product of the basis functions $x_i$, then the exponential can be pulled into each of the multiplicative terms. So for a term in a function being acted on by $e^{\vec{X}}$ then $e^{\vec{X}} \Pi_{k=1}^n (x_k)^{n_k} = \Pi_{k=1}^n (e^{\vec{X}}x_k)^{n_k}$ where $n_k \in [0, 1, 2, \cdots]$. So for a vector field $\vec{X}$ and function $f$ then
+
+$$e^{t\vec{X}}f(x_1, \cdots, x_n) = f(e^{t\vec{X}}x_1, \cdots, e^{t\vec{X}}x_n)$$
+
+and defining the functions $G_i(t, x_1, \cdots, x_n) = e^{t\vec{X}}x_i$ then $e^{t\vec{X}}f = f \circ \vec{G}$. The function $G_i$ is the coordinates for the flow of the vector field, for example at $t = 0$ the differentiating the previous equation leads to $\vec{X} = \left. \partial_t G_i(t, x_1, \cdots, x_n) \right\|_{t=0} A_i$.
+
+### Solve Differential Equations
+When searching to find other arguments and proofs that the exponential of a vector field can solve for the flow, I found an argument that finally convinced me that it works and that it applies more generally than just to linear differential operators. I was trying to see if this method would fail when using the limit definition of the exponential. Generalizing from the definition $e^x = \lim_{n \to \infty} \left(I + \frac{x}{n}\right)^n$, I tried the calculation $e^{t\vec{X}}f = \lim_{n \to \infty} \left( I + \frac{t\vec{X}}{n} \right)^nf$. Defining $\Delta t = \frac{t}{n}$ the equation then becomes
+
+$$e^{t\vec{X}}f = lim_{n \to \infty} \left(I + \Delta t \vec{X} \right)^nf$$
+
+It was straight forward to rewrite this as a recursive equation starting with $f_0 = f$, terminating with $e^{t\vec{X}}f = f_n$ and using $f_{k+1} = (I + \Delta t\vec{X})f_k = f_k + \Delta t \vec{X} f_k$ in the limit as $n \to \infty$.
+
+So $e^{t\vec{X}}f$ can be identified as the solution found by Euler's method applied to the initial value problem associated with the vector field, where the function $f$ is the initial value. So for a system with a state denoted by $f(t)$ and an operator $A$ such that $A \circ f(t) = \partial_t f(t)$, then the initial value problem is solved by
+
+$$e^{tA}f(0) = \lim_{n \to \infty} \left( I + \frac{t}{n}A \right)^n f(0)$$
+
+where $\left( I + \frac{t}{n}A \right)^n$ denotes repeated composition. This should be applicable to essentially any problem solvable with Euler's method, even coupled and nonlinear systems. Note that if the system in question is linear then $\left( I + \frac{t}{n}A \right)^n$ can be expanded. Using this, if the operator $A$ is a linear operator then after some algebra it follows that
+
+$$e^{tA} = \lim_{n \to \infty} \left( I + \frac{t}{n}A \right)^n = \sum_{k=0}^\infty \frac{(tA)^k}{k!}$$
+
+In the case of a linear system the limit definition of the exponential, which can be related to Euler's method, is equivalent to the Taylor series definition of the exponential, although in this case it is applied to linear operators instead of matrices.
