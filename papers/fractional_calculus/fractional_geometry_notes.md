@@ -25,14 +25,14 @@ If this difference operator and norm were natural definitions in some space, the
 
 
 ## Current Work
-I will briefly mention the main ideas I am building from in the following paragraph, and then cover the notes for the case of $1$ topological dimension before moving on the the case of $n$ topological dimensions.
+I will briefly mention the main ideas I am building from in the following paragraph, and then cover the notes for the case where the topological dimension is $d = 1$ before moving on to the case where the topological dimension is $d = n > 1$.
 
 As noted with the Grünwald-Letnikov fractional derivative, if what it means to be a finite difference is modified, then it could lead to a change in the derivative. However, I started to think along slightly different lines. For analytic functions a shift operator can be defined in terms of the exponential of the derivative. What if, instead, we exponentiated a fractional derivative but still tried to interpret it as some kind of shift operator acting on a function space? Everything that follows comes from and expands on this idea.
 
 ## One Topological Dimension
 
 ### Setup and Shift Operators
-For a fractional derivative $A$ define the exponential to be,
+For a fractional derivative $A$, define the exponential to be,
 
 $$e^{A} = I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots$$
 
@@ -63,7 +63,7 @@ $$f \times g = \sum_{k=0}^\infty \frac{x^k}{k!} \left( \sum_{j = 0}^k \binom{k}{
 Note $\mathbb{I} = \frac{x^0}{0!}$ is the multiplicative identity.
 
 ### Points and Function Evaluation
-For real functions the evaluation of a function at a point is a linear map from the space of functions to the real numbers. Given this operator, evaluation at other points can be achieved by composing this operator with the shift operator. So given evaluation at the "origin" $E_0$, evaluation at other points is $E_0 e^{tA}$. I would expect that evaluating the terms $\frac{x^n}{n!}$ at the "origin" give the results
+For real functions the evaluation of a function at a point is a linear map from the space of functions to the real numbers. Given this operator, evaluation at other points can be achieved by composing this operator with the shift operator. So given evaluation at the "origin" $E_0$, evaluation at other points is $E_0 e^{tA}$. I would expect that evaluating the terms $\frac{x^n}{n!}$ at the "origin" gives the results
 
 $$E_0(\frac{x^n}{n!}) = \begin{cases}0 & \text{if } n > 0\\ 1 & \text{if } n = 0\end{cases}$$
 
@@ -75,7 +75,7 @@ where $G_\sigma$ is the function
 
 $$G_\sigma = \frac{1}{\sqrt{\sigma \pi}} \sum_{k=0}^\infty \frac{(-1/\sigma)^k(2k)!}{k!}\frac{x^{2k}}{(2k)!}$$
 
-After computing the result of $E_0(\frac{x^n}{n!})$ explicitly using using this definition the result was
+After computing the result of $E_0(\frac{x^n}{n!})$ explicitly using this definition the result was
 
 $$E_0(\frac{x^n}{n!}) = \begin{cases}0 & \text{if } n > 0\\ \mathbb{I} & \text{if } n = 0\end{cases}$$
 

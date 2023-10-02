@@ -10,4 +10,4 @@ I have two papers on fractional calculus.
 
 Additionally I have a summary of my working notes on a project to define differential geometry using fractional calculus.
 
-- [Working Notes: fractional geometry](/fractional_geometry_notes.md)
+- [Working Notes: Fractional Geometry](/fractional_geometry_notes.md)
