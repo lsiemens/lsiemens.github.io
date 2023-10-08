@@ -89,7 +89,7 @@ $$E_0(e^{tA}f) = \sum a_k E_0\left( e^{tA} \frac{x^k}{k!} \right) = \sum a_k \fr
 
 Later, I realized that there was a simpler but equivalent definition of $E_0$. Recall that $A\mathbb{I} = 0$ and $A_0^{-1}\frac{x^n}{n!} = \frac{x^{n + 1}}{(n + 1)!}$ so $AA_0^{-1}\frac{x^n}{n!} = A\frac{x^{n + 1}}{(n + 1)!} = \frac{x^n}{n!}$ but if $n > 0$ then $A_0^{-1}A\frac{x^n}{n!} = A_0^{-1}\frac{x^{n - 1}}{(n - 1)!} = \frac{x^n}{n!}$ otherwise if $n=0$ then $A_0^{-1}A\mathbb{I} = A_0^{-1}0 = 0$. So the commutator of $A$ and $A_0^{-1}$ applied to the basis functions is
 
-$$\left[A,\ A_0{-1}\right]\frac{x^n}{n!} = \begin{cases}0 & \text{if } n > 0\\ \mathbb{I} & \text{if } n = 0\end{cases} = E_0(\frac{x^n}{n!})$$
+$$\left[A,\ A_0^{-1}\right]\frac{x^n}{n!} = \begin{cases}0 & \text{if } n > 0\\ \mathbb{I} & \text{if } n = 0\end{cases} = E_0(\frac{x^n}{n!})$$
 
 So evaluating at the "origin" is $E_0 = \left[A,\ A_0^{-1}\right]$ and the location of the origin is determined by the selection of $A_0^{-1}$.
 
