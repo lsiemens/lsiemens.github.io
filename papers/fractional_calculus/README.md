@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Papers: Fractional Calculus"
+title: "Papers: Fractional Calculus and Fractional Geometry"
 ---
 
 I have two papers on fractional calculus.
