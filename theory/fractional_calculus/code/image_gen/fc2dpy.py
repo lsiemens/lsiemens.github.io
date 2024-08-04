@@ -130,6 +130,24 @@ class function_FD:
         data = function_FD(fractional_function, self.polydisk, self.function_label)
         return data
 
+    def imslice(self, origin, vertical_vector, horizontal_vector, subsection_vertical, subsection_horizontal):
+        vertical_x = numpy.linspace(origin[0] - vertical_vector[0], origin[0] + vertical_vector[0], self.polydisk.resolution, dtype=array_dtype)
+        horizontal_x = numpy.linspace(origin[0] - horizontal_vector[0], origin[0] + horizontal_vector[0], self.polydisk.resolution, dtype=array_dtype)
+
+        vertical_a = numpy.linspace(origin[1] - vertical_vector[1], origin[1] + vertical_vector[1], self.polydisk.resolution, dtype=array_dtype)
+        horizontal_a = numpy.linspace(origin[1] - horizontal_vector[1], origin[1] + horizontal_vector[1], self.polydisk.resolution, dtype=array_dtype)
+
+        Grid_xh, Grid_xv = numpy.meshgrid(horizontal_x, vertical_x[::-1])
+        Grid_ah, Grid_av = numpy.meshgrid(horizontal_a, vertical_a[::-1])
+        Grid_x = Grid_xh + Grid_xv
+        Grid_a = Grid_ah + Grid_av
+
+        extent = [-1.0, 1.0, -1.0, 1.0]
+        data = self.function(Grid_x, Grid_a, self.order)
+
+        cplot.cimshow(data, extent=extent, modRange=True, vmin=self.vmin, vmax=self.vmax)
+        pyplot.show()
+
     def graph1d_x(self, a=None):
         if a is None:
             a = self.polydisk.a
