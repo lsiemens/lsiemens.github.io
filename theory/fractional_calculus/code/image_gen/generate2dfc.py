@@ -8,6 +8,8 @@ from matplotlib.animation import FuncAnimation
 
 fc2dpy.array_dtype=numpy.complex256
 
+fname_base = "./tmp/test_"
+show = False
 resolution = 256 # 512 4096
 #resolution = 1024*3*2
 order = 128 # 128
@@ -61,6 +63,15 @@ fd.vmin = -5
 #fd.graph1d_x(a=0.01)
 #fd.graph1d_a(x=0.01)
 #fd.graphXplane()
-fd.imslice((1.0j, 0), (0.0, 10.0j), (-5.0*0.894j, 10.0*0.894), 0, 0)
+i = 0
+stop = False
+while not stop:
+    i += 1
+    fname = f"{fname_base}{i}.npy"
+    if show:
+        stop = True
+        fname = None
+    fd.imslice((1.0j, 0), (2*10.0*0.707, 2*10.0j*0.707), (3*(-5.0)*0.894j, 3*10.0*0.894), 2*resolution, 3*resolution, fname=fname)
+    print(f"\nDone {i} samples\n")
 #fd.graphAplane()
 #fd.graph2d()

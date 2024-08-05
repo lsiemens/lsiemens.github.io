@@ -4,6 +4,7 @@ import time
 import numpy
 import cplot
 
+default_rng = numpy.random.default_rng()
 array_dtype = numpy.complex256
 approximate_gamma = True
 
@@ -130,23 +131,33 @@ class function_FD:
         data = function_FD(fractional_function, self.polydisk, self.function_label)
         return data
 
-    def imslice(self, origin, vertical_vector, horizontal_vector, subsection_vertical, subsection_horizontal):
-        vertical_x = numpy.linspace(origin[0] - vertical_vector[0], origin[0] + vertical_vector[0], self.polydisk.resolution, dtype=array_dtype)
-        horizontal_x = numpy.linspace(origin[0] - horizontal_vector[0], origin[0] + horizontal_vector[0], self.polydisk.resolution, dtype=array_dtype)
+    def imslice(self, origin, vertical_vector, horizontal_vector, vertical_resolution, horizontal_resolution, fname=None):
+        print("resolution aspect ratio: ", horizontal_resolution/vertical_resolution)
+        print("parameter aspect ratio: ", numpy.sqrt(numpy.abs(horizontal_vector[0])**2 + numpy.abs(horizontal_vector[1])**2)/numpy.sqrt(numpy.abs(vertical_vector[0])**2 + numpy.abs(vertical_vector[1])**2), "\n")
 
-        vertical_a = numpy.linspace(origin[1] - vertical_vector[1], origin[1] + vertical_vector[1], self.polydisk.resolution, dtype=array_dtype)
-        horizontal_a = numpy.linspace(origin[1] - horizontal_vector[1], origin[1] + horizontal_vector[1], self.polydisk.resolution, dtype=array_dtype)
+        vertical_x = numpy.linspace(origin[0] - vertical_vector[0], origin[0] + vertical_vector[0], vertical_resolution, dtype=array_dtype)
+        horizontal_x = numpy.linspace(origin[0] - horizontal_vector[0], origin[0] + horizontal_vector[0], horizontal_resolution, dtype=array_dtype)
+        vertical_dx = vertical_vector[0]/(vertical_resolution - 1)
+        horizontal_dx = horizontal_vector[0]/(horizontal_resolution - 1)
+
+        vertical_a = numpy.linspace(origin[1] - vertical_vector[1], origin[1] + vertical_vector[1], vertical_resolution, dtype=array_dtype)
+        horizontal_a = numpy.linspace(origin[1] - horizontal_vector[1], origin[1] + horizontal_vector[1], horizontal_resolution, dtype=array_dtype)
+        vertical_da = vertical_vector[1]/(vertical_resolution - 1)
+        horizontal_da = horizontal_vector[1]/(horizontal_resolution - 1)
+
+        jitter = default_rng.uniform(-1, 1, (2, vertical_resolution, horizontal_resolution))
 
         Grid_xh, Grid_xv = numpy.meshgrid(horizontal_x, vertical_x[::-1])
         Grid_ah, Grid_av = numpy.meshgrid(horizontal_a, vertical_a[::-1])
-        Grid_x = Grid_xh + Grid_xv
-        Grid_a = Grid_ah + Grid_av
+        Grid_x = (Grid_xh + horizontal_dx*jitter[0]) + (Grid_xv + vertical_dx*jitter[1])
+        Grid_a = (Grid_ah + horizontal_da*jitter[0]) + (Grid_av + vertical_da*jitter[1])
 
         extent = [-1.0, 1.0, -1.0, 1.0]
         data = self.function(Grid_x, Grid_a, self.order)
 
-        cplot.cimshow(data, extent=extent, modRange=True, vmin=self.vmin, vmax=self.vmax)
-        pyplot.show()
+        cplot.cimshow(data, extent=extent, modRange=True, vmin=self.vmin, vmax=self.vmax, fname=fname)
+        if fname is None:
+            pyplot.show()
 
     def graph1d_x(self, a=None):
         if a is None:
