@@ -105,7 +105,7 @@ class _color_space:
 
 _color_space = _color_space()
 
-def cimshow(data, extent=[-1.0, 1.0, -1.0, 1.0], logMag=False, modRange=False, vmin=None, vmax=None, fname=None):
+def cimshow(data, logMag=False, modRange=False, vmin=None, vmax=None, fname=None, title=""):
     angle = (numpy.angle(data) + numpy.pi)/(2*numpy.pi)
 
     if logMag:
@@ -125,7 +125,8 @@ def cimshow(data, extent=[-1.0, 1.0, -1.0, 1.0], logMag=False, modRange=False, v
         value = numpy.clip(value, 0.0, 1.0)
 
     if fname is None:
-        pyplot.imshow(_color_space.CIELHtoRGB(value, angle).astype(numpy.float64), extent=extent, interpolation="bicubic")
+        pyplot.title(title)
+        pyplot.imshow(_color_space.CIELHtoRGB(value, angle).astype(numpy.float64), interpolation="bicubic")
     else:
 #        pyplot.imsave(fname, _color_space.CIELHtoRGB(value, angle).astype(numpy.float64))
         numpy.save(fname, _color_space.CIELHtoRGB(value, angle).astype(numpy.float64))

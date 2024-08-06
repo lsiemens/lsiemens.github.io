@@ -131,7 +131,7 @@ class function_FD:
         data = function_FD(fractional_function, self.polydisk, self.function_label)
         return data
 
-    def imslice(self, origin, vertical_vector, horizontal_vector, vertical_resolution, horizontal_resolution, fname=None):
+    def imslice(self, origin, vertical_vector, horizontal_vector, vertical_resolution, horizontal_resolution, fname=None, title="title"):
         print("resolution aspect ratio: ", horizontal_resolution/vertical_resolution)
         print("parameter aspect ratio: ", numpy.sqrt(numpy.abs(horizontal_vector[0])**2 + numpy.abs(horizontal_vector[1])**2)/numpy.sqrt(numpy.abs(vertical_vector[0])**2 + numpy.abs(vertical_vector[1])**2), "\n")
 
@@ -152,10 +152,9 @@ class function_FD:
         Grid_x = (Grid_xh + horizontal_dx*jitter[0]) + (Grid_xv + vertical_dx*jitter[1])
         Grid_a = (Grid_ah + horizontal_da*jitter[0]) + (Grid_av + vertical_da*jitter[1])
 
-        extent = [-1.0, 1.0, -1.0, 1.0]
         data = self.function(Grid_x, Grid_a, self.order)
 
-        cplot.cimshow(data, extent=extent, modRange=True, vmin=self.vmin, vmax=self.vmax, fname=fname)
+        cplot.cimshow(data, modRange=True, vmin=self.vmin, vmax=self.vmax, fname=fname, title=title)
         if fname is None:
             pyplot.show()
 
